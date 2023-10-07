@@ -1,7 +1,7 @@
 #pragma once
 
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 
 typedef struct {
     int32_t x;
@@ -48,7 +48,6 @@ int Task() {
         si = new_i;
         sj = new_j;
         sl = new_l;
-
     }
     return 0;
 }
