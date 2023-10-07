@@ -9,7 +9,6 @@ const int32_t x2 = 0;
 const int32_t y2 = 10;
 const int32_t x3 = -10;
 const int32_t y3 = 20;
-const int32_t b = 10;
 
 typedef struct {
     int32_t x;
@@ -18,7 +17,7 @@ typedef struct {
 
 int CheckZone(Point p) {
     // Write a code here that checks whether a point belongs to a given area
-    if ((p.x >= x1 && p.x <= x2) && (p.y <= (-1) * p.x + b) && (p.y >= p.x + b)) {
+    if ((p.x >= x1 && p.x <= x2) && (p.y <= (-1) * p.x + 10) && (p.y >= p.x + 10)) {
         return 1;
     } else {
         return 0;
