@@ -79,6 +79,7 @@ int main() {
         p.y = j_0;
         int i_1 = 0;
         int j_1 = 0;
+        int l_1 = 0;
         if (CheckZone(p) == 1) {
             printf("x=%d, y=%d\n", i_0, j_0);
         }
@@ -88,7 +89,7 @@ int main() {
             i_1 = mod((i_0 ^ 2) / (abs(j_0 - l_0) + i + 1) - (j_0 ^ 2) / (abs(i_0 - l_0) + i + 1), 30);
         }
         j_1 = SIGN(l_0 * minz(i_0, j_0)) - SIGN(j_0 * maxz(i_0, l_0)) + i;
-        int l_1 = (i_0 - j_0) * (j_0 - l_0) * mod(l_0 - i_0, 20);
+        l_1 = (i_0 - j_0) * (j_0 - l_0) * mod(l_0 - i_0, 20);
         i_0 = i_1;
         j_0 = j_1;
         l_0 = l_1;
@@ -98,3 +99,4 @@ int main() {
     return 0;
 
 }
+
