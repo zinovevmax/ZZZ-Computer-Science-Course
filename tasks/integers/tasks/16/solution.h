@@ -28,26 +28,36 @@ int64_t Search(int64_t a) {
     int64_t flag_eight = 0;
     int64_t flag_nine = 0;
     do {
-        if (a % TEN == ZERO)
+        if (a % TEN == ZERO) {
             ++flag_zero;
-        if (a % TEN == ONE)
+        }
+        if (a % TEN == ONE) {
             ++flag_one;
-        if (a % TEN == TWO)
+        }
+        if (a % TEN == TWO) {
             ++flag_two;
-        if (a % TEN == THREE)
+        }
+        if (a % TEN == THREE) {
             ++flag_three;
-        if (a % TEN == FOUR)
+        }
+        if (a % TEN == FOUR) {
             ++flag_four;
-        if (a % TEN == FIVE)
+        }
+        if (a % TEN == FIVE) {
             ++flag_five;
-        if (a % TEN == SIX)
+        }
+        if (a % TEN == SIX) {
             ++flag_six;
-        if (a % TEN == SEVEN)
+        }
+        if (a % TEN == SEVEN) {
             ++flag_seven;
-        if (a % TEN == EIGTH)
+        }
+        if (a % TEN == EIGTH) {
             ++flag_eight;
-        if (a % TEN == NINE)
+        }
+        if (a % TEN == NINE) [
             ++flag_nine;
+        }
         a = a / TEN;
     } while (a * TEN / TEN > ZERO);
     if (flag_zero == ZERO || flag_one == ZERO || flag_two == ZERO || flag_three == ZERO || flag_four == ZERO ||
