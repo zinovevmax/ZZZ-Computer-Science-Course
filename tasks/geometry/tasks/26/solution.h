@@ -36,7 +36,7 @@ int Mod(int a, int b) {
         return (Abs(a % b));
     } else {
         printf("Error: you can't divide by zero");
-    	return 0;
+        return 0;
     }
 }
 
@@ -73,7 +73,7 @@ int Task() {
         }
     }
     if (flag_if_xy_not_inside == zero) {
-	printf("50 iterations have elapsed and the point has not entered the zone");
+        printf("50 iterations have elapsed and the point has not entered the zone");
     }
     return 0;
 }
