@@ -18,8 +18,7 @@ typedef struct {
 int CheckZone(Point p) {
     int cord_x = p.x;
     int cord_y = p.y;
-    if (((cord_y) >= ((cord_x) + CORD_Y2)) && ((cord_y) <= ((-1) * (cord_x) + CORD_Y2)) &&
-        (((cord_x) > CORD_X3))) {
+    if (((cord_y) >= ((cord_x) + CORD_Y2)) && ((cord_y) <= ((-1) * (cord_x) + CORD_Y2)) && (((cord_x) > CORD_X3))) {
         return 1;
     } else {
         return 0;
@@ -32,7 +31,6 @@ int Abs(int x) {
     } else {
         return x * -1;
     }
-
 }
 
 
@@ -72,7 +70,7 @@ int Minz(int x, int y) {
     }
 }
 
-int main() {
+int Task() {
     int I_0 = -8, J_0 = -5, L_0 = 12;
     for (int i = 0; i < ITEREATIONS; ++i) {
         Point p;
@@ -82,8 +80,6 @@ int main() {
         int J_1 = 0;
         int L_1 = 0;
 
-
-        //printf("x=%d, y=%d k=%d\n", i_0, j_0, i);
         if (CheckZone(p) == 1) {
             printf("x=%d, y=%d k=%d\n", I_0, J_0, i);
         }
@@ -98,8 +94,6 @@ int main() {
         J_0 = J_1;
         L_0 = L_1;
     }
-
-
+    
     return 0;
-
 }
