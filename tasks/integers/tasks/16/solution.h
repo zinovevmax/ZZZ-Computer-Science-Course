@@ -61,9 +61,10 @@ int64_t Search(int64_t a) {
 int Task() {
     int64_t num = INT_INPUT;
     // scanf("%ld", &num);
-    if (Search(num) == ZERO)
+    if (Search(num) == ZERO) {
         printf("There are numbers that do not occur even once");
-    else
+    } else {
         printf("There are no numbers that do not occur once");
+    }
     return 0;
 }
