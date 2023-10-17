@@ -33,10 +33,10 @@ int Min(int a, int b) {
 
 int Mod(int a, int b) {
     if (b != 0) {
-    	 return(Abs(a % b));
+        return (Abs(a % b));
     } else {
-    	 printf("Error: you can't divide by zero");
-    	 return 0;
+        printf("Error: you can't divide by zero");
+    	return 0;
     }
 }
 
@@ -46,7 +46,7 @@ typedef struct {
 } Point;
 
 int CheckZone(Point p) {
-        return (((p.x - center_coordinates_x) * (p.x - center_coordinates_x)) /
+    return (((p.x - center_coordinates_x) * (p.x - center_coordinates_x)) /
                     ((center_coordinates_x - coordinates_a_x) * (center_coordinates_x - coordinates_a_x)) +
                 ((p.y - center_coordinates_y) * (p.y - center_coordinates_y)) /
                     ((center_coordinates_y - coordinates_d_y) * (center_coordinates_y - coordinates_d_y)) <=
@@ -73,7 +73,7 @@ int Task() {
         }
     }
     if (flag_if_xy_not_inside == zero) {
-    	 printf("50 iterations have elapsed and the point has not entered the zone");
+	printf("50 iterations have elapsed and the point has not entered the zone");
     }
     return 0;
 }
