@@ -17,6 +17,16 @@ const int64_t NINE = 9;
 const int64_t INT_INPUT = 3251647809;
 
 int64_t Search(int64_t a) {
+    int64_t FLAG_ZERO = 0;
+    int64_t FLAG_ONE = 0;
+    int64_t FLAG_TWO = 0;
+    int64_t FLAG_THREE = 0;
+    int64_t FLAG_FOUR = 0;
+    int64_t FLAG_FIVE = 0;
+    int64_t FLAG_SIX = 0;
+    int64_t FLAG_SEVEN = 0;
+    int64_t FLAG_EIGTH = 0;
+    int64_t FLAG_NINE = 0;
     do {
         if (a % TEN == ZERO)
             ++FLAG_ZERO;
@@ -49,16 +59,6 @@ int64_t Search(int64_t a) {
 }
 
 int Task() {
-    int64_t FLAG_ZERO = 0;
-    int64_t FLAG_ONE = 0;
-    int64_t FLAG_TWO = 0;
-    int64_t FLAG_THREE = 0;
-    int64_t FLAG_FOUR = 0;
-    int64_t FLAG_FIVE = 0;
-    int64_t FLAG_SIX = 0;
-    int64_t FLAG_SEVEN = 0;
-    int64_t FLAG_EIGTH = 0;
-    int64_t FLAG_NINE = 0;
     int64_t num = INT_INPUT;
     // scanf("%ld", &num);
     if (Search(num) == ZERO)
