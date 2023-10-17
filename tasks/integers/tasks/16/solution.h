@@ -24,6 +24,7 @@ const int64_t SIX = 6;
 const int64_t SEVEN = 7;
 const int64_t EIGTH = 8;
 const int64_t NINE = 9;
+const int64_t INT_INPUT = 3251647809;
 
 int64_t Search(int64_t a) {
     do {
@@ -47,8 +48,8 @@ int64_t Search(int64_t a) {
 }
 
 int Task() {
-    int64_t num;
-    scanf("%ld", &num);
+    int64_t num = INT_INPUT;
+    // scanf("%ld", &num);
     if (Search(num) == ZERO) printf("There are numbers that do not occur even once"); else printf("There are no numbers that do not occur once");
     return 0;
 }
