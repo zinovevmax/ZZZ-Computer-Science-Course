@@ -2,22 +2,22 @@
 
 #include <stdio.h>
 
-const int INITIAL_VALUE_I = -10;
-const int INITIAL_VALUE_J = -10;
-const int INITIAL_VALUE_L = 6;
-const int CENTER_COORDINATES_Y = 0;
-const int CENTER_COORDINATES_X = 20;
-const int COORDINATES_A_X = 10;
-const int COORDINATES_B_X = 30;
-const int COORDINATES_C_Y = 5;
-const int COORDINATES_D_Y = -5;
-const int MAX_ITERATIONS = 50;
-const int THIRTY = 30;
-const int TWENTY_FIVE = 25;
-const int TEN = 10;
-const int THIRTY_FIVE = 35;
-const int ZERO = 0;
-const int ONE = 1;
+const int initial_value_i = -10;
+const int initial_value_j = -10;
+const int initial_value_l = 6;
+const int center_coordinates_y = 0;
+const int center_coordinates_x = 20;
+const int coordinates_a_x = 10;
+const int coordinates_b_x = 30;
+const int coordinates_c_y = 5;
+const int coordinates_d_y = -5;
+const int max_iterations = 50;
+const int thirty = 30;
+const int twenty_five = 25;
+const int ten = 10;
+const int thirty_five = 35;
+const int zero = 0;
+const int one = 1;
 
 int Abs(int a) {
     return (a >= 0) ? a : -a;
@@ -46,32 +46,29 @@ typedef struct {
 } Point;
 
 int CheckZone(Point p) {
-    // Формула для эллипса: ((x - x0)^2) / (A^2)) + ((y - y0)^2) / (B^2)) = 1; где x, y - координаты проверяемой точки; A, B - "длина" эллипса по X и Y соответственно
-    // То есть все точки лежащие внутри эллипса будут удовлетворять условию ((x - x0)^2) / (A^2)) + ((y - y0)^2) / (B^2)) <= 1;
-    return (((p.x - CENTER_COORDINATES_X) * (p.x - CENTER_COORDINATES_X)) / ((CENTER_COORDINATES_X - COORDINATES_A_X) * (CENTER_COORDINATES_X - COORDINATES_A_X)) + ((p.y - CENTER_COORDINATES_Y) * (p.y - CENTER_COORDINATES_Y)) / ((CENTER_COORDINATES_Y - COORDINATES_D_Y) * (CENTER_COORDINATES_Y - COORDINATES_D_Y)) <= 1);
+    return (((p.x - center_coordinates_x) * (p.x - center_coordinates_x)) / ((center_coordinates_x - coordinates_a_x) * (center_coordinates_x - coordinates_a_x)) + ((p.y - center_coordinates_y) * (p.y - center_coordinates_y)) / ((center_coordinates_y - coordinates_d_y) * (center_coordinates_y - coordinates_d_y)) <= 1);
 }
 
 int Task() {
-    int i = INITIAL_VALUE_I;
-    int j = INITIAL_VALUE_J;
-    int l = INITIAL_VALUE_L;
-    int flag_if_xy_not_inside = ZERO;
+    int i = initial_value_i;
+    int j = initial_value_j;
+    int l = initial_value_l;
+    int flag_if_xy_not_inside = zero;
     Point p;
     p.x = i;
     p.y = j;
-    for (int k = 1; k <= MAX_ITERATIONS; ++k) {
-        p.x = Abs(Max(Mod(Min(p.x + p.y, p.x + l), THIRTY), Mod(Max(p.x + l, p.y + k), TWENTY_FIVE)));
-        p.y = Mod(Abs(p.x + k), TEN) + Mod(Abs(p.y + k), TEN) + Mod(Abs(l + k), TEN);
-        l = Mod(p.x * p.x * p.x + p.y * p.y * p.y + l * l * l - k, THIRTY_FIVE);
+    for (int k = 1; k <= max_iterations; ++k) {
+        p.x = Abs(Max(Mod(Min(p.x + p.y, p.x + l), thirty), Mod(Max(p.x + l, p.y + k), twenty_five)));
+        p.y = Mod(Abs(p.x + k), ten) + Mod(Abs(p.y + k), ten) + Mod(Abs(l + k), ten);
+        l = Mod(p.x * p.x * p.x + p.y * p.y * p.y + l * l * l - k, thirty_five);
         if (CheckZone(p)) {
             printf("x = %d, y = %d, l = %d, result = YES, number of iteration = %d\n", p.x, p.y, l, k);
-            flag_if_xy_not_inside = ONE;
+            flag_if_xy_not_inside = one;
         } else {
             printf("x = %d, y = %d, l = %d, result = NO\n", p.x, p.y, l);
         }
     }
-    // если ни одна точка не находится внутри эллипса, выводим строку
-    if (flag_if_xy_not_inside == ZERO) {
+    if (flag_if_xy_not_inside == zero) {
     	printf("50 iterations have elapsed and the point has not entered the zone");
     }
     return 0;
