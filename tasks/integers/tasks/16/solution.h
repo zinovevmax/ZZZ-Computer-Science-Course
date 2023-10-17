@@ -17,41 +17,41 @@ const int64_t NINE = 9;
 const int64_t INT_INPUT = 3251647809;
 
 int64_t Search(int64_t a) {
-    int64_t FLAG_ZERO = 0;
-    int64_t FLAG_ONE = 0;
-    int64_t FLAG_TWO = 0;
-    int64_t FLAG_THREE = 0;
-    int64_t FLAG_FOUR = 0;
-    int64_t FLAG_FIVE = 0;
-    int64_t FLAG_SIX = 0;
-    int64_t FLAG_SEVEN = 0;
-    int64_t FLAG_EIGTH = 0;
-    int64_t FLAG_NINE = 0;
+    int64_t flag_zero = 0;
+    int64_t flag_one = 0;
+    int64_t flag_two = 0;
+    int64_t flag_three = 0;
+    int64_t flag_four = 0;
+    int64_t flag_five = 0;
+    int64_t flag_six = 0;
+    int64_t flag_seven = 0;
+    int64_t flag_eight = 0;
+    int64_t flag_nine = 0;
     do {
         if (a % TEN == ZERO)
-            ++FLAG_ZERO;
+            ++flag_zero;
         if (a % TEN == ONE)
-            ++FLAG_ONE;
+            ++flag_one;
         if (a % TEN == TWO)
-            ++FLAG_TWO;
+            ++flag_two;
         if (a % TEN == THREE)
-            ++FLAG_THREE;
+            ++flag_three;
         if (a % TEN == FOUR)
-            ++FLAG_FOUR;
+            ++flag_four;
         if (a % TEN == FIVE)
-            ++FLAG_FIVE;
+            ++flag_five;
         if (a % TEN == SIX)
-            ++FLAG_SIX;
+            ++flag_six;
         if (a % TEN == SEVEN)
-            ++FLAG_SEVEN;
+            ++flag_seven;
         if (a % TEN == EIGTH)
-            ++FLAG_EIGTH;
+            ++flag_eight;
         if (a % TEN == NINE)
-            ++FLAG_NINE;
+            ++flag_nine;
         a = a / TEN;
     } while (a * TEN / TEN > ZERO);
-    if (FLAG_ZERO == ZERO || FLAG_ONE == ZERO || FLAG_TWO == ZERO || FLAG_THREE == ZERO || FLAG_FOUR == ZERO ||
-        FLAG_FIVE == ZERO || FLAG_SIX == ZERO || FLAG_SEVEN == ZERO || FLAG_EIGTH == ZERO || FLAG_NINE == ZERO) {
+    if (flag_zero == ZERO || flag_one == ZERO || flag_two == ZERO || flag_three == ZERO || flag_four == ZERO ||
+        flag_five == ZERO || flag_six == ZERO || flag_seven == ZERO || flag_eight == ZERO || flag_nine == ZERO) {
         return 0;
     } else {
         return 1;
