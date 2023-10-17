@@ -1,129 +1,105 @@
-#pragma once
 #include <stdio.h>
 
 const short int ITEREATIONS = 50;
-const int cord_X1 = -10;
-const int cord_X2 = 0;
-const int cord_Y1 = 0;
-const int cord_Y2 = 10;
-const int cord_X3 = -10;
-const int cord_Y3 = 20;
+const int CORD_X1 = -10;
+const int CORD_X2 = 0;
+const int CORD_Y1 = 0;
+const int CORD_Y2 = 10;
+const int CORD_X3 = -10;
+const int CORD_Y3 = 20;
+const int MOD_20 = 20;
+const int MOD_30 = 30;
 
-typedef struct
-{
+typedef struct {
     int x;
     int y;
 } Point;
 
-int abs(int x)
-{
-    if (x > 0)
-    {
-        return x;
+int CheckZone(Point p) {
+    int cord_x = p.x;
+    int cord_y = p.y;
+    if (((cord_y) >= ((cord_x) + CORD_Y2)) && ((cord_y) <= ((-1) * (cord_x) + CORD_Y2)) &&
+        (((cord_x) > CORD_X3))) {
+        return 1;
+    } else {
+        return 0;
     }
-    else
-    {
+}
+
+int Abs(int x) {
+    if (x > 0) {
+        return x;
+    } else {
         return x * -1;
     }
+
 }
 
-int CheckZone(Point p)
-{
-    int cord_x = p.x, cord_y = p.y;
-    if (((cord_y - cord_Y1) >= ((cord_x - cord_X1) + 10)) && ((cord_y - cord_Y2) <= ((-1) * (cord_x - cord_X2) + 10)) &&
-        (((cord_x - cord_X3) > -10)))
-    {
-        return 1;
-    }
-    else
-    {
-        return 2;
-    }
-}
 
-int mod(int x, int y)
-{
-    if (y != 0)
-    {
+int Mod(int x, int y) {
+    if (y != 0) {
         return x % y;
-    }
-    else
-    {
+    } else {
         return 0;
     }
 }
 
-int SIGN(int x)
-{
-    if (x > 0)
-    {
+int Sign(int x) {
+    if (x > 0) {
         return 1;
     }
 
-    if (x < 0)
-    {
+    if (x < 0) {
         return -1;
-    }
-    else
-    {
+    } else {
         return 0;
     }
 }
 
-int maxz(int x, int y)
-{
-    if (x > y)
-    {
+int Maxz(int x, int y) {
+    if (x > y) {
         return x;
-    }
-    else
-    {
+    } else {
         return y;
     }
 }
 
-int minz(int x, int y)
-{
-    if (x < y)
-    {
+int Minz(int x, int y) {
+    if (x < y) {
         return x;
-    }
-    else
-    {
+    } else {
         return y;
     }
 }
 
-int main()
-{
-    int i_0 = -8, j_0 = -5, l_0 = 12;
-    for (int i = 0; i < ITEREATIONS; ++i)
-    {
+int main() {
+    int I_0 = -8, J_0 = -5, L_0 = 12;
+    for (int i = 0; i < ITEREATIONS; ++i) {
         Point p;
-        p.x = i_0;
-        p.y = j_0;
-        int i_1 = 0;
-        int j_1 = 0;
-        int l_1 = 0;
-        int mod_20 = 20;
-        int mod_30 = 30;
-        if (CheckZone(p) == 1)
-        {
-            printf("x=%d, y=%d k =%d\n", i_0, j_0, i);
+        p.x = I_0;
+        p.y = J_0;
+        int I_1 = 0;
+        int J_1 = 0;
+        int L_1 = 0;
+
+
+        //printf("x=%d, y=%d k=%d\n", i_0, j_0, i);
+        if (CheckZone(p) == 1) {
+            printf("x=%d, y=%d k=%d\n", I_0, J_0, i);
         }
-        if (i_0 >= i)
-        {
-            i_1 = mod((i_0 ^ 2) / (abs(j_0 - l_0) + i + 1) - (j_0 ^ 2) / (abs(i_0 - l_0) + i + 1), mod_30);
+        if (I_0 >= i) {
+            I_1 = Mod((I_0 ^ 2) / (Abs(J_0 - L_0) + i + 1) - (J_0 ^ 2) / (Abs(I_0 - L_0) + i + 1), MOD_30);
+        } else {
+            I_1 = Mod((I_0 ^ 2) / (Abs(J_0 - L_0) + i + 1) - (J_0 ^ 2) / (Abs(I_0 - L_0) + i + 1), MOD_30);
         }
-        else
-        {
-            i_1 = mod((i_0 ^ 2) / (abs(j_0 - l_0) + i + 1) - (j_0 ^ 2) / (abs(i_0 - l_0) + i + 1), mod_30);
-        }
-        j_1 = SIGN(l_0 * minz(i_0, j_0)) - SIGN(j_0 * maxz(i_0, l_0)) + i;
-        l_1 = (i_0 - j_0) * (j_0 - l_0) * mod(l_0 - i_0, mod_20);
-        i_0 = i_1;
-        j_0 = j_1;
-        l_0 = l_1;
+        J_1 = Sign(L_0 * Minz(I_0, J_0)) - Sign(J_0 * Maxz(I_0, L_0)) + i;
+        L_1 = (I_0 - J_0) * (J_0 - L_0) * Mod(L_0 - I_0, MOD_20);
+        I_0 = I_1;
+        J_0 = J_1;
+        L_0 = L_1;
     }
+
+
     return 0;
+
 }
