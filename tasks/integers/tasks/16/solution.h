@@ -55,7 +55,7 @@ int64_t Search(int64_t a) {
         if (a % TEN == EIGTH) {
             ++flag_eight;
         }
-        if (a % TEN == NINE) [
+        if (a % TEN == NINE) {
             ++flag_nine;
         }
         a = a / TEN;
