@@ -28,19 +28,30 @@ const int64_t INT_INPUT = 3251647809;
 
 int64_t Search(int64_t a) {
     do {
-        if (a % TEN == ZERO) ++FLAG_ZERO;
-        if (a % TEN == ONE) ++FLAG_ONE;
-        if (a % TEN == TWO) ++FLAG_TWO;
-        if (a % TEN == THREE) ++FLAG_THREE;
-        if (a % TEN == FOUR) ++FLAG_FOUR;
-        if (a % TEN == FIVE) ++FLAG_FIVE;
-        if (a % TEN == SIX) ++FLAG_SIX;
-        if (a % TEN == SEVEN) ++FLAG_SEVEN;
-        if (a % TEN == EIGTH) ++FLAG_EIGTH;
-        if (a % TEN == NINE) ++FLAG_NINE;
+        if (a % TEN == ZERO)
+            ++FLAG_ZERO;
+        if (a % TEN == ONE)
+            ++FLAG_ONE;
+        if (a % TEN == TWO)
+            ++FLAG_TWO;
+        if (a % TEN == THREE)
+            ++FLAG_THREE;
+        if (a % TEN == FOUR)
+            ++FLAG_FOUR;
+        if (a % TEN == FIVE)
+            ++FLAG_FIVE;
+        if (a % TEN == SIX)
+            ++FLAG_SIX;
+        if (a % TEN == SEVEN)
+            ++FLAG_SEVEN;
+        if (a % TEN == EIGTH)
+            ++FLAG_EIGTH;
+        if (a % TEN == NINE)
+            ++FLAG_NINE;
         a = a / TEN;
     } while (a * TEN / TEN > ZERO);
-    if (FLAG_ZERO == ZERO || FLAG_ONE == ZERO || FLAG_TWO == ZERO || FLAG_THREE == ZERO || FLAG_FOUR == ZERO || FLAG_FIVE == ZERO || FLAG_SIX == ZERO || FLAG_SEVEN == ZERO || FLAG_EIGTH == ZERO || FLAG_NINE == ZERO) {
+    if (FLAG_ZERO == ZERO || FLAG_ONE == ZERO || FLAG_TWO == ZERO || FLAG_THREE == ZERO || FLAG_FOUR == ZERO ||
+        FLAG_FIVE == ZERO || FLAG_SIX == ZERO || FLAG_SEVEN == ZERO || FLAG_EIGTH == ZERO || FLAG_NINE == ZERO) {
         return 0;
     } else {
         return 1;
@@ -50,6 +61,9 @@ int64_t Search(int64_t a) {
 int Task() {
     int64_t num = INT_INPUT;
     // scanf("%ld", &num);
-    if (Search(num) == ZERO) printf("There are numbers that do not occur even once"); else printf("There are no numbers that do not occur once");
+    if (Search(num) == ZERO)
+        printf("There are numbers that do not occur even once");
+    else
+        printf("There are no numbers that do not occur once");
     return 0;
 }
