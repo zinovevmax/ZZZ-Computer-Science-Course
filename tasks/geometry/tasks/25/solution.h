@@ -33,7 +33,6 @@ int Abs(int x) {
     }
 }
 
-
 int Mod(int x, int y) {
     if (y != 0) {
         return x % y;
@@ -94,6 +93,5 @@ int Task() {
         J_0 = J_1;
         L_0 = L_1;
     }
-    
     return 0;
 }
