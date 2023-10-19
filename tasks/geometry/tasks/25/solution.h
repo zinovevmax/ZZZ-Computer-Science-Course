@@ -72,7 +72,7 @@ int Minz(int x, int y) {
     }
 }
 
-int main() {
+int Task() {
     for (int i = 0; i < ITEREATIONS; ++i) {
         Point p;
         p.x = i_0;
