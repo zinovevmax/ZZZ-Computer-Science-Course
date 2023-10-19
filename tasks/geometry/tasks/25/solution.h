@@ -93,7 +93,7 @@ int Task() {
             i_1 = Mod((i_0 ^ 2) / (Abs(j_0 - l_0) + i + 1) - (j_0 ^ 2) / (Abs(i_0 - l_0) + i + 1), MOD_30);
         }
         j_1 = Sign(l_0 * Minz(i_0, j_0)) - Sign(j_0 * Maxz(i_0, l_0)) + i;
-        l_1 = (i_0 - j_0) * (j_0 - l_0) * Mod(l_0 - i_0, MOD_20);
+        l_1 = Mod((i_0 - j_0) * (j_0 - l_0) * (l_0 - i_0), MOD_20);
         i_0 = i_1;
         j_0 = j_1;
         l_0 = l_1;
