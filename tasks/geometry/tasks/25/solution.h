@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-const short int ITEREATIONS = 50;
+const int ITEREATIONS = 50;
 const int CORD_X1 = -10;
 const int CORD_X2 = 0;
 const int CORD_Y1 = 0;
@@ -70,7 +70,9 @@ int Minz(int x, int y) {
 }
 
 int Task() {
-    int I_0 = -8, J_0 = -5, L_0 = 12;
+    int I_0 = -8;
+    int J_0 = -5;
+    int L_0 = 12;
     for (int i = 0; i < ITEREATIONS; ++i) {
         Point p;
         p.x = I_0;
