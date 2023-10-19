@@ -9,6 +9,9 @@ const int CORD_X3 = -10;
 const int CORD_Y3 = 20;
 const int MOD_20 = 20;
 const int MOD_30 = 30;
+int i_0 = -8;
+int j_0 = -5;
+int l_0 = 12;
 
 typedef struct {
     int x;
@@ -70,9 +73,6 @@ int Minz(int x, int y) {
 }
 
 int main() {
-    int i_0 = -8;
-    int j_0 = -5;
-    int l_0 = 12;
     for (int i = 0; i < ITEREATIONS; ++i) {
         Point p;
         p.x = i_0;
