@@ -69,31 +69,31 @@ int Minz(int x, int y) {
     }
 }
 
-int Task() {
-    int I_0 = -8;
-    int J_0 = -5;
-    int L_0 = 12;
+int main() {
+    int i_0 = -8;
+    int j_0 = -5;
+    int l_0 = 12;
     for (int i = 0; i < ITEREATIONS; ++i) {
         Point p;
-        p.x = I_0;
-        p.y = J_0;
-        int I_1 = 0;
-        int J_1 = 0;
-        int L_1 = 0;
+        p.x = i_0;
+        p.y = j_0;
+        int i_1 = 0;
+        int j_1 = 0;
+        int l_1 = 0;
 
         if (CheckZone(p) == 1) {
-            printf("x=%d, y=%d k=%d\n", I_0, J_0, i);
+            printf("x=%d, y=%d k=%d\n", i_0, j_0, i);
         }
-        if (I_0 >= i) {
-            I_1 = Mod((I_0 ^ 2) / (Abs(J_0 - L_0) + i + 1) - (J_0 ^ 2) / (Abs(I_0 - L_0) + i + 1), MOD_30);
+        if (i_0 >= i) {
+            i_1 = Mod((i_0 ^ 2) / (Abs(j_0 - l_0) + i + 1) - (j_0 ^ 2) / (Abs(i_0 - l_0) + i + 1), MOD_30);
         } else {
-            I_1 = Mod((I_0 ^ 2) / (Abs(J_0 - L_0) + i + 1) - (J_0 ^ 2) / (Abs(I_0 - L_0) + i + 1), MOD_30);
+            i_1 = Mod((i_0 ^ 2) / (Abs(j_0 - l_0) + i + 1) - (j_0 ^ 2) / (Abs(i_0 - l_0) + i + 1), MOD_30);
         }
-        J_1 = Sign(L_0 * Minz(I_0, J_0)) - Sign(J_0 * Maxz(I_0, L_0)) + i;
-        L_1 = (I_0 - J_0) * (J_0 - L_0) * Mod(L_0 - I_0, MOD_20);
-        I_0 = I_1;
-        J_0 = J_1;
-        L_0 = L_1;
+        j_1 = Sign(l_0 * Minz(i_0, j_0)) - Sign(j_0 * Maxz(i_0, l_0)) + i;
+        l_1 = (i_0 - j_0) * (j_0 - l_0) * Mod(l_0 - i_0, MOD_20);
+        i_0 = i_1;
+        j_0 = j_1;
+        l_0 = l_1;
     }
     return 0;
 }
