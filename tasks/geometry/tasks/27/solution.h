@@ -75,7 +75,7 @@ int Sign(int x) {
     }
 }
 
-int main() {
+int Task() {
     const int i_1 = -24;
     const int j_1 = 4;
     const int l_1 = -3;
