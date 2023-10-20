@@ -9,14 +9,16 @@ const float NUM_004 = 0.04;
 
 typedef struct {
     int x;
-    __int16 y;
+    int y;
 } Point;
 
 int CheckZone(Point p) {
     int x_1 = p.x;
     int y_1 = p.y;
+    float x_p = ((x_1 - NUM_20) * (x_1 - NUM_20));
+    float y_p = (y_1 * y_1);
 
-    if (((((x_1 - NUM_20) * (x_1 - NUM_20)) * (NUM_001)) + ((y_1 * y_1) * (NUM_004))) <= (NUM_1)) {
+    if ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (NUM_1)) {
         return 1;
     } else {
         return 0;
