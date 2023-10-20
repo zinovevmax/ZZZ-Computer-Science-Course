@@ -8,13 +8,13 @@ const float NUM_001 = 0.01;
 const float NUM_004 = 0.04;
 
 typedef struct {
-    float x;
-    float y;
+    int x;
+    __int16 y;
 } Point;
 
 int CheckZone(Point p) {
-    float x_1 = p.x;
-    float y_1 = p.y;
+    int x_1 = p.x;
+    int y_1 = p.y;
 
     if (((((x_1 - NUM_20) * (x_1 - NUM_20)) * (NUM_001)) + ((y_1 * y_1) * (NUM_004))) <= (NUM_1)) {
         return 1;
@@ -68,9 +68,9 @@ int Sign(int x) {
 }
 
 int main() {
-    int i_1 = -24;
-    int j_1 = 4;
-    int l_1 = -3;
+    const int i_1 = -24;
+    const int j_1 = 4;
+    const int l_1 = -3;
     int i = i_1;
     int j = j_1;
     int l = l_1;
