@@ -17,14 +17,14 @@ int CheckZone(Point p) {
     int y_1 = p.y;
     float x_p = 0.0;
     float y_p = 0.0;
-    float x_1_f = x_1;
-    float y_1_f = y_1;
-    float NUM_20_F = NUM_20;
-    float NUM_1_F = NUM_1;
-    x_p = (x_1_f - NUM_20_F) * (x_1_f - NUM_20_F);
+    float x_1_f = (float)x_1;
+    float y_1_f = (float)y_1;
+    float num_20_f = (float)NUM_20;
+    float num_1_f = (float)NUM_1;
+    x_p = (x_1_f - num_20_f) * (x_1_f - num_20_f);
     y_p = y_1_f * y_1_f;
 
-    if ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (NUM_1_F)) {
+    if ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (num_1_f)) {
         return 1;
     } else {
         return 0;
