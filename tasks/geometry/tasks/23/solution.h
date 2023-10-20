@@ -1,26 +1,25 @@
 #pragma once
 
-#include <stdint.h>
 #include <stdio.h>
 
 // INITIAL VALUES
-const int32_t INITIAL_VALUE_I = 29;
-const int32_t INITIAL_VALUE_J = -6;
-const int32_t INITIAL_VALUE_L = 1;
-const int32_t NUMBER_OF_ITERATIONS = 50;
+const int INITIAL_VALUE_I = 29;
+const int INITIAL_VALUE_J = -6;
+const int INITIAL_VALUE_L = 1;
+const int NUMBER_OF_ITERATIONS = 50;
 
-const int32_t MOD_VALUE = 30;
-const int32_t x1 = -10;
-const int32_t y1 = 0;
-const int32_t x2 = 0;
-const int32_t y2 = 10;
-const int32_t x3 = -10;
-const int32_t y3 = 20;
-const int32_t z = 10;
+const int MOD_VALUE = 30;
+const int x1 = -10;
+const int y1 = 0;
+const int x2 = 0;
+const int y2 = 10;
+const int x3 = -10;
+const int y3 = 20;
+const int z = 10;
 
 typedef struct {
-    int32_t x;
-    int32_t y;
+    int x;
+    int y;
 } Point;
 
 int CheckZone(Point p) {
@@ -28,19 +27,19 @@ int CheckZone(Point p) {
     return ((p.x >= x1 && p.x <= x2) && (p.y <= -p.x + z) && (p.y >= p.x + z));
 }
 
-int32_t Abs(int32_t a) {
+int Abs(int a) {
     return (a >= 0) ? a : -a;
 }
 
-int32_t Mod(int32_t a, int32_t b) {
+int Mod(int a, int b) {
     return Abs(a % b);
 }
 
-int32_t MaxValue(int32_t a, int32_t b) {
+int MaxValue(int a, int b) {
     return a > b ? a : b;
 }
 
-int32_t MinValue(int32_t a, int32_t b) {
+int MinValue(int a, int b) {
     return a < b ? a : b;
 }
 
@@ -49,9 +48,9 @@ int Task() {
     Point p;
     p.x = INITIAL_VALUE_I;
     p.y = INITIAL_VALUE_J;
-    int32_t l_val = INITIAL_VALUE_L;
+    int l_val = INITIAL_VALUE_L;
 
-    for (size_t i = 1; i <= NUMBER_OF_ITERATIONS; ++i) {
+    for (int i = 1; i <= NUMBER_OF_ITERATIONS; ++i) {
 
         p.x = Mod(MinValue(MaxValue(MinValue(p.x - p.y, p.x - l_val), p.y - l_val), p.x - i), MOD_VALUE);
         p.y = Mod(MaxValue(MinValue(MaxValue(p.x - p.y, p.x - l_val), p.y - l_val), p.y - i), MOD_VALUE);
