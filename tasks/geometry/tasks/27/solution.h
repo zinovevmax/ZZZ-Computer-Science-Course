@@ -6,6 +6,9 @@ const int NUM_35 = 30;
 const int NUM_1 = 1;
 const float NUM_001 = 0.01;
 const float NUM_004 = 0.04;
+const int I_1 = -24;
+const int J_1 = 4;
+const int L_1 = -3;
 
 typedef struct {
     int x;
@@ -76,9 +79,6 @@ int Sign(int x) {
 }
 
 int Task() {
-    const int I_1 = -24;
-    const int J_1 = 4;
-    const int L_1 = -3;
     int i = I_1;
     int j = J_1;
     int l = L_1;
