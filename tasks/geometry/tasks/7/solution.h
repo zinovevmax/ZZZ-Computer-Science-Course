@@ -58,7 +58,7 @@ double Truefmod(double a, double b) {
 
 int CheckZone(Point p) {
     return (bool)((p.x >= (SQUARE_CENTER_X - SQUARE_EDGE / 2)) && (p.x <= (SQUARE_CENTER_X + SQUARE_EDGE / 2)) &&
-    (p.y >= (SQUARE_CENTER_Y - SQUARE_EDGE / 2)) && (p.y <= (SQUARE_CENTER_Y + SQUARE_EDGE / 2)));
+                  (p.y >= (SQUARE_CENTER_Y - SQUARE_EDGE / 2)) && (p.y <= (SQUARE_CENTER_Y + SQUARE_EDGE / 2)));
 }
 
 int Task() {
@@ -71,7 +71,7 @@ int Task() {
     p.y = j;
     for (int k = 1; k <= MAX_ITERATIONS; ++k) {
         p.x = Abs(k - FIFTEEN) - Min(p.x / THREE, Truefmod(p.y + l, TEN)) - TWENTY;
-        p.y = -(p.y + k)/FIVE + Abs(Truefmod(p.x * l, EIGHT));
+        p.y = -(p.y + k) / FIVE + Abs(Truefmod(p.x * l, EIGHT));
         l = Max(Truefmod(p.x + p.y, FIFTEEN), Truefmod(l + k, FOURTEEN));
         if (CheckZone(p)) {
             ++hit_counter;
