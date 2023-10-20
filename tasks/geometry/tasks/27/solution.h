@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-const int ITERATIONS = 50;
+const int MAX_ITERATIONS = 50;
 const int NUM_20 = 20;
 const int NUM_35 = 30;
 const int NUM_1 = 1;
@@ -23,7 +23,6 @@ int CheckZone(Point p) {
     float num_1_f = (float)NUM_1;
     x_p = (x_1_f - num_20_f) * (x_1_f - num_20_f);
     y_p = y_1_f * y_1_f;
-
     if ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (num_1_f)) {
         return 1;
     } else {
@@ -82,20 +81,17 @@ int Task() {
     int i = i_1;
     int j = j_1;
     int l = l_1;
-
-    for (int k = 0; k < ITERATIONS; k++) {
+    for (int k = 0; k < MAX_ITERATIONS; ++k) {
         Point p;
         p.x = i;
         p.y = j;
         int ik = 0;
         int jk = 0;
         int lk = 0;
-
         if (CheckZone(p) == 1) {
             printf("x = %d, y = %d, k = %d \n", i, j, k);
             break;
         }
-
         ik = Mod(((Abs(i + k)) * (j + (2 * k)) * (l + (3 * k))), NUM_35);
         jk = (Sign(Max(i, j))) * (Min(Mod(i + k, NUM_20), Mod(j + l, NUM_20)));
         lk = (i / 3) - ((Abs(i - k)) * (Sign(l - j)));
@@ -103,6 +99,5 @@ int Task() {
         j = jk;
         l = lk;
     }
-
     return 0;
 }
