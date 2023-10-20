@@ -1,22 +1,22 @@
 #include <stdio.h>
 
-const int Iterations = 50;
-const int num_20 = 20;
-const int num_35 = 30;
-const int num_1 = 1;
-const float num_001 = 0.01;
-const float num_004 = 0.04;
+const int ITERATIONS = 50;
+const int NUM_20 = 20;
+const int NUM_35 = 30;
+const int NUM_1 = 1;
+const float NUM_001 = 0.01;
+const float NUM_004 = 0.04;
 
 typedef struct {
-    int x;
-    int y;
+    float x;
+    float y;
 } Point;
 
 int CheckZone(Point p) {
     float x_1 = p.x;
     float y_1 = p.y;
 
-    if (((((x_1 - num_20) * (x_1 - num_20)) * (num_001)) + ((y_1 * y_1) * (num_004))) <= (num_1)) {
+    if (((((x_1 - NUM_20) * (x_1 - NUM_20)) * (NUM_001)) + ((y_1 * y_1) * (NUM_004))) <= (NUM_1)) {
         return 1;
     } else {
         return 0;
@@ -75,7 +75,7 @@ int main() {
     int j = j_1;
     int l = l_1;
 
-    for (int k = 0; k < Iterations; k++) {
+    for (int k = 0; k < ITERATIONS; k++) {
         Point p;
         p.x = i;
         p.y = j;
@@ -88,8 +88,8 @@ int main() {
             break;
         }
 
-        ik = Mod(((Abs(i + k)) * (j + (2 * k)) * (l + (3 * k))), num_35);
-        jk = (Sign(Max(i, j))) * (Min(Mod(i + k, num_20), Mod(j + l, num_20)));
+        ik = Mod(((Abs(i + k)) * (j + (2 * k)) * (l + (3 * k))), NUM_35);
+        jk = (Sign(Max(i, j))) * (Min(Mod(i + k, NUM_20), Mod(j + l, NUM_20)));
         lk = (i / 3) - ((Abs(i - k)) * (Sign(l - j)));
         i = ik;
         j = jk;
