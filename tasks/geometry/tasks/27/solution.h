@@ -19,12 +19,12 @@ int CheckZone(Point p) {
     float y_p = 0.0;
     float x_1f = x_1;
     float y_1f = y_1;
-    float NUM_20f = NUM_20;
-    float NUM_1f = NUM_1;
-    x_p = (x_1f - NUM_20f) * (x_1f - NUM_20f);
+    float NUM_20F = NUM_20;
+    float NUM_1F = NUM_1;
+    x_p = (x_1f - NUM_20F) * (x_1f - NUM_20F);
     y_p = y_1f * y_1f;
 
-    if ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (NUM_1f)) {
+    if ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (NUM_1F)) {
         return 1;
     } else {
         return 0;
