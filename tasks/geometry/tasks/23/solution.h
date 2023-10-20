@@ -9,13 +9,13 @@ const int INITIAL_VALUE_L = 1;
 const int NUMBER_OF_ITERATIONS = 50;
 
 const int MOD_VALUE = 30;
-const int x1 = -10;
-const int y1 = 0;
-const int x2 = 0;
-const int y2 = 10;
-const int x3 = -10;
-const int y3 = 20;
-const int z = 10;
+const int X1 = -10;
+const int Y1 = 0;
+const int X2 = 0;
+const int Y2 = 10;
+const int X3 = -10;
+const int Y3 = 20;
+const int Z = 10;
 
 typedef struct {
     int x;
@@ -24,7 +24,7 @@ typedef struct {
 
 int CheckZone(Point p) {
     // Write a code here that checks whether a point belongs to a given area
-    return ((p.x >= x1 && p.x <= x2) && (p.y <= -p.x + z) && (p.y >= p.x + z));
+    return ((p.x >= X1 && p.x <= X2) && (p.y <= -p.x + Z) && (p.y >= p.x + Z));
 }
 
 int Abs(int a) {
@@ -57,7 +57,7 @@ int Task() {
         l_val = (Mod(p.x, MOD_VALUE)) - (Mod(p.y, MOD_VALUE)) + (Mod(l_val, MOD_VALUE)) - (Mod(i, MOD_VALUE));
 
         int is_point_hit_zone = CheckZone(p);
-        printf("%lu: x = %d, y = %d, isPointHitZone = %d\n", i, p.x, p.y, is_point_hit_zone);
+        printf("%d: x = %d, y = %d, isPointHitZone = %d\n", i, p.x, p.y, is_point_hit_zone);
     }
     return 0;
 }
