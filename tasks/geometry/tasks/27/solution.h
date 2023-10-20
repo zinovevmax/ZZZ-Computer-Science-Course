@@ -17,7 +17,8 @@ int CheckZone(Point p) {
     int y_1 = p.y;
     float x_p = 0.0;
     float y_p = 0.0;
-
+    float x_1f = x_1;
+    float y_1f = y_1;
     x_p = (x_1 - NUM_20) * (x_1 - NUM_20);
     y_p = y_1 * y_1;
 
