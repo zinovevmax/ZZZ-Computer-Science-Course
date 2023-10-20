@@ -25,12 +25,7 @@ typedef struct {
 
 int CheckZone(Point p) {
     // Write a code here that checks whether a point belongs to a given area
-    if ((p.x >= x1 && p.x <= x2) && (p.y <= -p.x + z) && (p.y >= p.x + z)) {
-        return 1;
-    }
-    else {
-        return 0;
-    }
+    return ((p.x >= x1 && p.x <= x2) && (p.y <= -p.x + z) && (p.y >= p.x + z));
 }
 
 int32_t Abs(int32_t a) {
