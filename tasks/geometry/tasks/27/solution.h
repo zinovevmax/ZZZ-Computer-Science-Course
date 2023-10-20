@@ -15,8 +15,11 @@ typedef struct {
 int CheckZone(Point p) {
     int x_1 = p.x;
     int y_1 = p.y;
-    float x_p = ((x_1 - NUM_20) * (x_1 - NUM_20));
-    float y_p = (y_1 * y_1);
+    float x_p = 0.0;
+    float y_p = 0.0;
+
+    x_p = (x_1 - NUM_20) * (x_1 - NUM_20);
+    y_p = y_1 * y_1;
 
     if ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (NUM_1)) {
         return 1;
