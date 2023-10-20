@@ -17,14 +17,14 @@ int CheckZone(Point p) {
     int y_1 = p.y;
     float x_p = 0.0;
     float y_p = 0.0;
-    float x_1f = x_1;
-    float y_1f = y_1;
-    float NUM_20F = NUM_20;
-    float NUM_1F = NUM_1;
-    x_p = (x_1f - NUM_20F) * (x_1f - NUM_20F);
-    y_p = y_1f * y_1f;
+    float x_1_f = x_1;
+    float y_1_f = y_1;
+    float NUM_20_F = NUM_20;
+    float NUM_1_F = NUM_1;
+    x_p = (x_1_f - NUM_20_F) * (x_1_f - NUM_20_F);
+    y_p = y_1_f * y_1_f;
 
-    if ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (NUM_1F)) {
+    if ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (NUM_1_F)) {
         return 1;
     } else {
         return 0;
@@ -75,7 +75,7 @@ int Sign(int x) {
     }
 }
 
-int Task() {
+int main() {
     const int i_1 = -24;
     const int j_1 = 4;
     const int l_1 = -3;
