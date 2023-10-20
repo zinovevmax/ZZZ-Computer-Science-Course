@@ -15,6 +15,12 @@ const int Y2 = 15;
 const int Y3 = 15;
 const int Y4 = 5;
 const int ONE = 1;
+const int FIVE = 5;
+const int TWO = 2;
+const int THREE = 3;
+const int SEVEN = 7;
+const int TEN = 10;
+const int MINUS_THREE = -3;
 
 int Abs(int num) {
     return (num >= 0) ? -num : num;
@@ -60,9 +66,9 @@ int Task() {
     p.y = j;
     int popal = 0;
     for (int k = ONE; k <= STEPS_COUNT; ++k) {
-        i = Min(Mod(l, 5), Mod(p.x * k, 5)) + p.y + k / 3;
-        j = Max((-3) * p.x, 2 * p.y) / 5 - Abs(p.y - l);
-        l = p.y + Mod(l, 7) + k * Sign(Mod(p.x, 10));
+        i = Min(Mod(l, FIVE), Mod(p.x * k, FIVE)) + p.y + k / THREE;
+        j = Max(MINUS_THREE * p.x, TWO * p.y) / FIVE - Abs(p.y - l);
+        l = p.y + Mod(l, SEVEN) + k * Sign(Mod(p.x, TEN));
 
         if (CheckZone(p)) {
             popal += 1;
