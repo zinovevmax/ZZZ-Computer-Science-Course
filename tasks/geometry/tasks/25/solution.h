@@ -16,13 +16,7 @@ typedef struct {
 } Point;
 
 int CheckZone(Point p) {
-    int cord_x = p.x;
-    int cord_y = p.y;
-    if (((cord_y) >= ((cord_x) + CORD_Y2)) && ((cord_y) <= ((-1) * (cord_x) + CORD_Y2)) && (((cord_x) > CORD_X3))) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return ((p.y) >= ((p.x) + CORD_Y2)) && ((p.y) <= ((-1) * (p.x) + CORD_Y2)) && (((p.x) > CORD_X3));
 }
 
 int Abs(int x) {
@@ -53,7 +47,7 @@ int Sign(int x) {
     }
 }
 
-int Maxz(int x, int y) {
+int Max(int x, int y) {
     if (x > y) {
         return x;
     } else {
@@ -61,7 +55,7 @@ int Maxz(int x, int y) {
     }
 }
 
-int Minz(int x, int y) {
+int Min(int x, int y) {
     if (x < y) {
         return x;
     } else {
@@ -69,30 +63,25 @@ int Minz(int x, int y) {
     }
 }
 
-int Task() {
+int main() {
     const int i_start = -8;
     const int j_start = -5;
     const int l_start = 12;
     int i_0 = i_start;
     int j_0 = j_start;
     int l_0 = l_start;
+    Point p;
+    int i_1 = 0;
+    int j_1 = 0;
+    int l_1 = 0;
     for (int i = 0; i < ITEREATIONS; ++i) {
-        Point p;
         p.x = i_0;
         p.y = j_0;
-        int i_1 = 0;
-        int j_1 = 0;
-        int l_1 = 0;
-
-        if (CheckZone(p) == 1) {
+        if (CheckZone(p)) {
             printf("x=%d, y=%d k=%d\n", i_0, j_0, i);
         }
-        if (i_0 >= i) {
-            i_1 = Mod((i_0 ^ 2) / (Abs(j_0 - l_0) + i + 1) - (j_0 ^ 2) / (Abs(i_0 - l_0) + i + 1), MOD_30);
-        } else {
-            i_1 = Mod((i_0 ^ 2) / (Abs(j_0 - l_0) + i + 1) - (j_0 ^ 2) / (Abs(i_0 - l_0) + i + 1), MOD_30);
-        }
-        j_1 = Sign(l_0 * Minz(i_0, j_0)) - Sign(j_0 * Maxz(i_0, l_0)) + i;
+        i_1 = Mod((i_0 ^ 2) / (Abs(j_0 - l_0) + i + 1) - (j_0 ^ 2) / (Abs(i_0 - l_0) + i + 1), MOD_30);
+        j_1 = Sign(l_0 * Min(i_0, j_0)) - Sign(j_0 * Max(i_0, l_0)) + i;
         l_1 = Mod((i_0 - j_0) * (j_0 - l_0) * (l_0 - i_0), MOD_20);
         i_0 = i_1;
         j_0 = j_1;
