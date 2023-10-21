@@ -63,7 +63,7 @@ int Min(int x, int y) {
     }
 }
 
-int main() {
+int Task() {
     const int i_start = -8;
     const int j_start = -5;
     const int l_start = 12;
