@@ -34,7 +34,7 @@ const int R = 10;
 const int I_0 = 7;
 const int J_0 = -4;
 const int L_0 = -10;
-const int ITERATIONS = 50;
+const int MAX_ITERATIONS = 50;
 const int FORTY_SEVEN = 47;
 const int TWENTYFIVE = 25;
 const int THIRTY = 30;
@@ -49,7 +49,6 @@ typedef struct {
 
 int CheckZone(Point p) {
     // Write a code here that checks whether a point belongs to a given area
-    return 0;
     int cord_x = p.x;
     int cord_y = p.y;
     return (((cord_x - X_1) * (cord_x - X_1) + (cord_y - Y_1) * (cord_y - Y_1) <= R * R) &&
@@ -67,7 +66,7 @@ int Task() {
 
     int count_points_in_zone = 0;  // Счетчик точек, принадлежащих зоне
 
-    for (int k = ONE; k <= ITERATIONS; k++) {
+    for (int k = ONE; k <= MAX_ITERATIONS; k++) {
         i = Max(Mod((FORTY_SEVEN * p.x), TWENTYFIVE),
                 Min(Mod((FORTY_SEVEN * p.y), THIRTY), Mod((FORTY_SEVEN * l), THIRTY))) -
             Mod(k, FIFTEEN);
@@ -83,6 +82,10 @@ int Task() {
             count_points_in_zone++;
         }
     }
-    printf("Number of points belonging to the zone: %d\n", count_points_in_zone);
+    if (count_points_in_zone == 0) {
+        printf("The point did not fall into the area beyond 50 iterations\n");
+    } else {
+        printf("Number of points belonging to the zone: %d\n", count_points_in_zone);
+    }
     return 0;
 }
