@@ -59,7 +59,7 @@ int64_t Search(int64_t a) {
             ++flag_nine;
         }
         a = a / TEN;
-    } while (a * TEN / TEN > ZERO);
+    } while (a > ZERO);
     if (flag_zero == ZERO || flag_one == ZERO || flag_two == ZERO || flag_three == ZERO || flag_four == ZERO ||
         flag_five == ZERO || flag_six == ZERO || flag_seven == ZERO || flag_eight == ZERO || flag_nine == ZERO) {
         return 0;
@@ -71,7 +71,7 @@ int64_t Search(int64_t a) {
 int Task() {
     int64_t num = INT_INPUT;
     // scanf("%ld", &num);
-    if (Search(num) == ZERO) {
+    if (!Search(num)) {
         printf("There are numbers that do not occur even once");
     } else {
         printf("There are no numbers that do not occur once");
