@@ -74,7 +74,7 @@ int main() {
     int i_1 = 0;
     int j_1 = 0;
     int l_1 = 0;
-    for (int i = 0; i < ITEREATIONS; ++i) {
+    for (int i = 0; i < MAX_ITEREATIONS; ++i) {
         p.x = i_0;
         p.y = j_0;
         if (CheckZone(p)) {
