@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-const int ITEREATIONS = 50;
+const int MAX_ITEREATIONS = 50;
 const int CORD_X1 = -10;
 const int CORD_X2 = 0;
 const int CORD_Y1 = 0;
