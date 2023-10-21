@@ -27,12 +27,8 @@ int CheckZone(Point p) {
 
     x_p = (x_1_f - num_20_f) * (x_1_f - num_20_f);
     y_p = y_1_f * y_1_f;
-    if ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (num_1_f)) {
-        return 1;
-    } else {
-        return 0;
+    return ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (num_1_f));
     }
-}
 
 int Abs(int x) {
     if (x > 0) {
