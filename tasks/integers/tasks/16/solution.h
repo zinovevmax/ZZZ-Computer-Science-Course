@@ -2,18 +2,19 @@
 #include <stdio.h>
 
 const int64_t TEN = 10;
-const int64_t INT_INPUT = 325167809;
+const int64_t INT_INPUT = 3425167809;
 
 int64_t Search(int64_t a) {
-    int arr[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int temps[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    int temps_size = 10;
+    int arr[TEN] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int arr_size = TEN;
     do {
-        ++temps[a % 10];
+        ++arr[a % TEN];
         a = a / TEN;
     } while (a > 0);
-    for (int k = 0; k < temps_size; ++k) {
-        if (!temps[k]) return 0;
+    for (int k = 0; k < arr_size; ++k) {
+        if (!arr[k]) {
+            return 0;
+        }
     }
     return 1;
 }
