@@ -13,7 +13,7 @@ int64_t Abs(int64_t a) {
 
 int Task() {
     int64_t number = 0;
-    scanf("%d", &number);
+    scanf("%ld", &number);
     int64_t first_val = 0;
     int64_t difference = 0;
     while (number >= MAGIC_HUNNID) {
