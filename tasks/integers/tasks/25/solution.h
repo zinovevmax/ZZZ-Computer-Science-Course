@@ -8,10 +8,10 @@ const int8_t ONE = 1;
 const int32_t TEN = 10;
 
 // Function of exponentiation
-int Power(int32_t start_number, int32_t y) {
+int Power(int32_t start_number, int32_t degree) {
     int32_t i = 0;
     int32_t result = 1;
-    for (i = 1; i <= y; ++i) {
+    for (i = 1; i <= degree; ++i) {
         result *= start_number;
     }
     return result;
