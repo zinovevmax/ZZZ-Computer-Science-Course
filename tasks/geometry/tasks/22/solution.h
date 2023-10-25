@@ -16,10 +16,6 @@ const int MINUS_ONE = -1;
 const int THITRY = 30;
 const int TWO = 2;
 
-int Abs(int num) {
-    return (num >= 0) ? -num : num;
-}
-
 // Function return mod of numbers
 int Mod(int num1, int num2) {
     if (num2 != 0) {
