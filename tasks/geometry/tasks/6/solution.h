@@ -5,7 +5,7 @@
 const int I = 22;
 const int J = 10;
 const int L = 10;
-const int STEPS_COUNT = 50;
+const int MAX_STEPS = 50;
 const int X1 = 5;
 const int X2 = 5;
 const int X3 = 15;
@@ -64,20 +64,20 @@ int Task() {
     Point p;
     p.x = i;
     p.y = j;
-    int popal = 0;
-    for (int k = ONE; k <= STEPS_COUNT; ++k) {
+    int in_zone = 0;
+    for (int k = ONE; k <= MAX_STEPS; ++k) {
         i = Min(Mod(l, FIVE), Mod(p.x * k, FIVE)) + p.y + k / THREE;
         j = Max(MINUS_THREE * p.x, TWO * p.y) / FIVE - Abs(p.y - l);
         l = p.y + Mod(l, SEVEN) + k * Sign(Mod(p.x, TEN));
 
         if (CheckZone(p)) {
-            popal += 1;
+            in_zone += 1;
         }
     }
-    if (popal == 0) {
+    if (in_zone == 0) {
         printf("The point didn't fall into the area beyond 50 iterations\n");
     } else {
-        printf("Number of points belonging to the zone: %d\n", popal);
+        printf("Number of points belonging to the zone: %d\n", in_zone);
     }
     return 0;
 }
