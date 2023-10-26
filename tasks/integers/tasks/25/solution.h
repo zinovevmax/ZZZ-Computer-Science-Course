@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-const int64_t INPUT_NUMBER = 12345;
+const int64_t INPUT_NUMBER = -22345;
 const int8_t ONE = 1;
 const int32_t TEN = 10;
 
@@ -34,14 +34,23 @@ int Task() {
             printf("%ld", digit_number);
         }
     } else {
-        printf("%s", "-");
         for (uint16_t k = count; k >= ONE; --k) {
-            int64_t digit_number = -(number / (Power(TEN, (k - 1))) % Power(TEN, 1));
-            if (digit_number % 2 == 0) {
-                --digit_number;
+            if (k == count) {
+                int64_t digit_number = (number / (Power(TEN, (k - 1))) % Power(TEN, 1));
+                if (digit_number % 2 == 0) {
+                    ++digit_number;
+                }
+                printf("%ld", digit_number);
+            } else {
+                int64_t digit_number = -(number / (Power(TEN, (k - 1))) % Power(TEN, 1));
+                if (digit_number % 2 == 0) {
+                    --digit_number;
+                }
+                printf("%ld", digit_number);
             }
-            printf("%ld", digit_number);
         }
     }
+    return 0;
+}
     return 0;
 }
