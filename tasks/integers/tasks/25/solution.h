@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-const int64_t INPUT_NUMBER = -12345;
+const int64_t INPUT_NUMBER = 12345;
 const int8_t ONE = 1;
 const int32_t TEN = 10;
 
