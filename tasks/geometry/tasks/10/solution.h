@@ -75,7 +75,7 @@ int Task() {
     int l = INITUAL_L;
     p.x = i;
     p.y = j;
-    int point_counter = 0;
+    int point_in_zone_count = 0;
     for (int k = ONE; k <= ITERATIONS; ++k) {
         i = Mod((p.x + k) * (p.y - k) * (l + k), TWENTY_FVIE);
         j = Mod(Min((p.y + k), Max((p.y - k), (l - k))), THIRTY);
@@ -83,14 +83,14 @@ int Task() {
         p.x = i;
         p.y = j;
         if (CheckZone(p)) {
-            ++point_counter;
+            ++point_in_zone_count;
         }
         printf("k = %d, x = %d, y = %d, l = %d passed = %d \n", k, p.x, p.y, l, CheckZone(p));
     }
-    if (point_counter == 0) {
+    if (point_in_zone_count == 0) {
         printf("The point did not fall into the area beyond 50 iterations\n");
     } else {
-        printf("Number of points belonging to the zone: %d\n", point_counter);
+        printf("Number of points belonging to the zone: %d\n", point_in_zone_count);
     }
     return 0;
 }
