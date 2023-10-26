@@ -18,8 +18,7 @@ int Task() {
         digit = number % MAGIC_TEN;
         difference = abs((number / MAGIC_HUNNID % MAGIC_TEN) - (number % MAGIC_HUNNID / MAGIC_TEN));
         if (digit == difference) {
-            printf("%lu %lu %lu\n", (number / MAGIC_HUNNID % MAGIC_TEN), (number % MAGIC_HUNNID / MAGIC_TEN),
-                   digit);
+            printf("%lu %lu %lu\n", (number / MAGIC_HUNNID % MAGIC_TEN), (number % MAGIC_HUNNID / MAGIC_TEN), digit);
         }
         number = number / MAGIC_TEN;
     }
