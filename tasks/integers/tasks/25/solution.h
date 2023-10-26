@@ -31,7 +31,7 @@ int Task() {
         if (digit_number % 2 == 0) {
             --digit_number;
         }
-        printf("%ld", digit_number);
+            printf("%ld", digit_number);
         }
     } else {
         printf("%s", "-");
@@ -40,7 +40,7 @@ int Task() {
         if (digit_number % 2 == 0) {
             --digit_number;
         }
-        printf("%ld", digit_number);
+            printf("%ld", digit_number);
         }
     }
     return 0;
