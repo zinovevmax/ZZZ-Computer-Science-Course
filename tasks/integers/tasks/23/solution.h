@@ -1,7 +1,7 @@
 #pragma once
 
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 
 const uint8_t magic_10 = 10;
 const uint8_t magic_1 = 1;
