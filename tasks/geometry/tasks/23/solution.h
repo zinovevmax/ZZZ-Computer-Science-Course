@@ -6,7 +6,7 @@
 const int INITIAL_VALUE_I = 29;
 const int INITIAL_VALUE_J = -6;
 const int INITIAL_VALUE_L = 1;
-const int NUMBER_OF_ITERATIONS = 50;
+const int MAX_NUMBER_OF_ITERATIONS = 50;
 
 const int MOD_VALUE = 30;
 const int X1 = -10;
@@ -49,15 +49,30 @@ int Task() {
     p.x = INITIAL_VALUE_I;
     p.y = INITIAL_VALUE_J;
     int l_val = INITIAL_VALUE_L;
+    int is_point_hit_zone = 0;
 
-    for (int i = 1; i <= NUMBER_OF_ITERATIONS; ++i) {
+    int new_x = 0;
+    int new_y = 0;
+    int new_l = 0;
 
-        p.x = Mod(MinValue(MaxValue(MinValue(p.x - p.y, p.x - l_val), p.y - l_val), p.x - i), MOD_VALUE);
-        p.y = Mod(MaxValue(MinValue(MaxValue(p.x - p.y, p.x - l_val), p.y - l_val), p.y - i), MOD_VALUE);
-        l_val = (Mod(p.x, MOD_VALUE)) - (Mod(p.y, MOD_VALUE)) + (Mod(l_val, MOD_VALUE)) - (Mod(i, MOD_VALUE));
+    for (int i = 1; i <= MAX_NUMBER_OF_ITERATIONS; ++i) {
 
-        int is_point_hit_zone = CheckZone(p);
+        new_x = Mod(MinValue(MaxValue(MinValue(p.x - p.y, p.x - l_val), p.y - l_val), p.x - i), MOD_VALUE);
+        new_y = Mod(MaxValue(MinValue(MaxValue(p.x - p.y, p.x - l_val), p.y - l_val), p.y - i), MOD_VALUE);
+        new_l = (Mod(p.x, MOD_VALUE)) - (Mod(p.y, MOD_VALUE)) + (Mod(l_val, MOD_VALUE)) - (Mod(i, MOD_VALUE));
+
+        p.x = new_x;
+        p.y = new_y;
+        l_val = new_l;
+
+        is_point_hit_zone = CheckZone(p);
         printf("%d: x = %d, y = %d, isPointHitZone = %d\n", i, p.x, p.y, is_point_hit_zone);
+        if (is_point_hit_zone == 1) {
+            break;
+        }
+    }
+    if (is_point_hit_zone == 0) {
+        printf("The point doesn't hit the zone in 50 iterations");
     }
     return 0;
 }
