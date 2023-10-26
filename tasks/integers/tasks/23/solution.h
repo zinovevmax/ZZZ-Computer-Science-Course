@@ -29,7 +29,7 @@ int64_t Pow(uint8_t first, uint8_t second) {
     return temp;
 }
 
-int main() {
+int Task() {
     uint64_t number = 0;
     scanf("%lu", &number);
     uint8_t rz = number % magic_10;
