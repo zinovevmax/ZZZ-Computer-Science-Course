@@ -1,3 +1,5 @@
+#pragma once
+
 #include <stdio.h>
 
 const int MAX_ITEREATIONS = 50;
@@ -74,13 +76,13 @@ int Task() {
     int i_1 = 0;
     int j_1 = 0;
     int l_1 = 0;
-    int flag = 0;
+    bool flag = false;
     for (int i = 0; i < MAX_ITEREATIONS; ++i) {
         p.x = i_0;
         p.y = j_0;
         if (CheckZone(p)) {
             printf("x=%d, y=%d k=%d\n", i_0, j_0, i);
-            flag = 1;
+            flag = true;
         }
         i_1 = Mod((i_0 ^ 2) / (Abs(j_0 - l_0) + i + 1) - (j_0 ^ 2) / (Abs(i_0 - l_0) + i + 1), MOD_30);
         j_1 = Sign(l_0 * Min(i_0, j_0)) - Sign(j_0 * Max(i_0, l_0)) + i;
@@ -89,7 +91,7 @@ int Task() {
         j_0 = j_1;
         l_0 = l_1;
     }
-    if (flag == 0) {
+    if (flag == false) {
         printf("Таких точек нет");
     }
     return 0;
