@@ -15,7 +15,7 @@ int Power(int32_t start_number, int32_t degree) {
     return result;
 }
 
-int main() {
+int Task() {
     int32_t count = 0;
     int64_t number = INPUT_NUMBER;
     while (number) {
