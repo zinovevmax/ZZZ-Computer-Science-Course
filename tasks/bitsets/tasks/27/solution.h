@@ -27,7 +27,7 @@ int Task() {
             // Как только мы встретили знак не латинского алфавита,
             // проверяем, имеет ли слово все гласные,
             // обнуляем множество, чтобы потом начать читать новое слово
-            if ((word != 0u) && ((word & VOWELS) == VOWELS)) {
+            if ((word & VOWELS) == VOWELS) {
                 printf("Yes, There is a word that has all vowels\n");
                 return 0;
             }
