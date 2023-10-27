@@ -6,36 +6,40 @@
 #include <stdio.h>
 
 typedef uint32_t Bitset;
-const int32_t A_INDEX = 'a' - 'a';
-const int32_t E_INDEX = 'e' - 'a';
-const int32_t I_INDEX = 'i' - 'a';
-const int32_t O_INDEX = 'o' - 'a';
-const int32_t Y_INDEX = 'y' - 'a';
+const Bitset WITHOUT_VOWELS = 4278173422;
+
+// как я получил битсет WITHOUT_VOWELS:
+// char vowels[] = {'a', 'e', 'i', 'o', 'y'};
+// Bitset only_vowels = 0;
+// for (int i = 0; i < VOWELS_COUNT; i++) {
+//     only_vowels |= (1 << (vowels[i] - 'a'));
+// }
+// Bitset without_vowels = only_vowels ^ UINT32_MAX;
 
 bool CharIsConsonant(int32_t index) {
-    return (index != A_INDEX && index != E_INDEX && index != I_INDEX && index != O_INDEX && index != Y_INDEX);
+    return ((WITHOUT_VOWELS >> index) & 1) & (0 | (1 << index));
 }
 
 int Task() {
     char inputed_char = 0;
     bool word_with_repeated_consonant_is_found = false;
     int32_t index = 0;
-    Bitset previous_word_letters_set = 0;
-    Bitset word_letters_set = 0;
+    Bitset previous_letters_set = 0;
+    Bitset letters_set = 0;
     while ((inputed_char = (char)getchar()) != EOF) {
         if (isalpha(inputed_char)) {
             inputed_char = (char)tolower(inputed_char);
             index = inputed_char - 'a';
-            word_letters_set |= (1 << index);
-            if (previous_word_letters_set == word_letters_set && CharIsConsonant(index)) {
+            letters_set |= (1 << index);
+            if (previous_letters_set == letters_set && CharIsConsonant(index)) {
                 word_with_repeated_consonant_is_found = true;
                 break;
             } else {
-                previous_word_letters_set = word_letters_set;
+                previous_letters_set = letters_set;
             }
         } else {
-            word_letters_set = 0;
-            previous_word_letters_set = 0;
+            letters_set = 0;
+            previous_letters_set = 0;
         }
     }
     if (word_with_repeated_consonant_is_found) {
