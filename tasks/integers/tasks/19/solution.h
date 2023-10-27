@@ -6,16 +6,27 @@
 const int64_t NUMBER = 15551;  // comment this line
 const int64_t TEN = 10;
 
+int64_t IsLessThenTwoDigits(int64_t num) {
+    if (num < TEN) {
+        printf("%ld\n", num);
+        return 0;
+    }
+    return 1;
+}
+
+int Abs(int64_t x) {
+    if (x > 0) {
+        return x;
+    } else {
+        return x * (-1);
+    }
+}
+
 int Task() {
     // scanf("%ld", &number); // uncomment this line
-    int64_t number = NUMBER;  // comment this line
+    int64_t number = Abs(NUMBER);  // comment this line
 
-    if (number < 0) {
-        number = -number;  // Обработка отрицательных чисел
-    }
-
-    if (number < TEN) {
-        printf("%ld\n", number);
+    if (IsLessThenTwoDigits(number) == 0) {
         return 0;  // Числа до трех разрядов без изменений
     }
 
