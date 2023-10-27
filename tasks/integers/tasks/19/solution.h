@@ -14,7 +14,7 @@ int64_t IsLessThenTwoDigits(int64_t num) {
     return 1;
 }
 
-int Abs(int64_t x) {
+int64_t Abs(int64_t x) {
     if (x > 0) {
         return x;
     } else {
