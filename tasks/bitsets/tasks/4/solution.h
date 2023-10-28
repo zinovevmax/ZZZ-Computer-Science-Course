@@ -17,7 +17,7 @@ const Bitset WITHOUT_VOWELS = 4278173422;
 // Bitset without_vowels = only_vowels ^ UINT32_MAX;
 
 bool CharIsConsonant(int32_t index) {
-    return ((WITHOUT_VOWELS >> index) & 1) & (0 | (1 << index));
+    return (WITHOUT_VOWELS >> index) & 1;
 }
 
 int Task() {
