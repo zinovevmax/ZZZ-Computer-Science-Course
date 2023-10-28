@@ -6,7 +6,7 @@ const int32_t TEN = 10;
 
 // Function of exponentiation
 int Power(int32_t start_number, uint32_t degree) {
-    int32_t i = 0;
+    uint32_t i = 0;
     int32_t result = 1;
     for (i = 1; i <= degree; ++i) {
         result *= start_number;
@@ -15,11 +15,11 @@ int Power(int32_t start_number, uint32_t degree) {
 }
 
 int Task() {
-    int32_t count = 0;
+    int32_t count_of_index = 0;
     int64_t input_number = INPUT_NUMBER;
     while (input_number) {
         input_number /= TEN;
-        ++count;
+        ++count_of_index;
     }
     input_number = INPUT_NUMBER;
     if (INPUT_NUMBER >= 0) {
