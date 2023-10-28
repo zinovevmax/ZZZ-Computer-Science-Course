@@ -32,7 +32,7 @@ int Task() {
         }
     } else {
         for (uint16_t k = count_of_index; k >= 1; --k) {
-            if (k == count) {
+            if (k == count_of_index) {
                 int64_t digit = (input_number / (Power(TEN, (k - 1))) % Power(TEN, 1));
                 if (digit % 2 == 0 && digit != 0) {
                     ++digit;
