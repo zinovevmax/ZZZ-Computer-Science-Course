@@ -7,8 +7,8 @@ int Task() {
     int64_t number = 0;
     int64_t reversed_result = 0;
     int64_t result = 0;
-    int8_t digit = 0;
-    int8_t sign_of_number = 0;
+    int64_t digit = 0;
+    int64_t sign_of_number = 0;
     scanf("%li", &number);
     if (number < 0) {
         sign_of_number = -1;
