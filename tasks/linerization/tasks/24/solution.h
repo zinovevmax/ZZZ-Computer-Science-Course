@@ -8,8 +8,8 @@ typedef int32_t** Matrix;
 typedef int32_t* Row;
 
 typedef struct {
-    size_t s;
-    size_t e;
+    size_t start;
+    size_t end;
 } Slice;
 
 void Swap(size_t* n, size_t* m) {
@@ -20,31 +20,34 @@ void Swap(size_t* n, size_t* m) {
 
 void Fill(Matrix matrix, size_t n, size_t m) {
     int32_t element = 0;
-    Slice ver = {n - 1, 0};
-    Slice hor = {m - 1, 0};
-    int32_t is_hor = 0;
+    Slice vertical = {n - 1, 0};
+    Slice horizontal = {m - 1, 0};
+    int32_t is_horizontal = 0;
     int32_t sign = 0;
 
     int32_t run = 1;
     while (run) {
-        run = !(ver.s == ver.e && hor.s == hor.e);
-        if (is_hor) {
-            sign = (hor.e > hor.s) ? 1 : -1;
-            for (size_t j = hor.s; j != hor.e + sign; j += sign) {
-                matrix[ver.e][j] = ++element;
+        run = !(vertical.start == vertical.end && horizontal.start == horizontal.end);
+
+        if (is_horizontal) {
+            sign = (horizontal.end >= horizontal.start) ? 1 : -1;
+            for (size_t j = horizontal.start; j != horizontal.end + sign; j += sign) {
+                matrix[vertical.end][j] = ++element;
             }
-            is_hor = 0;
-            Swap(&ver.s, &ver.e);
-            ver.s += (ver.e >= ver.s) ? 1 : -1;
+
+            Swap(&vertical.start, &vertical.end);
+            vertical.start += (vertical.end >= vertical.start) ? 1 : -1;
         } else {
-            sign = (ver.e >= ver.s) ? 1 : -1;
-            for (size_t i = ver.s; i != ver.e + sign; i += sign) {
-                matrix[i][hor.e] = ++element;
+            sign = (vertical.end >= vertical.start) ? 1 : -1;
+            for (size_t i = vertical.start; i != vertical.end + sign; i += sign) {
+                matrix[i][horizontal.end] = ++element;
             }
-            is_hor = 1;
-            Swap(&hor.s, &hor.e);
-            hor.s += (hor.e > hor.s) ? 1 : -1;
+
+            Swap(&horizontal.start, &horizontal.end);
+            horizontal.start += (horizontal.end > horizontal.start) ? 1 : -1;
         }
+
+        is_horizontal = !is_horizontal;
     }
 }
 
