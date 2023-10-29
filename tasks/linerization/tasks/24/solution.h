@@ -12,16 +12,21 @@ typedef struct {
     size_t end;
 } Slice;
 
+#define Sign(x, y) (y >= x) ? 1 : -1
+
 void Swap(size_t* n, size_t* m) {
     size_t t = *n;
     *n = *m;
     *m = t;
 }
 
+// Заполняет массив числами по спирали, начиная с левого нижнего угла и двигаясь по часовой стрелке
 void Fill(Matrix matrix, size_t n, size_t m) {
-    int32_t element = 0;
+    int32_t element = 1;
+
     Slice vertical = {n - 1, 0};
     Slice horizontal = {m - 1, 0};
+
     int32_t is_horizontal = 0;
     int32_t sign = 0;
 
@@ -30,23 +35,24 @@ void Fill(Matrix matrix, size_t n, size_t m) {
         run = !(vertical.start == vertical.end && horizontal.start == horizontal.end);
 
         if (is_horizontal) {
-            sign = (horizontal.end >= horizontal.start) ? 1 : -1;
+            sign = Sign(horizontal.start, horizontal.end);
             for (size_t j = horizontal.start; j != horizontal.end + sign; j += sign) {
-                matrix[vertical.end][j] = ++element;
+                matrix[vertical.end][j] = element;
             }
 
             Swap(&vertical.start, &vertical.end);
-            vertical.start += (vertical.end >= vertical.start) ? 1 : -1;
+            vertical.start += Sign(vertical.start, vertical.end);
         } else {
-            sign = (vertical.end >= vertical.start) ? 1 : -1;
+            sign = Sign(vertical.start, vertical.end);
             for (size_t i = vertical.start; i != vertical.end + sign; i += sign) {
-                matrix[i][horizontal.end] = ++element;
+                matrix[i][horizontal.end] = element;
             }
 
             Swap(&horizontal.start, &horizontal.end);
-            horizontal.start += (horizontal.end > horizontal.start) ? 1 : -1;
+            horizontal.start += Sign(horizontal.start, horizontal.end);
         }
 
+        ++element;
         is_horizontal = !is_horizontal;
     }
 }
@@ -66,13 +72,16 @@ int Task() {
     size_t n = N;
     size_t m = M;
     // scanf("%lu%lu", &n, &m);
+
+    // Инициализируем матрицу
+    Row lin_matrix = (Row)calloc(n * m, sizeof(Row));
     Matrix matrix = (Matrix)calloc(n, sizeof(Row));
     for (size_t i = 0; i < n; ++i) {
         matrix[i] = (Row)calloc(m, sizeof(Row));
     }
 
+    // Решаем задачу
     Fill(matrix, n, m);
-    Row lin_matrix = (Row)calloc(n * m, sizeof(Row));
     Linerization(matrix, lin_matrix, n, m);
 
     // Освобождаем память
