@@ -13,7 +13,7 @@ int Task() {
         digit = abs(number / 100 % 10);
         difference = abs(abs(number % 10) - abs(number % 100 / 10));
         if (digit == difference) {
-            printf("%ld %d %i\n", digit, abs(number % 100 / 10), abs(number % 10));
+            printf("%ld %ld %li\n", digit, abs(number % 100 / 10), abs(number % 10));
         }
         number = number / 10;
     }
