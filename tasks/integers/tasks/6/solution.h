@@ -4,23 +4,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// some black magic (*^.^*)
-const int64_t MAGIC_HUNNID = 100;
-const int64_t MAGIC_TEN = 10;
-
 int Task() {
     int64_t number = 0;
     scanf("%ld", &number);
-    number = abs(number);
     int64_t digit = 0;
     int64_t difference = 0;
-    while (number >= MAGIC_HUNNID) {
-        digit = number % MAGIC_TEN;
-        difference = abs((number / MAGIC_HUNNID % MAGIC_TEN) - (number % MAGIC_HUNNID / MAGIC_TEN));
+    while (abs(number / 100) > 0) {
+        digit = abs(number / 100 % 10);
+        difference = abs(abs(number % 10) - abs(number % 100 / 10));
         if (digit == difference) {
-            printf("%lu %lu %lu\n", (number / MAGIC_HUNNID % MAGIC_TEN), (number % MAGIC_HUNNID / MAGIC_TEN), digit);
+            printf("%ld %d %i\n", digit, abs(number % 100 / 10), abs(number % 10));
         }
-        number = number / MAGIC_TEN;
+        number = number / 10;
     }
     return 0;
 }
