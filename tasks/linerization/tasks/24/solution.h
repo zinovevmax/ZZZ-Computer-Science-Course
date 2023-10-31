@@ -37,7 +37,7 @@ void Fill(Matrix matrix, size_t n, size_t m) {
         if (is_horizontal) {
             sign = Sign(horizontal.start, horizontal.end);
             for (size_t j = horizontal.start; j != horizontal.end + sign; j += sign) {
-                matrix[vertical.end][j] = element;
+                matrix[vertical.end][j] = element++;
             }
 
             Swap(&vertical.start, &vertical.end);
@@ -45,14 +45,13 @@ void Fill(Matrix matrix, size_t n, size_t m) {
         } else {
             sign = Sign(vertical.start, vertical.end);
             for (size_t i = vertical.start; i != vertical.end + sign; i += sign) {
-                matrix[i][horizontal.end] = element;
+                matrix[i][horizontal.end] = element++;
             }
 
             Swap(&horizontal.start, &horizontal.end);
             horizontal.start += Sign(horizontal.start, horizontal.end);
         }
 
-        ++element;
         is_horizontal = !is_horizontal;
     }
 }
