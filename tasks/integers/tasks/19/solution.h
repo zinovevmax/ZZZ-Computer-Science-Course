@@ -43,7 +43,7 @@ int Task() {
     }
     number %= max_digit_of_number;
 
-    printf("%lld\n", number);
+    printf("%ld\n", number);
 
     return 0;
 }
