@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-int64_t NUMBER = 555;  // comment this line
+const int64_t NUMBER = 555;  // comment this line
 const int64_t TEN = 10;
 const int64_t HUNDRED = 100;
 
