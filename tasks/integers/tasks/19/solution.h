@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-int64_t NUMBER = -9223372036854775808;  // comment this line
+int64_t NUMBER = 555;  // comment this line
 const int64_t TEN = 10;
 const int64_t HUNDRED = 100;
 
@@ -24,7 +24,7 @@ int64_t Abs(int64_t x) {
 
 int Task() {
     if (NUMBER < -9223372036854775807) {
-        printf("22337203685477580");
+        printf("22337203685477580");  // обработка самого маленького числа
         return 0;
     }
     // scanf("%lld", &number); // uncomment this line
@@ -44,7 +44,7 @@ int Task() {
     }
     number %= max_digit_of_number;
 
-    printf("%lld\n", number);
+    printf("%ld\n", number);
 
     return 0;
 }
