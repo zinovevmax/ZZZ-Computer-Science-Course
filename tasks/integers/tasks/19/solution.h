@@ -3,16 +3,16 @@
 #include <stdint.h>
 #include <stdio.h>
 
-const int64_t NUMBER = 123;  // comment this line
+const int64_t NUMBER = -9223372036854775808;  // comment this line
 const int64_t TEN = 10;
 const int64_t HUNDRED = 100;
 
 int64_t IsLessThenThreeDigits(int64_t num) {
     if (num < HUNDRED) {
         printf("Слишком мало разрядов");
-        return 0;
+        return 1;
     }
-    return 1;
+    return 0;
 }
 
 int64_t Abs(int64_t x) {
@@ -26,10 +26,10 @@ int64_t Abs(int64_t x) {
 }
 
 int Task() {
-    // scanf("%ld", &number); // uncomment this line
+    // scanf("%lld", &number); // uncomment this line
     int64_t number = Abs(NUMBER);  // comment this line
 
-    if (IsLessThenThreeDigits(number) == 0) {
+    if (IsLessThenThreeDigits(number)) {
         return 0;  // Числа до трех разрядов без изменений
     }
 
@@ -43,7 +43,7 @@ int Task() {
     }
     number %= max_digit_of_number;
 
-    printf("%ld\n", number);
+    printf("%lld\n", number);
 
     return 0;
 }
