@@ -6,7 +6,11 @@ const int32_t TEN = 10;
 const int64_t MINUS_ONE = -1;
 
 int Abs(int64_t num) {
-    return (num >= 0) ? num : num * MINUS_ONE;
+    if (num < 0) {
+        return num *= MINUS_ONE;
+    } else {
+        return num;
+    }
 }
 
 // Function of exponentiation
