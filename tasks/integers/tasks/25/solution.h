@@ -25,7 +25,7 @@ int64_t Sign(int64_t num) {
     }
 }
 
-int64_t solve(int64_t number) {
+int64_t Solve(int64_t number) {
     int64_t new_number = 0;
     int64_t power_10 = 1;
     
@@ -44,11 +44,11 @@ int Task()
 {   
     int64_t input_number = INPUT_NUMBER;
     if (input_number == INT64_MIN) {
-        printf("-%ld7\n", solve(input_number / -TEN));
+        printf("-%ld7\n", Solve(input_number / -TEN));
     } else {
         int64_t is_negative = Sign(input_number);
         input_number = Abs(input_number);
-        printf("%ld\n", is_negative * solve(input_number));
+        printf("%ld\n", is_negative * Solve(input_number));
     }
     return 0;
 }
