@@ -28,7 +28,6 @@ int64_t Sign(int64_t num) {
 int64_t Solve(int64_t number) {
     int64_t new_number = 0;
     int64_t power_10 = 1;
-    
     while (number >= power_10) {
         int64_t digit = (number / power_10) % TEN;
         if (digit) {
@@ -40,8 +39,7 @@ int64_t Solve(int64_t number) {
     return new_number;
 }
 
-int Task()
-{   
+int Task() {   
     int64_t input_number = INPUT_NUMBER;
     if (input_number == INT64_MIN) {
         printf("-%ld7\n", Solve(input_number / -TEN));
