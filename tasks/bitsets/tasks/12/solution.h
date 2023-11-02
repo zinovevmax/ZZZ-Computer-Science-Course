@@ -9,7 +9,7 @@ const uint32_t CONSONANT = 4277124846u;  // number for all consonants
 
 int Task() {
     Bitset word = 0u;
-    Bitset consonant_for_compare = CONSONANT;
+    Bitset consonant = CONSONANT;
     char writing = ' ';
     char imput_words[] = "mama myla ramu 0";
     uint32_t counter_words = 0;
@@ -19,12 +19,12 @@ int Task() {
         if (writing >= 'a' && writing <= 'z') {
             word = word | (1u << (writing - 'a'));
         } else {
-            consonant_for_compare = word & consonant_for_compare;
+            consonant = word & consonant;
             word = 0u;
         }
         ++counter_words;
     }
-    if (consonant_for_compare != 0u) {
+    if (consonant != 0u) {
         printf("Yes, words have a common consonant");
     } else {
         printf("No, words do not have a common consonant");
