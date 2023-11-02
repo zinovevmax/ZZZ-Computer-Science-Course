@@ -1,9 +1,9 @@
-#pragma once;
+#pragma once
 
 #include <stdint.h>
 #include <stdio.h>
 
-const int64_t INPUT_NUMBER = -9223372036854775808;
+const int64_t INPUT_NUMBER = -12345;
 const int32_t TEN = 10;
 const int64_t MINUS_ONE = -1;
 
