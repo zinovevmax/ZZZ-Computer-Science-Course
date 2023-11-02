@@ -28,6 +28,6 @@ int Task() {
     }
     position_of_second = position_of_second / BASE;
     int64_t new_number = (number - second * position_of_second - penultimate * BASE + penultimate * position_of_second + second * BASE) * sign;
-    printf("%ld/n", new_number);
+    printf("%ld\n", new_number);
     return 0;
 }
