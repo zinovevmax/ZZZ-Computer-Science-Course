@@ -1,7 +1,9 @@
+#pragma once;
+
 #include <stdint.h>
 #include <stdio.h>
 
-const int64_t INPUT_NUMBER = -922337203685477580;
+const int64_t INPUT_NUMBER = -9223372036854775808;
 const int32_t TEN = 10;
 const int64_t MINUS_ONE = -1;
 
@@ -23,23 +25,30 @@ int64_t Sign(int64_t num) {
     }
 }
 
-int main()
-{   
-    int64_t input_number = INPUT_NUMBER;
-    int8_t is_negative = Sign(input_number);
-    input_number = Abs(input_number);
+int64_t solve(int64_t number) {
     int64_t new_number = 0;
     int64_t power_10 = 1;
     
-    while (input_number >= power_10) {
-        int64_t digit = (input_number / power_10) % 10;
+    while (number >= power_10) {
+        int64_t digit = (number / power_10) % TEN;
         if (digit) {
             digit -= (int64_t)(digit % 2 == 0);
         }
         new_number += digit * power_10;
-        power_10 *= 10l;
+        power_10 *= TEN;
     }
-    new_number *= (int64_t)is_negative;
-    printf("%ld\n", new_number);
+    return new_number;
+}
+
+int Task()
+{   
+    int64_t input_number = INPUT_NUMBER;
+    if (input_number == INT64_MIN) {
+        printf("-%ld7\n", solve(input_number / -TEN));
+    } else {
+        int64_t is_negative = Sign(input_number);
+        input_number = Abs(input_number);
+        printf("%ld\n", is_negative * solve(input_number));
+    }
     return 0;
 }
