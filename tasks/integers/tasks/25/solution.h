@@ -3,7 +3,7 @@
 
 const int64_t INPUT_NUMBER = -9223;
 const int32_t TEN = 10;
-const int32_t MINUS_ONE = -1;
+const int64_t MINUS_ONE = -1;
 
 int Abs(int64_t num) {
     return (num >= 0) ? num : num * MINUS_ONE;
