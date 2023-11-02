@@ -39,7 +39,7 @@ int64_t Solve(int64_t number) {
     return new_number;
 }
 
-int Task() {   
+int Task() {
     int64_t input_number = INPUT_NUMBER;
     if (input_number == INT64_MIN) {
         printf("-%ld7\n", Solve(input_number / -TEN));
