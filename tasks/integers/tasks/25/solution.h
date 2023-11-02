@@ -5,7 +5,7 @@ const int64_t INPUT_NUMBER = -9223;
 const int32_t TEN = 10;
 const int64_t MINUS_ONE = -1;
 
-int Abs(int64_t num) {
+int64_t Abs(int64_t num) {
     if (num < 0) {
         return num *= MINUS_ONE;
     } else {
