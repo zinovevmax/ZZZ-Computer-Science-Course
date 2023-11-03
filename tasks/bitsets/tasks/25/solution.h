@@ -19,13 +19,11 @@ bool CheckForSibilantConsonants(char c) {
             if (c != 'h')
                 sibilantConsonants |= (1u << (c - 'a'));
             return false;
-        }
-        else {
+        } else {
             if (c == 'h')
                 return true;
         }
-    }
-    else {
+    } else {
         sibilantConsonants = 0;
         return false;
     }
@@ -33,8 +31,7 @@ bool CheckForSibilantConsonants(char c) {
 
 int Task() {
     char input_letter;
-    while ((input_letter = (char)getchar()) != EOF)
-    {
+    while ((input_letter = (char)getchar()) != EOF) {
         bool answer = CheckForSibilantConsonants(input_letter);
         if (answer) {
             printf("A word consisting of at least one sibilant was detected!");
