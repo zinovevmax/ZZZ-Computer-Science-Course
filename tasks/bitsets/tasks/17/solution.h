@@ -29,7 +29,7 @@ int Task() {
             }
             is_letter = 1;
         } else {
-            if (vowals_of_new_word & vowals_of_last_word == vowals_of_new_word && is_letter) {
+            if ((vowals_of_new_word & vowals_of_last_word) == vowals_of_new_word && is_letter) {
                 printf("Есть два соседних слова с пересекающимся набором гласных.\n");
                 is_success = 1;
                 break;
