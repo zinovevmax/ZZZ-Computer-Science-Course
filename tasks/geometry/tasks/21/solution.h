@@ -1,13 +1,6 @@
 #pragma once
 
 #include <stdio.h>
-const int INITIAL_L = 11;
-const int INITIAL_I = -12;
-const int INITIAL_J = -22;
-const int TWENTY = 20;
-const int TEN = 10;
-const int MINUS_TEN = -10;
-const int MINUS_ONE = -1;
 const int MAX_ITERATIONS = 50;
 
 typedef struct {
@@ -68,20 +61,20 @@ int Sign(int a) {
 
 int CheckZone(Point p) {
     // Write a code here that checks whether a point belongs to a given area
-    if (p.y >= p.x + TEN && p.y <= MINUS_ONE * p.x + TEN && p.x >= MINUS_TEN) {
+    if (p.y >= p.x + 10 && p.y <= -1 * p.x + 10 && p.x >= -10) {
         printf("Точка с координатами %d %d попадает в область\n", p.x, p.y);
     } else {
         printf("Точка с координатами %d %d НЕ попадает в область\n", p.x, p.y);
     }
-    return (p.y >= p.x + TEN && p.y <= MINUS_ONE * p.x + TEN && p.x >= MINUS_TEN);
+    return (p.y >= p.x + 10 && p.y <= -1 * p.x + 10 && p.x >= -10);
 }
 
 int Task() {
     // write main code here
     Point p;
-    p.x = INITIAL_I;
-    p.y = INITIAL_J;
-    int l = INITIAL_L;
+    p.x = -12;
+    p.y = -22;
+    int l = 11;
     int is_success = 0;
     int temp_x = 0;
     int temp_y = 0;
@@ -92,10 +85,10 @@ int Task() {
         }
         temp_x = p.x;
         temp_y = p.y;
-        p.x = Max(Mod(Min(temp_x - temp_y, temp_y - l), TWENTY), Mod(Min(temp_x - l, temp_y - i), TWENTY)) + TEN;
-        p.y = Sign(temp_x - temp_y) * Min(Mod(temp_x, TWENTY), Mod(temp_y, TWENTY)) -
-              Mod(Max(Abs(temp_x - l), Abs(i - TWENTY)), TWENTY) + TWENTY;
-        l = Mod(temp_x, TEN) * Mod(temp_y, TEN) + Mod(l, TEN);
+        p.x = Max(Mod(Min(temp_x - temp_y, temp_y - l), 20), Mod(Min(temp_x - l, temp_y - i), 20)) + 10;
+        p.y = Sign(temp_x - temp_y) * Min(Mod(temp_x, 20), Mod(temp_y, 20)) -
+              Mod(Max(Abs(temp_x - l), Abs(i - 20)), 20) + 20;
+        l = Mod(temp_x, 10) * Mod(temp_y, 10) + Mod(l, 10);
     }
     if (!is_success) {
         printf("Точка не попала в область за 50 итераций.\n");
