@@ -36,7 +36,7 @@ int Task() {
 
     char sentence[] = "Mama mYLa ramu";
     char* word = strtok(sentence, " ");
-    while (word != NULL) {      
+    while (word != NULL) {
         if (check_uppercase(word)) {
             printf("The word '%s' contains more than one uppercase letter.\n", word);
         } else {
