@@ -12,7 +12,7 @@ typedef struct {
     size_t end;
 } Slice;
 
-#define Sign(x, y) (y >= x) ? 1 : -1
+#define isLess(x, y) ((y >= x) ? 1 : 0)
 
 void Swap(size_t* n, size_t* m) {
     size_t t = *n;
@@ -24,35 +24,35 @@ void Swap(size_t* n, size_t* m) {
 void Fill(Matrix matrix, size_t n, size_t m) {
     int32_t element = 1;
 
-    Slice vertical = {n - 1, 0};
-    Slice horizontal = {m - 1, 0};
+    Slice y_axis = {n - 1, 0};
+    Slice x_axis = {m - 1, 0};
 
     int32_t is_horizontal = 0;
-    int32_t sign = 0;
+    int32_t step = 0;
 
     while (element <= (int32_t)(n * m)) {
         if (is_horizontal) {
-            sign = Sign(horizontal.start, horizontal.end);
-            for (size_t j = horizontal.start; j != horizontal.end + sign; j += sign) {
-                if (matrix[vertical.end][j] != 0) {
+            step = 2 * isLess(x_axis.start, x_axis.end) - 1;
+            for (size_t j = x_axis.start; j != x_axis.end + step; j += step) {
+                if (matrix[y_axis.end][j] != 0) {
                     break;
                 }
-                matrix[vertical.end][j] = element++;
+                matrix[y_axis.end][j] = element++;
             }
 
-            Swap(&vertical.start, &vertical.end);
-            vertical.start += Sign(vertical.start, vertical.end);
+            Swap(&y_axis.start, &y_axis.end);
+            y_axis.start += 2 * isLess(y_axis.start, y_axis.end) - 1;
         } else {
-            sign = Sign(vertical.start, vertical.end);
-            for (size_t i = vertical.start; i != vertical.end + sign; i += sign) {
-                if (matrix[i][horizontal.end] != 0) {
+            step = 2 * isLess(y_axis.start, y_axis.end) - 1;
+            for (size_t i = y_axis.start; i != y_axis.end + step; i += step) {
+                if (matrix[i][x_axis.end] != 0) {
                     break;
                 }
-                matrix[i][horizontal.end] = element++;
+                matrix[i][x_axis.end] = element++;
             }
 
-            Swap(&horizontal.start, &horizontal.end);
-            horizontal.start += Sign(horizontal.start, horizontal.end);
+            Swap(&x_axis.start, &x_axis.end);
+            x_axis.start += 2 * isLess(x_axis.start, x_axis.end) - 1;
         }
 
         is_horizontal = !is_horizontal;
