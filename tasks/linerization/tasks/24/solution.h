@@ -30,13 +30,13 @@ void Fill(Matrix matrix, size_t n, size_t m) {
     int32_t is_horizontal = 0;
     int32_t sign = 0;
 
-    int32_t run = 1;
-    while (run) {
-        run = !(vertical.start == vertical.end && horizontal.start == horizontal.end);
-
+    while (element <= (int32_t)(n * m)) {
         if (is_horizontal) {
             sign = Sign(horizontal.start, horizontal.end);
             for (size_t j = horizontal.start; j != horizontal.end + sign; j += sign) {
+                if (matrix[vertical.end][j] != 0) {
+                    break;
+                }
                 matrix[vertical.end][j] = element++;
             }
 
@@ -45,6 +45,9 @@ void Fill(Matrix matrix, size_t n, size_t m) {
         } else {
             sign = Sign(vertical.start, vertical.end);
             for (size_t i = vertical.start; i != vertical.end + sign; i += sign) {
+                if (matrix[i][horizontal.end] != 0) {
+                    break;
+                }
                 matrix[i][horizontal.end] = element++;
             }
 
@@ -62,6 +65,22 @@ void Linerization(Matrix matrix, Row lin_matrix, size_t n, size_t m) {
             lin_matrix[i * m + j] = matrix[i][j];
         }
     }
+}
+
+void PrintMatrix(Matrix matrix, size_t n, size_t m) {
+    for (size_t i = 0; i < n; ++i) {
+        for (size_t j = 0; j < m; ++j) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void PrintRow(Row row, size_t n) {
+    for (size_t i = 0; i < n; ++i) {
+        printf("%d ", row[i]);
+    }
+    printf("\n");
 }
 
 const size_t N = 6;
@@ -82,6 +101,11 @@ int Task() {
     // Решаем задачу
     Fill(matrix, n, m);
     Linerization(matrix, lin_matrix, n, m);
+
+    // Выводим результат
+    PrintMatrix(matrix, n, m);
+    printf("\n");
+    PrintRow(lin_matrix, n * m);
 
     // Освобождаем память
     for (size_t i = 0; i < n; ++i) {
