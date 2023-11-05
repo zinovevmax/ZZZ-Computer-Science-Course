@@ -7,17 +7,18 @@
 
 typedef uint32_t Bitset;
 
-const uint32_t RIGHT_VOWELS = 17826048;
+const uint32_t VOWELS_SECOND_KIND = 17826048;
+const uint32_t ALL_VOWELS = 17842449;
 
 bool IsVowel(char letter) {
-    return (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'u' || letter == 'y' || letter == 'o');
+    return ALL_VOWELS == (ALL_VOWELS | (1u << (letter - 'a')));
 }
 
 int Task() {
     // write your solution here
     char introduced_char = 0;
     Bitset word = 0;
-    int8_t flag = 0;
+    int8_t word_found = 0;
     while ((introduced_char = (char)getchar()) != EOF) {
         introduced_char = (char)tolower(introduced_char);
         if ('a' <= introduced_char && introduced_char <= 'z') {
@@ -25,13 +26,13 @@ int Task() {
                 word = word | (1u << (introduced_char - 'a'));
             }
         } else {
-            if (RIGHT_VOWELS == (RIGHT_VOWELS | word) && word != 0) {
-                flag = 1;
+            if (VOWELS_SECOND_KIND == (VOWELS_SECOND_KIND | word) && word != 0) {
+                word_found = 1;
             }
             word = 0;
         }
     }
-    if (flag) {
+    if (word_found) {
         printf("There are words containing vowels of 2 kinds");
     } else {
         printf("There are no words containing vowels of the 2nd kind");
