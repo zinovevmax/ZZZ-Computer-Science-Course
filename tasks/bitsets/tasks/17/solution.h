@@ -3,7 +3,6 @@
 #include <ctype.h>
 #include <stdint.h>
 #include <stdio.h>
-const Bitset VOWALS = Vowals();
 
 typedef uint32_t Bitset;
 
@@ -23,6 +22,8 @@ Bitset Vowals() {
     vowals = vowals | (1u << letter);
     return vowals;
 }
+
+const Bitset VOWALS = Vowals();
 
 int8_t IsVowal(char c) {
     if ((c | VOWALS) == VOWALS) {
