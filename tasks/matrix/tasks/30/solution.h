@@ -27,6 +27,10 @@ void FreeMatrix(Matrix matrix, int32_t n) {
 // Функция для инициализации матрицы и её размера из файла
 Matrix InitializeMatrixFromFile(const char* filename, int32_t* n) {
     FILE* file = fopen(filename, "r");
+    if (file == NULL) {
+        fprintf(stderr, "File opening error\n");
+        exit(1);
+    }
     fscanf(file, "%d", n);
     Matrix matrix = CreateMatrix(*n);
     for (int i = 0; i < *n; i++) {
@@ -81,8 +85,15 @@ int Task() {
     // Вводим сюда название файла
     const char* filename = "matrix.txt";
     Matrix matrix = InitializeMatrixFromFile(filename, &n);
+    // Вывод исходной матрицы
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
     matrix = MatrixWithModifiedCols(matrix, n);
-
     // Вывод итоговой матрицы
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
