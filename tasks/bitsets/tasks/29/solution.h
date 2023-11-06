@@ -24,7 +24,7 @@ bool CheckUppercase(char* word) {
 
     for (int i = 0; i < 2; i++) {
         while (bitset) {
-            count += bitset & 1;
+            count += static_cast<int>(bitset & 1);
             bitset >>= 1;
         }
     }
