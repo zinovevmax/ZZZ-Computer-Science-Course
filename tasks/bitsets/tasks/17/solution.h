@@ -3,11 +3,29 @@
 #include <ctype.h>
 #include <stdint.h>
 #include <stdio.h>
+const Bitset VOWALS = Vowals();
 
 typedef uint32_t Bitset;
 
+Bitset Vowals() {
+    Bitset vowals = 0u;
+    char letter = 'a';
+    vowals = vowals | (1u << letter);
+    letter = 'e';
+    vowals = vowals | (1u << letter);
+    letter = 'i';
+    vowals = vowals | (1u << letter);
+    letter = 'o';
+    vowals = vowals | (1u << letter);
+    letter = 'u';
+    vowals = vowals | (1u << letter);
+    letter = 'y';
+    vowals = vowals | (1u << letter);
+    return vowals;
+}
+
 int8_t IsVowal(char c) {
-    if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y') {
+    if ((c | VOWALS) == VOWALS) {
         return 1;
     } else {
         return 0;
