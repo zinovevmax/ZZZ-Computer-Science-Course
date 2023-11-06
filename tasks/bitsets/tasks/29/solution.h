@@ -8,12 +8,12 @@
 
 typedef uint32_t Bitset;
 
-const Bitset bitsets = 0u;
+const Bitset BITSETS = 0u;
 
 bool CheckUppercase(char* word) {
     int length = strlen(word);
     int count = 0;
-    Bitset bitset = bitsets;
+    Bitset bitset = BITSETS;
 
     for (int i = 0; i < length; i++) {
         if (word[i] >= 'A' && word[i] <= 'Z') {
