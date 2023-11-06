@@ -33,7 +33,7 @@ int64_t DecrementOfEvenNumbers(int64_t number) {
             digit -= (digit % 2 == 0);
         }
         new_number += digit * value_power_of_ten;
-        power_10 *= 10;
+        value_power_of_ten *= 10;
     }
     return new_number;
 }
