@@ -8,12 +8,12 @@
 
 typedef uint32_t Bitset;
 
-Bitset bitset = 0u;
-int length = 0;
+const Bitset bitsets = 0u;
 
-bool check_uppercase(char* word) {
+bool CheckUppercase(char* word) {
     int length = strlen(word);
     int count = 0;
+    Bitset bitset = bitsets;
 
     for (int i = 0; i < length; i++) {
         if (word[i] >= 'A' && word[i] <= 'Z') {
@@ -37,7 +37,7 @@ int Task() {
     char sentence[] = "Mama mYLa ramu";
     char* word = strtok(sentence, " ");
     while (word != NULL) {
-        if (check_uppercase(word)) {
+        if (CheckUppercase(word)) {
             printf("The word '%s' contains more than one uppercase letter.\n", word);
         } else {
             printf("The word '%s' contains only one uppercase letter or none.\n", word);
