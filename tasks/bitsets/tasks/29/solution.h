@@ -11,7 +11,7 @@ typedef uint32_t Bitset;
 const Bitset BITSETS = 0u;
 
 bool CheckUppercase(char* word) {
-    int length = strlen(word);
+    int length = (int)strlen(word);
     int count = 0;
     Bitset bitset = BITSETS;
 
