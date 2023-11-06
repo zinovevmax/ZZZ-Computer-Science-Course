@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define Matrix int32_t **
-#define Row int32_t *
+typedef int32_t **Matrix;
+typedef int32_t *Row;
 
 #define Abs(x) ((x < 0) ? -x : x)
 
