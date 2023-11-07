@@ -26,7 +26,7 @@ int Task() {
     Bitset word = 0;
     char input[] = "td lol dd ";  // здесь замена на scanf
 
-    for (int i = 0; i <= strlen(input); ++i)  // используем <= для обработки последнего слова
+    for (size_t i = 0; i <= strlen(input); ++i)  // используем <= для обработки последнего слова
     {
         if (input[i] >= 'a' && input[i] <= 'z')  // просмотр каждого слова отдельно
         {
