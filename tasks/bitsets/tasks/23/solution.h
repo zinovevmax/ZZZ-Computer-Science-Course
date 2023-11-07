@@ -11,7 +11,7 @@ const Bitset VOWELS = 17842449;
 // объяснение полученных констант
 // char voiced_c[] = {'b', 'd', 'g', 'l', 'm', 'n', 'r', 'v', 'z'};
 // Bitset voiced_consonants = 0;
-// for (int i = 0; i < VOICED_CONSONANTS_COUNT; ++i) (VOICED_CONSONANTS_COUNT = 9)
+// for (int i = 0; i < VOICED_CONSONANTS_COUNT; ++i) ,учитывая (VOICED_CONSONANTS_COUNT = 9)
 //{
 //     voiced_consonants |= (1 << (voiced_c[i] - 'a'));
 // }
