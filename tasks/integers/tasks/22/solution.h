@@ -17,7 +17,7 @@ int64_t DeleteEvenDigits(int64_t number, int64_t sign_of_number) {
     int64_t reversed_result = 0;
     int64_t digit = 0;
     while (number != 0) {
-        digit = number % 10  * sign_of_number;
+        digit = number % 10 * sign_of_number;
         number /= 10;
         if (digit % 2 != 0) {
             reversed_result *= 10;
