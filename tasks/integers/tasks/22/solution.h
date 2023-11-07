@@ -13,11 +13,11 @@ int64_t Sign(int64_t number) {
     }
 }
 
-int64_t DeleteEvenDigits(int64_t number) {
+int64_t DeleteEvenDigits(int64_t number, int64_t sign_of_number) {
     int64_t reversed_result = 0;
     int64_t digit = 0;
-    while (number > 0) {
-        digit = number % 10;
+    while (number != 0) {
+        digit = number % 10  * sign_of_number;
         number /= 10;
         if (digit % 2 != 0) {
             reversed_result *= 10;
@@ -44,8 +44,7 @@ int Task() {
     int64_t sign_of_number = 0;
     scanf("%li", &number);
     sign_of_number = Sign(number);
-    number *= sign_of_number;
-    number = DeleteEvenDigits(number);
+    number = DeleteEvenDigits(number, sign_of_number);
     number = Reverse(number);
     number *= sign_of_number;
     printf("%li", number);
