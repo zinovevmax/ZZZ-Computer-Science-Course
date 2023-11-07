@@ -16,8 +16,6 @@ typedef struct {
 } Point;
 
 int CheckZone(Point p) {
-    int x_1 = p.x;
-    int y_1 = p.y;
     int x_p = 0;
     int y_p = 0;
 
