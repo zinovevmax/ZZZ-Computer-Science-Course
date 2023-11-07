@@ -1,11 +1,11 @@
+#pragma once
 #include <stdio.h>
 
 const int MAX_ITERATIONS = 50;
 const int NUM_20 = 20;
 const int NUM_35 = 30;
-const int NUM_1 = 1;
-const float NUM_001 = 0.01;
-const float NUM_004 = 0.04;
+const int NUM_10 = 10;
+const int NUM_5 = 5;
 const int I_1 = -24;
 const int J_1 = 4;
 const int L_1 = -3;
@@ -18,16 +18,12 @@ typedef struct {
 int CheckZone(Point p) {
     int x_1 = p.x;
     int y_1 = p.y;
-    float x_p = 0.0;
-    float y_p = 0.0;
-    float x_1_f = (float)x_1;
-    float y_1_f = (float)y_1;
-    float num_20_f = (float)NUM_20;
-    float num_1_f = (float)NUM_1;
+    int x_p = 0;
+    int y_p = 0;
 
-    x_p = (x_1_f - num_20_f) * (x_1_f - num_20_f);
-    y_p = y_1_f * y_1_f;
-    return ((((x_p) * (NUM_001)) + ((y_p) * (NUM_004))) <= (num_1_f));
+    x_p = (p.x - NUM_20) * (p.x - NUM_20);
+    y_p = p.y * p.y;
+    return (((x_p) * (NUM_5) + ((y_p) * (NUM_5))) <= (NUM_5 * NUM_10));
 }
 
 int Abs(int x) {
@@ -80,17 +76,19 @@ int Task() {
     int i = I_1;
     int j = J_1;
     int l = L_1;
+    int flag = 0;
+    int ik = 0;
+    int jk = 0;
+    int lk = 0;
+    Point p;
 
     for (int k = 0; k < MAX_ITERATIONS; ++k) {
-        Point p;
         p.x = i;
         p.y = j;
-        int ik = 0;
-        int jk = 0;
-        int lk = 0;
 
         if (CheckZone(p) == 1) {
             printf("x = %d, y = %d, k = %d \n", i, j, k);
+            flag = 1;
             break;
         }
 
@@ -101,5 +99,10 @@ int Task() {
         j = jk;
         l = lk;
     }
+
+    if (flag == 0) {
+        printf("No occurrence in 50 iterations");
+    }
+
     return 0;
 }
