@@ -46,7 +46,7 @@ void Linerization(Matrix matrix, int32_t* linear_array) {
     int32_t array_index = 0;
     while (true) {
         if ((row_step + colum_step) % 2 == 0) {
-            for (int32_t i = 0; i < count_steps; i++) {
+            for (int32_t i = 0; i < count_steps; ++i) {
                 linear_array[array_index + i] = matrix[current_row - i][current_colum + i];
             }
             array_index += count_steps;
@@ -58,7 +58,7 @@ void Linerization(Matrix matrix, int32_t* linear_array) {
         current_row += row_step;
         current_colum += colum_step;
         if ((row_step + colum_step) % 2 != 0) {
-            for (int32_t i = 0; i < count_steps; i++) {
+            for (int32_t i = 0; i < count_steps; ++i) {
                 linear_array[array_index + i] = matrix[current_row + i][current_colum - i];
             }
             array_index += count_steps;
