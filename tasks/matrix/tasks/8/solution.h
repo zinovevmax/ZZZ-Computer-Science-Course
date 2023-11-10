@@ -8,6 +8,7 @@ typedef int32_t **Matrix;
 typedef int32_t *Row;
 
 #define Abs(x) ((x < 0) ? -x : x)
+#define Max(x, y) ((x > y) ? x : y)
 
 Matrix InitializeMatrix(size_t n) {
     Matrix matrix = (Matrix)calloc(n * n, sizeof(Row));
@@ -63,7 +64,12 @@ size_t NumberLen(int32_t number) {
 
 // Выводит матрицу, в которой все числа выровнены по правому краю
 void PrintMatrix(Matrix matrix, size_t n) {
-    size_t width = NumberLen((int32_t)(n * n)) + 1;
+    size_t width = 0;
+    for (size_t i = 0; i < n; ++i) {
+        for (size_t j = 0; j < n; ++j) {
+            width = Max(width, NumberLen(matrix[i][j]) + 1);
+        }
+    }
     size_t cur_width = 0;
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = 0; j < n; ++j) {
