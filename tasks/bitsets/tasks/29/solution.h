@@ -1,49 +1,44 @@
-#pragma once
-
-#include <limits.h>
-#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <ctype.h>
 #include <string.h>
 
 typedef uint32_t Bitset;
 
-const Bitset BITSETS = 0u;
+const Bitset WORD = 0;
 
-bool CheckUppercase(char* word) {
-    int length = (int)strlen(word);
-    int count = 0;
-    Bitset bitset = BITSETS;
-
-    for (int i = 0; i < length; i++) {
-        if (word[i] >= 'A' && word[i] <= 'Z') {
-            int index = word[i] - 'A';
-            bitset |= (1u << (index % CHAR_BIT));
-        }
+Bitset count_consonants(Bitset bitset) {
+    Bitset count = 0;
+    while (bitset) {
+        count += bitset & 1;
+        bitset >>= 1;
     }
-
-    for (int i = 0; i < 2; i++) {
-        while (bitset) {
-            count += static_cast<int>(bitset & 1);
-            bitset >>= 1;
-        }
-    }
-
-    return count > 1;
+    return count;
 }
 
 int Task() {
-
-    char sentence[] = "Mama mYLa ramu";
-    char* word = strtok(sentence, " ");
-    while (word != NULL) {
-        if (CheckUppercase(word)) {
-            printf("The word '%s' contains more than one uppercase letter.\n", word);
+    char letter = 0;
+    Bitset set = WORD;
+    while ((letter = (char)getchar()) != EOF) {
+        if (letter >= 'A' && letter <= 'Z') {
+            set |= 1 << (letter - 'A');
+        } else if (letter >= 'a' && letter <= 'z') {
+            continue;
         } else {
-            printf("The word '%s' contains only one uppercase letter or none.\n", word);
+            if (count_consonants(set) > 1) {
+                printf("%s\n", "There is a word that contains more than one uppercase letter");
+                return 0;
+            } else {
+                set = WORD;
+                continue;
+            }
         }
-        word = strtok(NULL, " ");
     }
-
+    if (count_consonants(set) > 1) {
+        printf("\n");
+        printf("%s\n", "There is a word that contains more than one uppercase letter");
+    } else {
+        printf("%s\n", "There are no words that contains more than one uppercase letter");
+    }
     return 0;
 }
