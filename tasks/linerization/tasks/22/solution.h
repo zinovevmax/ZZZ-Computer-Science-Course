@@ -86,7 +86,7 @@ int32_t* LinealMatrix(int32_t** matrix, int32_t height, int32_t width) {
 
 int Task() {
     int32_t height = 4;
-    int32_t width = 3;
+    int32_t width = 4;
     Matrix matrix = CreateMatrix(height, width);
     MatrixInitiate(matrix);
 
