@@ -1,8 +1,8 @@
 #pragma once
 
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 typedef int32_t** Matrix;
 
@@ -49,7 +49,7 @@ int32_t* LinealMatrix(int32_t** matrix, int32_t height, int32_t width) {
     int32_t right = width - 1;
     int32_t index_of_lineal = 0;
     int32_t direction = 0;
-  
+
     while (top <= bottom && left <= right) {
         if (direction == 0) {
             for (int32_t i = top; i <= bottom; i++) {
@@ -57,29 +57,26 @@ int32_t* LinealMatrix(int32_t** matrix, int32_t height, int32_t width) {
                 ++index_of_lineal;
             }
             left++;
-        }
-        else if (direction == 1) {
+        } else if (direction == 1) {
             for (int32_t i = left; i <= right; i++) {
                 lineal_matrix[index_of_lineal] = matrix[bottom][i];
                 ++index_of_lineal;
             }
             bottom--;
-        }
-        else if (direction == 2) {
+        } else if (direction == 2) {
             for (int32_t i = bottom; i >= top; i--) {
                 lineal_matrix[index_of_lineal] = matrix[i][right];
                 ++index_of_lineal;
             }
             right--;
-        }
-        else if (direction == 3) {
+        } else if (direction == 3) {
             for (int32_t i = right; i >= left; i--) {
                 lineal_matrix[index_of_lineal] = matrix[top][i];
                 ++index_of_lineal;
             }
             top++;
         }
-    direction = (direction + 1) % 4;
+        direction = (direction + 1) % 4;
     }
     return lineal_matrix;
 }
@@ -98,11 +95,9 @@ int Task() {
     }
 
     int32_t* lineal_matrix = LinealMatrix(matrix, height, width);
-    
     for (int32_t i = 0; i < width * height; ++i) {
         printf("%d ", lineal_matrix[i]);
     }
-    
     free(lineal_matrix);
     MatrixFree(matrix, height);
     return 0;
