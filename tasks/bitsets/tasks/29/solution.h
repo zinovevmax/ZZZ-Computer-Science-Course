@@ -1,6 +1,6 @@
+#include <ctype.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <ctype.h>
 #include <string.h>
 
 typedef uint32_t Bitset;
