@@ -26,11 +26,7 @@ Bitset Vowals() {
 const Bitset VOWALS = Vowals();
 
 int8_t IsVowal(char c) {
-    if ((c | VOWALS) == VOWALS) {
-        return 1;
-    } else {
-        return 0;
-    }
+    return (((1u << (c - 'a')) | VOWALS) == VOWALS);
 }
 
 int Task() {
