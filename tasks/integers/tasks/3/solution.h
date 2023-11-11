@@ -1,20 +1,18 @@
 #include <stdio.h>
 #include <stdint.h>
 
-const int32_t TEN = 10;
-const int32_t ZERO = 0;
 
 int32_t MaxSum(int32_t num) {
-    int32_t max_sum = ZERO;
-    int32_t current_sum = ZERO;
+    int32_t max_sum = 0;
+    int32_t current_sum = 0;
 
-    int32_t first_digit = num % TEN;
-    num /= TEN;
-    int32_t second_digit = num % TEN;
-    num /= TEN;
+    int32_t first_digit = num % 10;
+    num /= 10;
+    int32_t second_digit = num % 10;
+    num /= 10;
 
-    while (num > ZERO) {
-        int32_t third_digit = num % TEN;
+    while (num > 0) {
+        int32_t third_digit = num % 10;
 
         current_sum = first_digit + second_digit + third_digit;
         if (current_sum > max_sum) {
@@ -23,7 +21,7 @@ int32_t MaxSum(int32_t num) {
 
         first_digit = second_digit;
         second_digit = third_digit;
-        num /= TEN;
+        num /= 10;
     }
 
     return max_sum;
