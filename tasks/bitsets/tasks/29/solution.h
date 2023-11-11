@@ -7,7 +7,7 @@ typedef uint32_t Bitset;
 
 const Bitset WORD = 0;
 
-Bitset CountConsonants(Bitset bitset) {
+Bitset CountLetters(Bitset bitset) {
     Bitset count = 0;
     while (bitset) {
         count += bitset & 1;
@@ -25,7 +25,7 @@ int Task() {
         } else if (letter >= 'a' && letter <= 'z') {
             continue;
         } else {
-            if (CountConsonants(set) > 1) {
+            if (CountLetters(set) > 1) {
                 printf("%s\n", "There is a word that contains more than one uppercase letter");
                 return 0;
             } else {
@@ -34,7 +34,7 @@ int Task() {
             }
         }
     }
-    if (CountConsonants(set) > 1) {
+    if (CountLetters(set) > 1) {
         printf("\n");
         printf("%s\n", "There is a word that contains more than one uppercase letter");
     } else {
