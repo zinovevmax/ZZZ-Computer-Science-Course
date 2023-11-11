@@ -9,17 +9,17 @@ typedef uint32_t Bitset;
 Bitset Vowals() {
     Bitset vowals = 0u;
     char letter = 'a';
-    vowals = vowals | (1u << letter);
+    vowals = vowals | (1u << (letter - 'a'));
     letter = 'e';
-    vowals = vowals | (1u << letter);
+    vowals = vowals | (1u << (letter - 'a'));
     letter = 'i';
-    vowals = vowals | (1u << letter);
+    vowals = vowals | (1u << (letter - 'a'));
     letter = 'o';
-    vowals = vowals | (1u << letter);
+    vowals = vowals | (1u << (letter - 'a'));
     letter = 'u';
-    vowals = vowals | (1u << letter);
+    vowals = vowals | (1u << (letter - 'a'));
     letter = 'y';
-    vowals = vowals | (1u << letter);
+    vowals = vowals | (1u << (letter - 'a'));
     return vowals;
 }
 
