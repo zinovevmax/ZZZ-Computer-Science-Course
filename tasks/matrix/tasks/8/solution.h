@@ -23,6 +23,10 @@ Matrix CreateFromFile(const char *filename, size_t *n) {
     if (fp) {
         // Считываем размер матрицы
         fscanf(fp, "%lu", n);
+        if (n == 0) {
+            printf("Invalid input\n");
+            abort();
+        }
 
         // Инициализируем матрицу
         Matrix matrix = InitializeMatrix(*n);
@@ -39,8 +43,7 @@ Matrix CreateFromFile(const char *filename, size_t *n) {
         return matrix;
     } else {
         printf("No such file\n");
-        Matrix matrix = (Matrix)calloc(1, sizeof(Row));
-        return matrix;
+        abort();
     }
 }
 
@@ -120,13 +123,9 @@ void Solve(Matrix matrix, size_t n) {
 }
 
 int Task() {
-    const char *filename = "matrix.txt";  // откуда читаем данные
+    const char *filename = "../tasks/matrix/tasks/8/matrix.txt";  // откуда читаем данные
     size_t n = 0;
     Matrix matrix = CreateFromFile(filename, &n);
-    if (n == 0) {
-        FreeMatrix(matrix, 1);
-        return 0;
-    }
     PrintMatrix(matrix, n);
 
     Solve(matrix, n);
