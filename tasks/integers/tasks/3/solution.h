@@ -1,6 +1,5 @@
-#include <stdio.h>
 #include <stdint.h>
-
+#include <stdio.h>
 
 int32_t MaxSum(int32_t num) {
     int32_t max_sum = 0;
