@@ -25,7 +25,7 @@ Bitset Vowals() {
 
 const Bitset VOWALS = Vowals();
 
-int8_t IsVowal(char c) {
+bool IsVowal(char c) {
     return (((1u << (c - 'a')) | VOWALS) == VOWALS);
 }
 
