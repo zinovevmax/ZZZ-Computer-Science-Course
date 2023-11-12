@@ -92,7 +92,7 @@ void MatrixFree(Matrix matrix, int32_t order_of_matrix) {
 
 int Task() {
     // write your solution here
-    const char* filename = "file.txt";
+    const char* filename = "../tasks/matrix/tasks/22/file.txt";
     int32_t order_of_matrix = 0;
     Matrix matrix = FillFromFile(filename, &order_of_matrix);
     MatrixPrint(matrix, order_of_matrix, 'o');
