@@ -60,14 +60,15 @@ size_t NumberLen(int32_t number) {
 // Выводит матрицу, в которой все числа выровнены по правому краю
 void PrintMatrix(Matrix matrix, size_t n) {
     size_t length = 0;
+    // Считаем максимальную длину числа в матрице
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = 0; j < n; ++j) {
             length = Max(length, NumberLen(matrix[i][j]) + 1);
         }
     }
+    // Выводим числа, выровненные по правому краю
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = 0; j < n; ++j) {
-            // Выводит само число
             printf("%*d", (int32_t)length, matrix[i][j]);
         }
         printf("\n");
