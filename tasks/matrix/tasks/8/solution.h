@@ -49,40 +49,26 @@ Matrix CreateFromFile(const char *filename, size_t *n) {
 
 // Длина числа (нужна для форматированного вывода чисел)
 size_t NumberLen(int32_t number) {
-    if (number == 0) {
-        return 1;
+    size_t length = (size_t)(number < 0);
+    while (number) {
+        number /= 10;
+        ++length;
     }
-    size_t width = 0;
-    if (number < 0) {
-        ++width;
-    }
-    number = Abs(number);
-    int32_t p10 = 1;
-    while (number >= p10) {
-        p10 *= 10;
-        ++width;
-    }
-    return width;
+    return length;
 }
 
 // Выводит матрицу, в которой все числа выровнены по правому краю
 void PrintMatrix(Matrix matrix, size_t n) {
-    size_t width = 0;
+    size_t length = 0;
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = 0; j < n; ++j) {
-            width = Max(width, NumberLen(matrix[i][j]) + 1);
+            length = Max(length, NumberLen(matrix[i][j]) + 1);
         }
     }
-    size_t cur_width = 0;
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = 0; j < n; ++j) {
-            // Выравнивает по правому краю
-            cur_width = NumberLen(matrix[i][j]);
-            for (size_t k = 0; k < width - cur_width; ++k) {
-                printf(" ");
-            }
             // Выводит само число
-            printf("%d ", matrix[i][j]);
+            printf("%*d", (int32_t)length, matrix[i][j]);
         }
         printf("\n");
     }
