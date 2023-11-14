@@ -121,6 +121,7 @@ int Task() {
     for (int k = 0; k < strings; ++k) {
         free(two_dmentional_array[k]);
     }
+    free(two_dmentional_array);
     free(final_matrix);
     return 0;
 }
