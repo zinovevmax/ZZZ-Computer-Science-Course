@@ -21,7 +21,7 @@ int Task() {
     // ЛИНЕРИЗУЕМ МАТРИЦУ(ПЕРЕТАСУЕМ ЭЛ-ТЫ)
     // посчитаем размер матрицы:
     intt size_of_matrix = strings * columns;
-    Matrix final_matrix = (Matrix) malloc(sizeof(intt*) * size_of_matrix);
+    Matrix final_matrix = (Matrix)malloc(sizeof(intt*) * size_of_matrix);
     intt i = 0;
     intt j = columns - 1;
     intt temp = 0;  // идет по финальному массиву;
