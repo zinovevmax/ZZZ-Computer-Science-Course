@@ -1,20 +1,11 @@
+#pragma once
+
 #include <stdio.h>
 
-const int I = -22;
-const int J = 14;
-const int L = -14;
 const int STEPS = 50;
-const int COND_1 = -10;
-const int COND_2 = -20;
-const int ONE = 1;
-const int TWENTY = 20;
-const int TWENTY_FIVE = 25;
-const int TEN = 10;
-const int ZERO = 0;
-const int MINUS_ONE = -1;
 
 int Mod(int x, int y) {
-    if (y != ZERO) {
+    if (y != 0) {
         return x % y;
     } else {
         return 0;
@@ -27,10 +18,10 @@ int Square(int x) {
 }
 
 int Sign(int x) {
-    if (x > ZERO) {
+    if (x > 0) {
         return 1;
-    } else if (x < ZERO) {
-        return MINUS_ONE;
+    } else if (x < 0) {
+        return -1;
     } else {
         return 0;
     }
@@ -58,28 +49,28 @@ typedef struct {
 } Point;
 
 int CheckZone(Point p) {
-    return (p.x + p.y >= COND_1 && p.x + p.y <= COND_2);
+    return (p.x + p.y >= -10 && p.x + p.y <= -20);
 }
 
 int Task() {
-    int points_in_zone = ZERO;
-    int i = I;
-    int j = J;
-    int l = L;
+    int points_in_zone = 0;
+    int i = -22;
+    int j = 14;
+    int l = -14;
     Point p;
     p.x = i;
     p.y = j;
-    for (int k = ONE; k <= STEPS; ++k) {
+    for (int k = 1; k <= STEPS; ++k) {
         if (CheckZone(p)) {
-            points_in_zone += ONE;
+            points_in_zone += 1;
         }
-        i = Mod((p.x * Min(p.y, l) + p.y * Min(p.x, l) + Square(k)), TWENTY);
-        j = Mod((Mod(p.x, TEN - k) * (Mod(p.y, TEN + k)) * (Mod(l, TEN - k))), TWENTY_FIVE);
-        l = Max(Mod(Min(p.x + p.y, p.x + l), TWENTY_FIVE), Mod(Max(p.x + l, p.y + k), TWENTY)) + TEN;
+        i = Mod((p.x * Min(p.y, l) + p.y * Min(p.x, l) + Square(k)), 20);
+        j = Mod((Mod(p.x, 10 - k) * (Mod(p.y, 10 + k)) * (Mod(l, 10 - k))), 25);
+        l = Max(Mod(Min(p.x + p.y, p.x + l), 25), Mod(Max(p.x + l, p.y + k), 20)) + 10;
         p.x = i;
         p.y = j;
     }
-    if (points_in_zone > ZERO) {
+    if (points_in_zone > 0) {
         printf("Number of points belonging to the zone: %d\n", points_in_zone);
     } else {
         printf("The point didn't fall into the area beyond 50 iterations\n");
