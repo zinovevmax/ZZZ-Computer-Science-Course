@@ -122,6 +122,5 @@ int Task() {
         free(two_dmentional_array[i]);
     }
     free(final_matrix);
-    free(two_dmentional_array);
     return 0;
 }
