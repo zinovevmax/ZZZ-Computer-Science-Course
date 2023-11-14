@@ -118,6 +118,9 @@ int Task() {
         printf("%d ", final_matrix[i]);
     }
     printf("\n");
+    for (int k = 0; k < strings; ++k) {
+        free(two_dmentional_array[i]);
+    }
     free(final_matrix);
     free(two_dmentional_array);
     return 0;
