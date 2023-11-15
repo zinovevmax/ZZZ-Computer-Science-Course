@@ -39,11 +39,11 @@ int32_t MinElem(int32_t a, int32_t b) {
     }
 }
 
-int32_t MinInd(int32_t a, int32_t b, int32_t i, int32_t mini_x) {
+int32_t MinInd(int32_t a, int32_t b, int32_t a_i, int32_t b_i) {
     if (b < a) {
-        return i;
+        return a_i;
     } else {
-        return mini_x;
+        return b_i;
     }
 }
 
@@ -59,12 +59,19 @@ int32_t MiniOfMatrix(Matrix matrix, int32_t order_of_matrix) {
     return mini_x;
 }
 
+void Swap(int32_t* a, int32_t* b) {
+    int32_t temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
 Matrix ModifiedMatrix(Matrix matrix, int32_t mini_x, int32_t order_of_matrix) {
-    int32_t temp = 0;
+    int32_t* pointer1 = 0;
+    int32_t* pointer2 = 0;
     for (int32_t j = 0; j < order_of_matrix / 2; ++j) {
-        temp = matrix[mini_x][j];
-        matrix[mini_x][j] = matrix[mini_x][order_of_matrix - 1 - j];
-        matrix[mini_x][order_of_matrix - 1 - j] = temp;
+        pointer1 = &matrix[mini_x][j];
+        pointer2 = &matrix[mini_x][order_of_matrix - 1 - j];
+        Swap(pointer1, pointer2);
     }
     return matrix;
 }
