@@ -66,12 +66,8 @@ void Swap(int32_t* a, int32_t* b) {
 }
 
 Matrix ModifiedMatrix(Matrix matrix, int32_t mini_x, int32_t order_of_matrix) {
-    int32_t* pointer1 = 0;
-    int32_t* pointer2 = 0;
     for (int32_t j = 0; j < order_of_matrix / 2; ++j) {
-        pointer1 = &matrix[mini_x][j];
-        pointer2 = &matrix[mini_x][order_of_matrix - 1 - j];
-        Swap(pointer1, pointer2);
+        Swap(&matrix[mini_x][j], &matrix[mini_x][order_of_matrix - 1 - j]);
     }
     return matrix;
 }
