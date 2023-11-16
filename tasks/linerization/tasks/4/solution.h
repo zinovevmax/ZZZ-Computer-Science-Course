@@ -50,9 +50,9 @@ int32_t *DiagonalLinearizeMatrixFromTopLeft(Matrix matrix, int rows, int cols) {
     int32_t *linear_array = (int32_t *)malloc(rows * cols * sizeof(int32_t));
     int linear_index = 0;                           // Индекс для линейного массива
     int total_diagonal_quantity = rows + cols - 1;  // Общее количество диагоналей
-    int start_row;
-    int end_row;
-    int col;
+    int start_row = 0;
+    int end_row = 0;
+    int col = 0;
 
     // Перебор диагоналей, начиная с 1
     for (int diagonal = 1; diagonal <= total_diagonal_quantity; ++diagonal) {
