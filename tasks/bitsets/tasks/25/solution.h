@@ -13,7 +13,6 @@ typedef uint32_t Bitset;
 Bitset sibilant_consonants = 0;
 
 bool CheckForSibilantConsonants(char c) {
-    
     if (isalpha(c)) {
         c = tolower(c);
     }
@@ -35,11 +34,11 @@ void PrintSibilantConsonant() {
         if (sibilant_consonants & (1u << i)) {
             symbol = 'a' + i;
             if (symbol != 'h') {
-                printf("%s", (char)symbol);
+                printf("%c", (char)symbol);
             }
         }
     }
-    printf("%s", 'h');
+    printf("%c", 'h');
 }
 
 int Task() {
