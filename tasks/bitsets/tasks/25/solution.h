@@ -15,10 +15,10 @@ bool CheckForSibilantConsonants(char c, Bitset* sibilant_consonants) {
         c = (char)tolower(c);
     }
     if (((c == 's') || (c == 'c') || (c == 't') || (c == 'z')) && (sibilant_consonants == 0)) {
-        sibilant_consonants* |= (1u << (c - 'a'));
+        *sibilant_consonants = *sibilant_consonants | (1u << (c - 'a'));
         return false;
     } else if ((c == 'h') && (sibilant_consonants != 0)) {
-        sibilant_consonants* |= (1u << (c - 'a'));
+        *sibilant_consonants = *sibilant_consonants | (1u << (c - 'a'));
         return true;
     } else {
         sibilant_consonants = 0;
