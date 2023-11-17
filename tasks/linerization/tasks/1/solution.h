@@ -4,21 +4,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int32_t** Matrix;
+typedef int32_t **Matrix;
+
+Matrix CreateMatrix(int32_t height, int32_t width) {
+    Matrix matrix = (Matrix)malloc(height * sizeof(int32_t *));
+    for (int32_t i = 0; i < height; ++i) {
+        matrix[i] = (int32_t *)malloc(width * sizeof(int32_t));
+    }
+
+    return matrix;
+}
 
 typedef struct {
     size_t x;
     size_t y;
 } Point;
-
-Matrix CreateMatrix(int32_t height, int32_t width) {
-    Matrix matrix = (Matrix)malloc(height * sizeof(int32_t*));
-    for (int32_t i = 0; i < height; ++i) {
-        matrix[i] = (int32_t*)malloc(width * sizeof(int32_t));
-    }
-
-    return matrix;
-}
 
 void MatrixFree(Matrix matrix, int32_t height) {
     for (int32_t i = 0; i < height; ++i) {
@@ -46,8 +46,8 @@ void MatrixInitiate(Matrix matrix) {
     matrix[3][3] = 10;
 }
 
-int32_t* LinealMatrix(int32_t** matrix, size_t height, size_t width) {
-    int32_t* lineal_matrix = (int32_t*)malloc(height * width * sizeof(int32_t));
+int32_t *LinealMatrix(int32_t **matrix, size_t height, size_t width) {
+    int32_t *lineal_matrix = (int32_t *)malloc(height * width * sizeof(int32_t));
     Point start = {0, height - 1};
     Point end = {0, height - 1};
     size_t index_of_lineal = 0;
@@ -55,26 +55,24 @@ int32_t* LinealMatrix(int32_t** matrix, size_t height, size_t width) {
     while (index_of_lineal < height * width) {
         size_t i = start.y;
         size_t j = start.x;
-
-        while (i < end.y && j < end.x) {
+        while (i <= end.y && j <= end.x) {
             lineal_matrix[index_of_lineal] = matrix[i][j];
-            i++;
-            j++;
+            ++i;
+            ++j;
+            ++index_of_lineal;
         }
 
         if (start.y > 0) {
-            start.y--;
+            --start.y;
         } else {
-            start.x++;
+            ++start.x;
         }
 
         if (end.x + 1 < width) {
-            end.x++;
+            ++end.x;
         } else {
-            end.y--;
+            --end.y;
         }
-
-        ++index_of_lineal;
     }
     return lineal_matrix;
 }
@@ -93,7 +91,7 @@ int Task() {
         printf("\n");
     }
 
-    int32_t* lineal_matrix = LinealMatrix(matrix, height, width);
+    int32_t *lineal_matrix = LinealMatrix(matrix, height, width);
     for (int32_t i = 0; i < width * height; ++i) {
         printf("%d ", lineal_matrix[i]);
     }
