@@ -2,6 +2,7 @@
 
 #include "shared_header.h"
 
+// Функция, которую выполнил состояние START
 StateName Start(StateMachine* sm) {
     ++sm->step;
     printf("Starting...\n");
@@ -64,7 +65,8 @@ StateName Defend(StateMachine* sm) {
 State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * STATECOUNT);
     int i = 0;
-    st[i] = {(StateName)i++, &Start};
+    // Read: https://en.cppreference.com/w/c/language/struct_initialization
+    st[i] = {(StateName)i++, &Start}; // Списки инициализации для структур. 
     st[i] = {(StateName)i++, &Code};
     st[i] = {(StateName)i++, &Add};
     st[i] = {(StateName)i++, &Commit};

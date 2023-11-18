@@ -7,7 +7,7 @@
 
 StateMachine* MakeStateMachine() {
     StateMachine* sm = (StateMachine*)malloc(sizeof(StateMachine));
-    sm->pipeline = MakeStates();
+    sm->pipeline = MakeStates(); // Каждая структура должна умеет конструироваться и уничтожаться.
     sm->cur_state = START;
     sm->step = 0;
     sm->is_pr_exists = false;
@@ -16,7 +16,7 @@ StateMachine* MakeStateMachine() {
 
 int NextStep(StateMachine* sm, char) {
     StateName next;
-    next = sm->pipeline[(int)sm->cur_state].action(sm);
+    next = sm->pipeline[(int)sm->cur_state].action(sm); // Выполнил функцию текущего состояния и получить следующее состояние
     if (next == END) {
         return 1;
     }
