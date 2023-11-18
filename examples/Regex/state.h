@@ -2,7 +2,7 @@
 
 #include "shared_header.h"
 
-// Функция, которую выполнил состояние START
+// Функция, которую выполнит состояние START
 StateName Start(StateMachine* sm) {
     ++sm->step;
     printf("Starting...\n");
