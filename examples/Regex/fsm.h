@@ -16,7 +16,7 @@ StateMachine* MakeStateMachine() {
 
 int NextStep(StateMachine* sm, char) {
     StateName next;
-    next = sm->pipeline[(int)sm->cur_state].action(sm); // Выполнил функцию текущего состояния и получить следующее состояние
+    next = sm->pipeline[(int)sm->cur_state].action(sm); // Выполнить функцию текущего состояния и получить следующее состояние
     if (next == END) {
         return 1;
     }
