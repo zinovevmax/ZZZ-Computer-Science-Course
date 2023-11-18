@@ -1,4 +1,4 @@
-#pragma once 
+#pragma once
 
 #include <stdio.h>
 
@@ -46,7 +46,7 @@ int Module(int number) {
     return (number >= 0) ? number : number * (-1);
 }
 
-int Remain(int divisible, int divider) {
+int Mod(int divisible, int divider) {
     if (divisible >= 0) {
         return divisible % divider;
     }
@@ -76,8 +76,8 @@ int Task() {
             printf("Point out of range");
         }
         i_1 = i_0 / number_3 - Module(i_0 - i) * Sign(l_0 - j_0);
-        j_1 = Remain(j_0, number_10) - Remain(Max(i_0, l_0), (i + 1));
-        l_1 = i_0 + Remain(j_0 * i, number_5) + l_0 / number_5 + number_3;
+        j_1 = Mod(j_0, number_10) - Mod(Max(i_0, l_0), (i + 1));
+        l_1 = i_0 + Mod(j_0 * i, number_5) + l_0 / number_5 + number_3;
         i_0 = i_1;
         l_0 = l_1;
         j_0 = j_1;
