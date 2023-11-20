@@ -24,7 +24,7 @@ void FreeMatrix(Matrix matrix, int rows) {
 }
 
 // инициализация матрицы по условию варианта
-void InputMatrix(Matrix matrix) {
+void InitMatrix(Matrix matrix) {
     matrix[0][0] = 1;
     matrix[0][1] = 3;
     matrix[0][2] = 6;
@@ -85,7 +85,7 @@ int Task() {
     int rows = 4;
     int cols = 4;
     Matrix matrix = CreateMatrix(rows, cols);
-    InputMatrix(matrix);
+    InitMatrix(matrix);
 
     // Линеаризация матрицы
     int32_t *linear_array = DiagonalLinearizeMatrixFromTopLeft(matrix, rows, cols);
