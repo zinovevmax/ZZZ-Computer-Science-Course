@@ -62,7 +62,6 @@ const int ONE = 1;
 const int SEMI_MAJOR_AXIS = 10;
 const int SEMI_MINOR_AXIS = 5;
 
-
 typedef struct {
     int x;
     int y;
