@@ -37,7 +37,7 @@ void FreeingUpMatrixMemory(Matrix matrix, int32_t strings) {
 
 int Task() {
     FILE* matrix_file = nullptr;
-    matrix_file = fopen("matrix.txt", "r");
+    matrix_file = fopen("../tasks/matrix/tasks/35/matrix.txt", "r");
     // if file open error
     if (matrix_file == NULL) {
         fprintf(stderr, "Не удалось выделить память\n");
