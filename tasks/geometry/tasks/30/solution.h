@@ -2,10 +2,10 @@
 
 #include <stdio.h>
 
-int Sign(int x){
+int Sign(int x) {
     if (x > 0) {
         return 1;
-    } else if  (x < 0) {
+    } else if (x < 0) {
         return -1;
     } else {
         return 0;
@@ -13,7 +13,7 @@ int Sign(int x){
 }
 
 int Mod(int x, int y) {
-    if (y != 0)  {
+    if (y != 0) {
         return x % y;
     } else {
         return 0;
@@ -85,7 +85,7 @@ int Task() {
     
     for (int k = ONE; k <= ITERATION_COUNT; ++k) {
         i = Mod((Sign(p.x - k) * l - Sign(p.y - l) * p.x + Sign(p.x - l) * p.y - k), THIRTYFIVE);
-        j = Max((p.x * Max(p.y, l)), THIRTY) + Mod((p.y * Min(p.x, l)),TWENTY) - k;
+        j = Max((p.x * Max(p.y, l)), THIRTY) + Mod((p.y * Min(p.x, l)), TWENTY) - k;
         l = Mod(((p.x + k) * (p.y - k) * (l + k)), TWENTYFIVE); 
         p.x = i;
         p.y = j;
@@ -100,3 +100,4 @@ int Task() {
 
     return 0;
 }
+
