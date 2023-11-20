@@ -25,25 +25,29 @@ void MatrixFree(Matrix matrix, int32_t n) {
 // Считываем матрицу и сразу начинаем решать задачу, считывая (n * n - SHIFT) элементы в массив, остальным элементами
 // заполняя матрицу
 Matrix InitializeMatrixAndShift(const char* filename, int32_t* n) {
+    int32_t shift = SHIFT;
     FILE* file = fopen(filename, "r");
     fscanf(file, "%d", n);
-    int32_t matrix_size = *n * *n;
+    int32_t matrix_size = (*n) * (*n);
+    if (shift > matrix_size) {
+        shift = shift % matrix_size;
+    }
     Matrix matrix = CreateMatrix(*n);
-    int32_t* start_elements = (int32_t*)malloc((matrix_size - SHIFT) * sizeof(int32_t));
-    int32_t index_scanf_matrix = matrix_size;
-    int32_t count_of_new_elements = 0;
-    for (int i = 0; i < matrix_size - SHIFT; ++i) {
+    int32_t* start_elements = (int32_t*)malloc((matrix_size - shift) * sizeof(int32_t));
+    int32_t reading_elements_matrix_counter = matrix_size;
+    int32_t new_elements_count = 0;
+    for (int i = 0; i < matrix_size - shift; ++i) {
         fscanf(file, "%d", &start_elements[i]);
     }
     for (int i = 0; i < *n; ++i) {
         for (int j = 0; j < *n; ++j) {
-            if (index_scanf_matrix > matrix_size - SHIFT) {
+            if (reading_elements_matrix_counter > matrix_size - shift) {
                 fscanf(file, "%d", &matrix[i][j]);
-            } else if (index_scanf_matrix <= matrix_size - SHIFT) {
-                matrix[i][j] = start_elements[count_of_new_elements];
-                ++count_of_new_elements;
+            } else if (reading_elements_matrix_counter <= matrix_size - shift) {
+                matrix[i][j] = start_elements[new_elements_count];
+                ++new_elements_count;
             }
-            --index_scanf_matrix;
+            --reading_elements_matrix_counter;
         }
     }
     fclose(file);
