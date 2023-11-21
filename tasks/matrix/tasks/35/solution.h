@@ -90,7 +90,7 @@ void FreeingUpMatrixMemory(Matrix matrix, int32_t side) {
 
 int Task() {
     // открываем файл и заводим кол-во строк и столбцов, тк матрица квадратная, то они равны
-    FILE* matrix_file;
+    FILE* matrix_file = nullptr;
     matrix_file = fopen("../tasks/matrix/tasks/35/matrix.txt", "r");
     int32_t columns = 0;
     int32_t rows = 0;
