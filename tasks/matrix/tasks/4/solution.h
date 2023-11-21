@@ -7,10 +7,10 @@
 
 typedef int32_t** Matrix;
 
-Matrix MemoryAllocate(size_t* matrix_order) {
-    Matrix matrix = (Matrix)malloc(sizeof(int32_t*) * *matrix_order);
-    for (size_t i = 0; i < *matrix_order; ++i) {
-        matrix[i] = (int32_t*)malloc(sizeof(int32_t) * *matrix_order);
+Matrix MemoryAllocate(size_t matrix_order, Matrix matrix) {
+    matrix = (Matrix)malloc(sizeof(int32_t*) * matrix_order);
+    for (size_t i = 0; i < matrix_order; ++i) {
+        matrix[i] = (int32_t*)malloc(sizeof(int32_t) * matrix_order);
     }
     return matrix;
 }
@@ -28,10 +28,10 @@ Matrix Replace(Matrix matrix, size_t* matrix_order, size_t num_min_comp, size_t 
     return matrix;
 }
 
-Matrix ReadMatrix(const char* file_name, size_t* matrix_order) {
+Matrix ReadMatrix(const char* file_name, size_t* matrix_order, Matrix matrix) {
     FILE* file = fopen(file_name, "r");
     fscanf(file, "%lu", matrix_order);
-    Matrix matrix = MemoryAllocate(matrix_order);
+    matrix = MemoryAllocate(*matrix_order, matrix);
     for (size_t i = 0; i < *matrix_order; ++i) {
         for (size_t j = 0; j < *matrix_order; ++j) {
             fscanf(file, "%d", &matrix[i][j]);
@@ -94,9 +94,10 @@ Matrix CleanerMemory(Matrix matrix, size_t matrix_order) {
 }
 
 int Task() {
-    const char* file_name = "matr.txt";
+    Matrix matrix = NULL;
+    const char* file_name = "../tasks/matrix/tasks/4/matrix.txt";
     size_t matrix_order = 0;
-    Matrix matrix = ReadMatrix(file_name, &matrix_order);
+    matrix = ReadMatrix(file_name, &matrix_order, matrix);
     PrintBeforeMatrix(matrix, matrix_order);
     NewMatrix(matrix, &matrix_order);
     PrintAfterMatrix(matrix, matrix_order);
