@@ -61,7 +61,11 @@ void FreeingMemory(Matrix matrix, int32_t matrix_size) {
 }
 
 int Task() {
-    FILE* file_matrix = fopen("../tasks/matrix/tasks/34/matrix.txt", "r");
+    FILE* file_matrix = nullptr;
+    if ((file_matrix = fopen("../tasks/matrix/tasks/34/matrix.txt", "r")) == NULL) {
+        printf("Could not open the file");
+        return 0;
+    }
     int32_t matrix_size = 0;
     fscanf(file_matrix, "%d", &matrix_size);
     Matrix matrix = CreatingMatrix(matrix_size);
