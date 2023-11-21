@@ -7,120 +7,123 @@
 
 typedef int32_t** Matrix;
 
-Matrix MatrixGeneration(Matrix matrix, size_t len, size_t width) {
+Matrix MatrixGeneration(Matrix matrix, size_t height, size_t width) {
     for (size_t i = 0; i < width; ++i) {
-        for (size_t j = 0; j < len; ++j) {
+        for (size_t j = 0; j < height; ++j) {
             matrix[i][j] = rand() % 1000;
         }
     }
     return matrix;
 }
 
-void Print(Matrix matrix, size_t len, size_t width) {
+void Print(Matrix matrix, size_t height, size_t width) {
     printf("\nMatrix Before\n\n");
     for (size_t i = 0; i < width; ++i) {
-        for (size_t j = 0; j < len; ++j) {
+        for (size_t j = 0; j < height; ++j) {
             printf("%u ", matrix[i][j]);
         }
         printf("\n");
     }
 }
 
-bool AvailibleIterations(size_t now_iteration, size_t maximum) {
-    return now_iteration >= maximum;
+bool IsIterationAvailible(size_t it, size_t max) {
+    return it >= max;
 }
 
-int32_t* SpiralMatrix(Matrix matrix, int32_t* new_massive, size_t len, size_t width) {
-    printf("\n\nMatrix after");
-    size_t start_1 = 0;
-    size_t finish_1 = len;
-    size_t string_1 = 0;
-    size_t start_2 = 1;
-    size_t finish_2 = width;
-    size_t column_2 = len - 1;
-    size_t start_3 = len - 2;
-    size_t finish_3 = 0;
-    size_t string_3 = width - 1;
-    size_t start_4 = width - 1;
-    size_t finish_4 = 0;
-    size_t column_4 = 0;
+int32_t* SpiralMatrix(Matrix matrix, int32_t* lin_matrix, size_t height, size_t width) {
+    printf("\n\nMatrix after\n\n");
+    // sorry, i cant use lower variables
+    // this variable help me saving start to go right and copy matrix elements on array
+    size_t go_right_start = 0;
+    // this variable help me saving finish to go right and copy matrix elements in array
+    size_t right_finish = height;
+    // this variable help me saving number string to go right and copy matrix elements
+    size_t num_str_to_right = 0;
+    size_t go_down_start = 1;
+    size_t down_finish = width;
+    size_t num_column_to_down = height - 1;
+    size_t go_left_start = height - 2;
+    size_t left_finish = 0;
+    size_t num_str_to_left = width - 1;
+    size_t go_up_start = width - 1;
+    size_t up_finish = 0;
+    size_t num_column_to_up = 0;
+    // others - analogous
     size_t count = 0;
-    while (count < len * width) {
-        for (size_t i = start_1; i < finish_1; ++i) {
-            if (AvailibleIterations(count, len * width)) {
+    while (count < height * width) {
+        for (size_t i = go_right_start; i < right_finish; ++i) {
+            if (IsIterationAvailible(count, height * width)) {
                 break;
             }
-            new_massive[count] = matrix[string_1][i];
+            lin_matrix[count] = matrix[num_str_to_right][i];
             ++count;
         }
-        ++start_1;
-        --finish_1;
-        ++string_1;
-        for (size_t i = start_2; i < finish_2; ++i) {
-            if (AvailibleIterations(count, len * width)) {
+        ++go_right_start;
+        --right_finish;
+        ++num_str_to_right;
+        for (size_t i = go_down_start; i < down_finish; ++i) {
+            if (IsIterationAvailible(count, height * width)) {
                 break;
             }
-            new_massive[count] = matrix[i][column_2];
+            lin_matrix[count] = matrix[i][num_column_to_down];
             ++count;
         }
-        ++start_2;
-        --finish_2;
-        --column_2;
-        for (size_t i = start_3; i > finish_3; --i) {
-            if (AvailibleIterations(count, len * width)) {
+        ++go_down_start;
+        --down_finish;
+        --num_column_to_down;
+        for (size_t i = go_left_start; i > left_finish; --i) {
+            if (IsIterationAvailible(count, height * width)) {
                 break;
             }
-            new_massive[count] = matrix[string_3][i];
+            lin_matrix[count] = matrix[num_str_to_left][i];
             ++count;
         }
-        --start_3;
-        ++finish_3;
-        --string_3;
-        for (size_t i = start_4; i > finish_4; --i) {
-            if (AvailibleIterations(count, len * width)) {
+        --go_left_start;
+        ++left_finish;
+        --num_str_to_left;
+        for (size_t i = go_up_start; i > up_finish; --i) {
+            if (IsIterationAvailible(count, height * width)) {
                 break;
             }
-            new_massive[count] = matrix[i][column_4];
+            lin_matrix[count] = matrix[i][num_column_to_up];
             ++count;
         }
-        --start_4;
-        ++finish_4;
-        ++column_4;
+        --go_up_start;
+        ++up_finish;
+        ++num_column_to_up;
     }
-    return new_massive;
+    return lin_matrix;
 }
 
-void PrintMassive(int32_t* new_massive, size_t len) {
-    for (size_t i = 0; i < len; ++i) {
-        printf("%d ", new_massive[i]);
+void PrintLinMatrix(int32_t* lin_matrix, size_t height) {
+    for (size_t i = 0; i < height; ++i) {
+        printf("%d ", lin_matrix[i]);
     }
 }
 
-void MemoryCleaner(Matrix matrix, size_t width, int32_t* new_massive) {
+void DeleteMatrixs(Matrix matrix, size_t width, int32_t* lin_matrix) {
     for (size_t i = 0; i < width; ++i) {
         free(matrix[i]);
     }
     free(matrix);
-    free(new_massive);
+    free(lin_matrix);
     matrix = NULL;
-    new_massive = NULL;
+    lin_matrix = NULL;
 }
 
 int Task() {
-    size_t len_matrix = 0;
-    scanf("%lu", &len_matrix);
-    size_t width_matrix = 0;
-    scanf("%lu", &width_matrix);
+    size_t height_matrix = 5;
+    size_t width_matrix = 4;
     Matrix matrix = (int32_t**)malloc(sizeof(int32_t*) * width_matrix);
     for (size_t i = 0; i < width_matrix; ++i) {
-        matrix[i] = (int32_t*)malloc(sizeof(int32_t) * len_matrix);
+        matrix[i] = (int32_t*)malloc(sizeof(int32_t) * height_matrix);
     }
-    MatrixGeneration(matrix, len_matrix, width_matrix);
-    Print(matrix, len_matrix, width_matrix);
-    int32_t* new_massive = (int32_t*)malloc(sizeof(int32_t) * width_matrix * len_matrix);
-    SpiralMatrix(matrix, new_massive, len_matrix, width_matrix);
+    MatrixGeneration(matrix, height_matrix, width_matrix);
+    Print(matrix, height_matrix, width_matrix);
+    int32_t* lin_matrix = (int32_t*)malloc(sizeof(int32_t) * width_matrix * height_matrix);
+    SpiralMatrix(matrix, lin_matrix, height_matrix, width_matrix);
     printf("\n\n\n");
-    PrintMassive(new_massive, len_matrix * width_matrix);
-    MemoryCleaner(matrix, width_matrix, new_massive);
+    PrintLinMatrix(lin_matrix, height_matrix * width_matrix);
+    DeleteMatrixs(matrix, width_matrix, lin_matrix);
     return 0;
 }
