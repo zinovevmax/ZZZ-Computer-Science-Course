@@ -27,7 +27,8 @@ typedef struct {
 } Point;
 
 int CheckZone(Point p) {
-    return ((p.x - 10) * (p.x - 10) + (p.y - 10) * (p.y - 10) <= 100) && ((p.x - 20) * (p.x - 20) + (p.y - 20) * (p.y - 20) <= 100);
+    return ((p.x - 10) * (p.x - 10) + (p.y - 10) * (p.y - 10) <= 100) &&
+           ((p.x - 20) * (p.x - 20) + (p.y - 20) * (p.y - 20) <= 100);
 }
 
 int Task() {
