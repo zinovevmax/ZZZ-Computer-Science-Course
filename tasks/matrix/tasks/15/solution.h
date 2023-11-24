@@ -34,7 +34,7 @@ Matrix SquareMatrixSquared(Matrix matrix, const size_t order) {
     for (size_t i = 0; i < order; ++i) {
         for (size_t j = 0; j < order; ++j) {
             result[i][j] = 0;
-            for (size_t k = 0; k < order; ++k){
+            for (size_t k = 0; k < order; ++k) {
                 result[i][j] += matrix[i][k] * matrix[k][j];
             }
         }
@@ -113,7 +113,6 @@ void WriteSquareMatrixToFile(const char* filename, Matrix matrix, const size_t o
         fprintf(fileptr, "\n");
     }
 }
-
 
 int Task() {
     // Инициализация матрицы
