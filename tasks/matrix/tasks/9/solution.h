@@ -27,9 +27,9 @@ void MatrixFree(Matrix matrix, int32_t n) {
 Matrix InitializeMatrixAndShift(const char* filename, int32_t* n) {
     int32_t shift = SHIFT;
     if (shift < 0) {
-            printf("Invalid input\n");
-            abort();
-        }
+        printf("Invalid input\n");
+        abort();
+    }
     FILE* file = fopen(filename, "r");
     fscanf(file, "%d", n);
     int32_t matrix_size = (*n) * (*n);
