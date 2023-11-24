@@ -6,7 +6,7 @@
 
 typedef int32_t** Matrix;
 
-int32_t Max(int32_t a, int32_t b) {
+size_t Max(size_t a, size_t b) {
     if (a > b) {
         return a;
     }
@@ -44,11 +44,11 @@ Matrix SquareMatrixSquared(Matrix matrix, const size_t order) {
 
 // Ретурн уже занят указателем на матрицу, поэтому ее порядок записывается по указателю в аргумент order
 Matrix ReadSquareMatrixFromFile(const char* filename, size_t* order) {
-    FILE* fileptr;
+    FILE* fileptr = nullptr;
     fileptr = fopen(filename, "r");
     if (fileptr) {
         // Порядок квадратной матрицы
-        fscanf(fileptr, "%u", order);
+        fscanf(fileptr, "%zu", order);
         // Заполнение матрицы
         Matrix matrix = CreateSquareMatrix(*order);
         for (size_t i = 0; i < *order; ++i) {
@@ -80,16 +80,16 @@ size_t NumberLength(int32_t n) {
 
 // Распечатать в консоль квадратную матрицу
 void PrintSquareMatrix(Matrix matrix, const size_t order) {
-    size_t elem_width = -1;
+    size_t elem_width = 0;
     for (size_t i = 0; i < order; ++i) {
         for (size_t j = 0; j < order; ++j) {
             elem_width = Max(NumberLength(matrix[i][j]), elem_width);
         }
     }
-    printf("%d\n", order);
+    printf("%zu\n", order);
     for (size_t i = 0; i < order; ++i) {
         for (size_t j = 0; j < order; ++j) {
-            printf("%*d ", elem_width, matrix[i][j]);
+            printf("%*d ", (int32_t)elem_width, matrix[i][j]);
         }
         printf("\n");
     }
@@ -97,18 +97,18 @@ void PrintSquareMatrix(Matrix matrix, const size_t order) {
 
 // Запись квадратной матрцы в файл
 void WriteSquareMatrixToFile(const char* filename, Matrix matrix, const size_t order) {
-    size_t elem_width = -1;
+    size_t elem_width = 0;
     for (size_t i = 0; i < order; ++i) {
         for (size_t j = 0; j < order; ++j) {
             elem_width = Max(NumberLength(matrix[i][j]), elem_width);
         }
     }
-    FILE* fileptr;
+    FILE* fileptr = nullptr;
     fileptr = fopen(filename, "w");
-    fprintf(fileptr, "%d\n", order);
+    fprintf(fileptr, "%zu\n", order);
     for (size_t i = 0; i < order; ++i) {
         for (size_t j = 0; j < order; ++j) {
-            fprintf(fileptr, "%*d ", elem_width, matrix[i][j]);
+            fprintf(fileptr, "%*d ", (int32_t)elem_width, matrix[i][j]);
         }
         fprintf(fileptr, "\n");
     }
