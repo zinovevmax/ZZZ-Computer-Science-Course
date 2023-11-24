@@ -8,14 +8,14 @@ typedef int32_t** Matrix;
 
 Matrix CreateMatrix(const int32_t rows, const int32_t columns) {
     Matrix matrix = (Matrix)malloc(rows * sizeof(int32_t*));
-    for (size_t i = 0; i < rows; ++i) {
+    for (int32_t i = 0; i < rows; ++i) {
         matrix[i] = (int32_t*)malloc(columns * sizeof(int32_t));
     }
     return matrix;
 }
 
 void FreeMatrix(Matrix matrix, const int32_t rows) {
-    for (size_t i = 0; i < rows; ++i) {
+    for (int32_t i = 0; i < rows; ++i) {
         free(matrix[i]);
     }
     free(matrix);
@@ -41,14 +41,14 @@ void InitMatrix(Matrix matrix) {
 }
 
 void InitMatrixSimple(Matrix matrix, const int32_t rows, const int32_t columns) {
-    for (size_t i = 0; i < rows; ++i) {
-        for (size_t j = 0; j < columns; ++j) {
+    for (int32_t i = 0; i < rows; ++i) {
+        for (int32_t j = 0; j < columns; ++j) {
             matrix[i][j] = i * 4 + j;
         }
     }
 }
 
-int32_t* linearMatrix(int32_t** matrix, const int32_t rows, const int32_t columns) {
+int32_t* LinearMatrix(int32_t** matrix, const int32_t rows, const int32_t columns) {
     // Рабоает только для квадратной матрицы четного порядка, т.к. начальная позиция выбирается специфично
     int32_t* linear_matrix = (int32_t*)malloc(rows * columns * sizeof(int32_t));
     int32_t linear_index = 0;
@@ -100,7 +100,7 @@ int Task() {
     InitMatrix(matrix);
     // InitMatrixSimple(matrix, rows, columns);
     // Преобразование в линейную матрицу
-    int32_t* linear_matrix = linearMatrix(matrix, rows, columns);
+    int32_t* linear_matrix = LinearMatrix(matrix, rows, columns);
     // Вывод
     for (int i = 0; i < rows * columns; ++i) {
         printf("%d ", linear_matrix[i]);
