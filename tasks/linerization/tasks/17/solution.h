@@ -53,32 +53,38 @@ int32_t* linearMatrix(int32_t** matrix, const int32_t rows, const int32_t column
     int32_t* linear_matrix = (int32_t*)malloc(rows * columns * sizeof(int32_t));
     int32_t linear_index = 0;
     const int32_t linear_size = rows * columns;
-    // Cтартовая позиция 
+
+    // Cтартовая позиция
     int32_t row = (rows / 2) - 1;
     int32_t column = (columns / 2) - 1;
     int32_t step_length = 0;
     int32_t step_border = 0;
+
     // d, r,  u, u, l, l,   d, d, d, r, r, r,  u, u, u, u, l, l, l, l ....
     while (linear_index < linear_size) {
         step_length += 1;
         // Вниз
-        for (step_border = linear_index + step_length; ((linear_index < linear_size) && (linear_index < step_border)); ++linear_index) {
+        for (step_border = linear_index + step_length; ((linear_index < linear_size) && (linear_index < step_border));
+             ++linear_index) {
             linear_matrix[linear_index] = matrix[row][column];
             row += 1;
         }
         // Вправо
-        for (step_border = linear_index + step_length; ((linear_index < linear_size) && (linear_index < step_border)); ++linear_index) {
+        for (step_border = linear_index + step_length; ((linear_index < linear_size) && (linear_index < step_border));
+             ++linear_index) {
             linear_matrix[linear_index] = matrix[row][column];
             column += 1;
         }
         step_length += 1;
         // Вверх
-        for (step_border = linear_index + step_length; ((linear_index < linear_size) && (linear_index < step_border)); ++linear_index) {
+        for (step_border = linear_index + step_length; ((linear_index < linear_size) && (linear_index < step_border));
+             ++linear_index) {
             linear_matrix[linear_index] = matrix[row][column];
             row -= 1;
         }
         // Влево
-        for (step_border = linear_index + step_length; ((linear_index < linear_size) && (linear_index < step_border)); ++linear_index) {
+        for (step_border = linear_index + step_length; ((linear_index < linear_size) && (linear_index < step_border));
+             ++linear_index) {
             linear_matrix[linear_index] = matrix[row][column];
             column -= 1;
         }
