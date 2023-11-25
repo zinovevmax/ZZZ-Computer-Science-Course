@@ -33,7 +33,6 @@ int Task() {
             break;
         }
     }
-    
     DeleteStateMachine(sm);
     fclose(file);
     return 0;
