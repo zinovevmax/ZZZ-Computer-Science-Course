@@ -121,7 +121,7 @@ int32_t* LinerizationMatrix(Matrix matrix, int32_t* final_array, int32_t rows, i
 
 // Выводим изначальную матрицу
 
-void BeginMatrixOut (Matrix matrix, int32_t rows, int32_t columns) {
+void BeginMatrixOut(Matrix matrix, int32_t rows, int32_t columns) {
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < columns; ++j) {
             printf("%d ", matrix[i][j]);
@@ -132,7 +132,7 @@ void BeginMatrixOut (Matrix matrix, int32_t rows, int32_t columns) {
 
 // Выводим конечный одномерный массив
 
-void OneDimensionalArrayOut (int32_t* array, int32_t rows, int32_t columns) {
+void OneDimensionalArrayOut(int32_t* array, int32_t rows, int32_t columns) {
     for (int i = 0; i < rows * columns; i++) {
         printf("%d ", array[i]);
     }
@@ -141,7 +141,7 @@ void OneDimensionalArrayOut (int32_t* array, int32_t rows, int32_t columns) {
 
 // Освобождаем память
 
-void FreeingUpMemory (Matrix matrix, int32_t* array, int32_t rows) {
+void FreeingUpMemory(Matrix matrix, int32_t* array, int32_t rows) {
     for (int k = 0; k < rows; ++k) {
         free(matrix[k]);
     }
