@@ -21,15 +21,19 @@ void Swap(int32_t* a, int32_t* b) {
     *a = *a ^ *b;
 }
 
-Matrix SwapString(Matrix matrix, size_t* matrix_order, size_t num_min_comp, size_t num_max_comp) {
+Matrix SwapRows(Matrix matrix, const size_t* matrix_order, size_t index1, size_t index2) {
     for (size_t i = 0; i < *matrix_order; ++i) {
-        Swap(&matrix[num_min_comp][i], &matrix[num_max_comp][i]);
+        Swap(&matrix[index1][i], &matrix[index2][i]);
     }
     return matrix;
 }
 
 Matrix ReadMatrix(const char* file_name, size_t* matrix_order, Matrix matrix) {
     FILE* file = fopen(file_name, "r");
+    if ((fp = fopen(file_name, "r")) == NULL) {
+        printf("Error open file");
+        return matrix;
+    }   
     fscanf(file, "%lu", matrix_order);
     matrix = MemoryAllocate(*matrix_order, matrix);
     for (size_t i = 0; i < *matrix_order; ++i) {
@@ -49,30 +53,31 @@ void PrintBeforeMatrix(Matrix matrix, size_t matrix_order) {
         printf("\n");
     }
 }
-Matrix NewMatrix(Matrix matrix, size_t* matrix_order) {
-    size_t max_num_min_composition = 0;
-    size_t max_num_max_composition = 0;
+Matrix Procedure(Matrix matrix, const size_t* matrix_order) {
+    size_t max_index_min_composition = 0;
+    size_t max_index_max_composition = 0;
     int32_t max = INT_MIN;
     int32_t min = INT_MAX;
     if (*matrix_order == 1) {
         printf("\n Not availible");
         return matrix;
     }
+    int32_t string_composition = 1;
     for (size_t i = 0; i < *matrix_order; ++i) {
-        int32_t string_composition = 1;
         for (size_t j = 0; j < *matrix_order; ++j) {
             string_composition *= matrix[i][j];
         }
         if (string_composition >= max) {
             max = string_composition;
-            max_num_max_composition = i;
+            max_index_max_composition = i;
         }
         if (string_composition <= min) {
             min = string_composition;
-            max_num_min_composition = i;
+            max_index_min_composition = i;
         }
+        string_composition = 1;
     }
-    SwapString(matrix, matrix_order, max_num_min_composition, max_num_max_composition);
+    SwapRows(matrix, matrix_order, max_index_min_composition, max_index_max_composition);
     return matrix;
 }
 void PrintAfterMatrix(Matrix matrix, size_t matrix_order) {
@@ -99,7 +104,7 @@ int Task() {
     size_t matrix_order = 0;
     matrix = ReadMatrix(file_name, &matrix_order, matrix);
     PrintBeforeMatrix(matrix, matrix_order);
-    NewMatrix(matrix, &matrix_order);
+    Procedure(matrix, &matrix_order);
     PrintAfterMatrix(matrix, matrix_order);
     DeleteMatrix(matrix, matrix_order);
     return 0;
