@@ -66,8 +66,9 @@ bool IsThereWordConsistsOfSibilants() {
                 }
             }
         } else {
-            if (input_letter != '\n')
+            if (input_letter != '\n') {
                 is_there_non_sibilant = false;
+            }
         }
     }
     return (is_there_sibilant_consonants && !is_there_non_sibilant && !is_there_part_of_sibilant) ? true : false;
