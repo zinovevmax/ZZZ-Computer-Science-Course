@@ -31,6 +31,8 @@ void OutputTable(double start_segment, double end_segment, int32_t number_partit
         int32_t iteration = 1;
         while (iteration <= 100) {
             if (fabs(Taylor(current_x, iteration) - Func(current_x)) < DBL_EPSILON * accuracy_factor) {
+                // 17 потому что в этом диапозоне видна разница функции и Тейлора,
+                // можно взять и больше
                 printf("|%.3lf| %.17lf| %.17lf| %9d|\n", current_x, Taylor(current_x, iteration), Func(current_x),
                        iteration);
                 break;
