@@ -26,7 +26,7 @@ void InitializationMatrix(Matrix matrix) {
 }
 
 // ЛИНЕРИЗУЕМ МАТРИЦУ(ПЕРЕТАСУЕМ ЭЛ-ТЫ)
-int32_t* LinerizationMatrix(Matrix matrix, int32_t* final_matrix, int32_t strings, int32_t columns) {
+int32_t* LinerizationMatrix(Matrix matrix, int32_t* final_array, int32_t rows, int32_t columns) {
     int32_t i = 0;
     int32_t j = columns - 1;
     int32_t temp = 0;  // идет по финальному массиву;
@@ -39,8 +39,8 @@ int32_t* LinerizationMatrix(Matrix matrix, int32_t* final_matrix, int32_t string
     // запишем главную диагональ:
     while (k11 != -1 && k21 != -1) {
         if (condition == -1) {
-            while (strings - i - 1 >= 0 && j >= 0) {
-                final_matrix[temp] = matrix[i][j];
+            while (rows - i - 1 >= 0 && j >= 0) {
+                final_array[temp] = matrix[i][j];
                 --j;
                 ++i;
                 ++temp;
@@ -63,7 +63,7 @@ int32_t* LinerizationMatrix(Matrix matrix, int32_t* final_matrix, int32_t string
             }
             // цикл для прохода вверх по диагонале сверху
             while (i >= 0) {
-                final_matrix[temp] = matrix[i][j];
+                final_array[temp] = matrix[i][j];
                 ++j;
                 --i;
                 ++temp;
@@ -73,14 +73,14 @@ int32_t* LinerizationMatrix(Matrix matrix, int32_t* final_matrix, int32_t string
             // идем понизу:
             i = k21;
             j = k22;
-            if (i + 1 < strings) {
+            if (i + 1 < rows) {
                 ++i;
             } else {
                 ++j;
             }
             // цикл для прохода вверх по диагонале снизу
             while (columns > j) {
-                final_matrix[temp] = matrix[i][j];
+                final_array[temp] = matrix[i][j];
                 ++j;
                 --i;
                 ++temp;
@@ -94,8 +94,8 @@ int32_t* LinerizationMatrix(Matrix matrix, int32_t* final_matrix, int32_t string
             // понизу
             i = k21;
             j = k22;
-            while (strings - i - 1 >= 0 && j >= 0) {
-                final_matrix[temp] = matrix[i][j];
+            while (rows - i - 1 >= 0 && j >= 0) {
+                final_array[temp] = matrix[i][j];
                 --j;
                 ++i;
                 ++temp;
@@ -105,8 +105,8 @@ int32_t* LinerizationMatrix(Matrix matrix, int32_t* final_matrix, int32_t string
             i = k11;
             j = k12;
             // поверху
-            while (strings - i - 1 >= 0 && j >= 0) {
-                final_matrix[temp] = matrix[i][j];
+            while (rows - i - 1 >= 0 && j >= 0) {
+                final_array[temp] = matrix[i][j];
                 --j;
                 ++i;
                 ++temp;
@@ -116,37 +116,52 @@ int32_t* LinerizationMatrix(Matrix matrix, int32_t* final_matrix, int32_t string
             condition = 1;
         }
     }
-    return final_matrix;
+    return final_array;
 }
 
-int Task() {
-    int32_t strings = 4;
-    int32_t columns = 4;
-    Matrix matrix = (Matrix)malloc(sizeof(int32_t*) * strings * columns);
-    int32_t* final_matrix = (int32_t*)malloc(sizeof(int32_t) * strings * columns);
-    // выделим место под каждую строчку матрицы:
-    for (int i = 0; i < strings; ++i) {
-        matrix[i] = (int32_t*)malloc(sizeof(int32_t) * columns);
-    }
-    // записываем матрицу в двоичный массив
-    InitializationMatrix(matrix);
-    final_matrix = LinerizationMatrix(matrix, final_matrix, strings, columns);
-    // Вывод изначальной матрицы
-    for (int i = 0; i < strings; ++i) {
+// Выводим изначальную матрицу
+
+void BeginMatrixOut (Matrix matrix, int32_t rows, int32_t columns) {
+    for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < columns; ++j) {
             printf("%d ", matrix[i][j]);
         }
         printf("\n");
     }
-    // Вывод одномерного массива
-    for (int i = 0; i < 16; i++) {
-        printf("%d ", final_matrix[i]);
+}
+
+// Выводим конечный одномерный массив
+
+void OneDimensionalArrayOut (int32_t* array, int32_t rows, int32_t columns) {
+    for (int i = 0; i < rows * columns; i++) {
+        printf("%d ", array[i]);
     }
     printf("\n");
-    for (int k = 0; k < strings; ++k) {
+}
+
+// Освобождаем память
+
+void FreeingUpMemory (Matrix matrix, int32_t* array, int32_t rows) {
+    for (int k = 0; k < rows; ++k) {
         free(matrix[k]);
     }
     free(matrix);
-    free(final_matrix);
+    free(array);
+}
+
+int Task() {
+    int32_t rows = 4;
+    int32_t columns = 4;
+    Matrix matrix = (Matrix)malloc(sizeof(int32_t*) * rows);
+    int32_t* final_array = (int32_t*)malloc(sizeof(int32_t) * rows * columns);
+    // выделим место под каждую строчку матрицы:
+    for (int i = 0; i < rows; ++i) {
+        matrix[i] = (int32_t*)malloc(sizeof(int32_t) * columns);
+    }
+    InitializationMatrix(matrix);
+    final_array = LinerizationMatrix(matrix, final_array, rows, columns);
+    BeginMatrixOut(matrix, rows, columns);
+    OneDimensionalArrayOut(final_array, rows, columns);
+    FreeingUpMemory(matrix, final_array, rows);
     return 0;
 }
