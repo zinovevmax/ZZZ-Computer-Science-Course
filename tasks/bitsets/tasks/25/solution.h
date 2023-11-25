@@ -10,44 +10,82 @@ typedef uint32_t Bitset;
 // Sibilant consonants:
 // sh, ch, zh, th
 
-bool CheckForSibilantConsonants(char c, Bitset* sibilant_consonants) {
-    if (isalpha(c)) {
-        c = (char)tolower(c);
+const Bitset VOWELS = 17842449u;
+/*
+    Bitset bitset = 0;
+    char vowels[] = {'a', 'e', 'i', 'o', 'u', 'y'};
+    for (int i = 0; i < sizeof(vowels); ++i) {
+            bitset |= (1u << (vowels[i] - 'a'));
     }
-    if (((c == 's') || (c == 'c') || (c == 't') || (c == 'z')) && (sibilant_consonants == 0)) {
-        *sibilant_consonants = *sibilant_consonants | (1u << (c - 'a'));
-        return false;
-    } else if ((c == 'h') && (sibilant_consonants != 0)) {
-        *sibilant_consonants = *sibilant_consonants | (1u << (c - 'a'));
-        return true;
-    } else {
-        sibilant_consonants = 0;
-        return false;
+    printf("%u", bitset);
+*/
+
+const Bitset PARTS_OF_SIBILANT_CONSONANTS = 34340868u;
+/*
+    Bitset bitset = 0;
+    char sibilants[] = {'s', 'c', 'z', 't'};
+    for (int i = 0; i < sizeof(sibilants); ++i) {
+            bitset |= (1u << (sibilants[i] - 'a'));
     }
+    printf("%u", bitset);
+*/
+
+bool CheckForPartsOfSibilant(const char symbol) {
+    return (PARTS_OF_SIBILANT_CONSONANTS & (1u << (symbol - 'a')));
 }
 
-void PrintSibilantConsonant(const Bitset sibilant_consonants) {
-    char symbol = 0;
-    for (int i = 0; i < 26; ++i) {
-        if (sibilant_consonants & (1u << i)) {
-            symbol = (char)((int)'a' + i);
-            if (symbol != 'h') {
-                printf("%c", (char)symbol);
+bool CheckForVowels(const char symbol) {
+    return (VOWELS & (1u << (symbol - 'a')));
+}
+
+bool IsThereWordConsistsOfSibilants() {
+
+    bool is_there_sibilant_consonants = false;
+    bool is_there_part_of_sibilant = false;
+    bool is_there_non_sibilant = false;
+
+    char input_letter = 0;
+    while ((input_letter = (char)getchar()) != EOF) {
+        if (isalpha(input_letter)) {
+            if (!is_there_non_sibilant) {
+                if (CheckForPartsOfSibilant((char)tolower(input_letter))) {
+                    if (is_there_part_of_sibilant) {
+                        is_there_non_sibilant = true;
+                    }
+                    else {
+                        is_there_part_of_sibilant = true;
+                    }
+                }
+                else if ((is_there_part_of_sibilant) && (char)tolower(input_letter) == 'h') {
+                    is_there_sibilant_consonants = true;
+                    is_there_part_of_sibilant = false;
+                }
+                else if (CheckForVowels((char)tolower(input_letter))) {
+                    if (is_there_part_of_sibilant) {
+                        is_there_non_sibilant = true;
+                        is_there_part_of_sibilant = false;
+                    }
+                }
+                else {
+                    is_there_non_sibilant = true;
+                }
             }
         }
+        else {
+            if (input_letter != '\n')
+                is_there_non_sibilant = false;
+        }
     }
-    printf("%c", 'h');
+    return (is_there_sibilant_consonants && !is_there_non_sibilant && !is_there_part_of_sibilant) ? true : false;
 }
 
 int Task() {
-    Bitset sibilant_consonants = 0;
-    char input_letter = 0;
-    while ((input_letter = (char)getchar()) != EOF) {
-        if (CheckForSibilantConsonants(input_letter, &sibilant_consonants)) {
-            printf("A word consisting of at least one sibilant was detected: ");
-            PrintSibilantConsonant(sibilant_consonants);
-            break;
-        }
+    bool result = IsThereWordConsistsOfSibilants();
+    if (result) {
+        printf("There is a word whose consonants are all sibilants.");
+    }
+    else {
+        printf("No words consisting only of sibilant consonants were found.");
     }
     return 0;
 }
