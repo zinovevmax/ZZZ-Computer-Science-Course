@@ -33,7 +33,7 @@ Matrix ReadMatrix(const char* file_name, size_t* matrix_order, Matrix matrix) {
     if ((file = fopen(file_name, "r")) == NULL) {
         printf("Error open file");
         return matrix;
-    }   
+    }
     fscanf(file, "%lu", matrix_order);
     matrix = MemoryAllocate(*matrix_order, matrix);
     for (size_t i = 0; i < *matrix_order; ++i) {
