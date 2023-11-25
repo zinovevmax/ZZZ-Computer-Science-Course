@@ -2,29 +2,34 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdbool.h>
 
-const int64_t TEN = 10;
+const int64_t SIZE = 10;
 const int64_t INT_INPUT = 3425167809;
 
-int64_t Search(int64_t a) {
-    int arr[TEN] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    int arr_size = TEN;
+/* Функция создает массив, в котором индекс соответствует цифре, а число под этим индексом - сколько эта цифра 
+раз встречается в числе */
+
+bool CountingUniversalDigits(int64_t a) {
+    int arr[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    // берем последнюю цифру числа
     do {
-        ++arr[a % TEN];
-        a = a / TEN;
+        ++arr[a % SIZE];
+        a = a / SIZE;
     } while (a > 0);
-    for (int k = 0; k < arr_size; ++k) {
+    // если встречаем цифру, не встречающуюся ни разу, возвращаем false
+    for (int k = 0; k < SIZE; ++k) {
         if (!arr[k]) {
-            return 0;
+            return false;
         }
     }
-    return 1;
+    return true;
 }
 
 int Task() {
     int64_t num = INT_INPUT;
     // scanf("%ld", &num);
-    if (!Search(num)) {
+    if (!CountingUniversalDigits(num)) {
         printf("There are numbers that do not occur even once");
     } else {
         printf("There are no numbers that do not occur once");
