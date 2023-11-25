@@ -77,8 +77,7 @@ int Task() {
     bool result = IsThereWordConsistsOfSibilants();
     if (result) {
         printf("There is a word whose consonants are all sibilants.");
-    }
-    else {
+    } else {
         printf("No words consisting only of sibilant consonants were found.");
     }
     return 0;
