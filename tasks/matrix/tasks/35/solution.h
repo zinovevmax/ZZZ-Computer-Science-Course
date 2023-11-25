@@ -34,49 +34,49 @@ void MatrixRotation(Matrix matrix, int32_t side) {
     // будем менять эл-ты местами по кругу (по факту это квадратики), при помощи temp
     int32_t temp = 0;
     // возьмем координаты 4х углов матрицы, и будем менять эл-ты матрицы в квадратике.
-    // Тут coordinates1 - координаты левого верхнего угла, 2 - левого нижнего, 3 - правого нижнего, 4 - правого верхнего
-    Coordinates coordinates1 = {0, 0};
-    Coordinates coordinates2 = {side - 1, 0};
-    Coordinates coordinates3 = {side - 1, side - 1};
-    Coordinates coordinates4 = {0, side - 1};
+    // Тут angleLU - координаты левого верхнего угла, 2 - левого нижнего, 3 - правого нижнего, 4 - правого верхнего
+    Coordinates angleLU = {0, 0};
+    Coordinates angleLD = {side - 1, 0};
+    Coordinates angleRD = {side - 1, side - 1};
+    Coordinates angleRU = {0, side - 1};
     // сделаем возможность возвращаться к начальным позиция, не особо парясь, задав угловые позиции кв-та,
     // который находится внутри нашего большого кв-та
-    Coordinates coordinates1_backup = {1, 1};
-    Coordinates coordinates2_backup = {side - 2, 1};
-    Coordinates coordinates3_backup = {side - 2, side - 2};
-    Coordinates coordinates4_backup = {1, side - 2};
+    Coordinates angleLU_backup = {1, 1};
+    Coordinates angleLD_backup = {side - 2, 1};
+    Coordinates angleRD_backup = {side - 2, side - 2};
+    Coordinates angleRU_backup = {1, side - 2};
     // сама функция замены
     for (int k = 0; k < amount_of_squares; ++k) {
         for (int p = 0; p < amount_of_rotate_square; ++p) {
-            temp = matrix[coordinates1.i][coordinates1.j];
-            matrix[coordinates1.i][coordinates1.j] = matrix[coordinates4.i][coordinates4.j];
-            matrix[coordinates4.i][coordinates4.j] = matrix[coordinates3.i][coordinates3.j];
-            matrix[coordinates3.i][coordinates3.j] = matrix[coordinates2.i][coordinates2.j];
-            matrix[coordinates2.i][coordinates2.j] = temp;
-            ++coordinates1.i;
-            ++coordinates2.j;
-            --coordinates3.i;
-            --coordinates4.j;
+            temp = matrix[angleLU.i][angleLU.j];
+            matrix[angleLU.i][angleLU.j] = matrix[angleRU.i][angleRU.j];
+            matrix[angleRU.i][angleRU.j] = matrix[angleRD.i][angleRD.j];
+            matrix[angleRD.i][angleRD.j] = matrix[angleLD.i][angleLD.j];
+            matrix[angleLD.i][angleLD.j] = temp;
+            ++angleLU.i;
+            ++angleLD.j;
+            --angleRD.i;
+            --angleRU.j;
         }
         amount_of_rotate_square -= 2;
         // переходим к след квадрату
-        coordinates1.i = coordinates1_backup.i;
-        coordinates1.j = coordinates1_backup.j;
-        coordinates2.i = coordinates2_backup.i;
-        coordinates2.j = coordinates2_backup.j;
-        coordinates3.i = coordinates3_backup.i;
-        coordinates3.j = coordinates3_backup.j;
-        coordinates4.i = coordinates4_backup.i;
-        coordinates4.j = coordinates4_backup.j;
+        angleLU.i = angleLU_backup.i;
+        angleLU.j = angleLU_backup.j;
+        angleLD.i = angleLD_backup.i;
+        angleLD.j = angleLD_backup.j;
+        angleRD.i = angleRD_backup.i;
+        angleRD.j = angleRD_backup.j;
+        angleRU.i = angleRU_backup.i;
+        angleRU.j = angleRU_backup.j;
         // меняем бэкапные координыта на координаты квадрата еще меньше
-        ++coordinates1_backup.i;
-        ++coordinates1_backup.j;
-        --coordinates2_backup.i;
-        ++coordinates2_backup.j;
-        --coordinates3_backup.i;
-        --coordinates3_backup.j;
-        ++coordinates4_backup.i;
-        --coordinates4_backup.j;
+        ++angleLU_backup.i;
+        ++angleLU_backup.j;
+        --angleLD_backup.i;
+        ++angleLD_backup.j;
+        --angleRD_backup.i;
+        --angleRD_backup.j;
+        ++angleRU_backup.i;
+        --angleRU_backup.j;
     }
 }
 
