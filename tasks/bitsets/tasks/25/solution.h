@@ -39,7 +39,6 @@ bool CheckForVowels(const char symbol) {
 }
 
 bool IsThereWordConsistsOfSibilants() {
-
     bool is_there_sibilant_consonants = false;
     bool is_there_part_of_sibilant = false;
     bool is_there_non_sibilant = false;
@@ -51,27 +50,22 @@ bool IsThereWordConsistsOfSibilants() {
                 if (CheckForPartsOfSibilant((char)tolower(input_letter))) {
                     if (is_there_part_of_sibilant) {
                         is_there_non_sibilant = true;
-                    }
-                    else {
+                    } else {
                         is_there_part_of_sibilant = true;
                     }
-                }
-                else if ((is_there_part_of_sibilant) && (char)tolower(input_letter) == 'h') {
+                } else if ((is_there_part_of_sibilant) && (char)tolower(input_letter) == 'h') {
                     is_there_sibilant_consonants = true;
                     is_there_part_of_sibilant = false;
-                }
-                else if (CheckForVowels((char)tolower(input_letter))) {
+                } else if (CheckForVowels((char)tolower(input_letter))) {
                     if (is_there_part_of_sibilant) {
                         is_there_non_sibilant = true;
                         is_there_part_of_sibilant = false;
                     }
-                }
-                else {
+                } else {
                     is_there_non_sibilant = true;
                 }
             }
-        }
-        else {
+        } else {
             if (input_letter != '\n')
                 is_there_non_sibilant = false;
         }
