@@ -30,7 +30,7 @@ Matrix SwapRows(Matrix matrix, const size_t* matrix_order, size_t index1, size_t
 
 Matrix ReadMatrix(const char* file_name, size_t* matrix_order, Matrix matrix) {
     FILE* file = fopen(file_name, "r");
-    if ((fp = fopen(file_name, "r")) == NULL) {
+    if ((file = fopen(file_name, "r")) == NULL) {
         printf("Error open file");
         return matrix;
     }   
