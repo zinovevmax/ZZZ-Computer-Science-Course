@@ -29,10 +29,9 @@ Matrix SwapRows(Matrix matrix, const size_t* matrix_order, size_t index1, size_t
 }
 
 Matrix ReadMatrix(const char* file_name, size_t* matrix_order, Matrix matrix) {
-    FILE* file = fopen(file_name, "r");
+    FILE* file = NULL;
     if ((file = fopen(file_name, "r")) == NULL) {
-        printf("Error open file");
-        return matrix;
+        abort();
     }
     fscanf(file, "%lu", matrix_order);
     matrix = MemoryAllocate(*matrix_order, matrix);
