@@ -1,6 +1,5 @@
 #pragma once
 
-#include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -16,11 +15,6 @@ StateName NumCheck(StateMachine* sm) {
     ++sm->step;
     sm->num_is_found = fscanf(sm->file, "%d", &sm->celsius);
     if (sm->num_is_found == 1) {
-        if (sm->celsius % 5 == 0) {
-            sm->is_multiple_of_five = true;
-        } else {
-            sm->is_multiple_of_five = false;
-        }
         return CONVERT;
     }
     return END;
@@ -29,11 +23,7 @@ StateName NumCheck(StateMachine* sm) {
 StateName Convert(StateMachine* sm) {
     ++sm->step;
     sm->fahrenheit = 9.0 * sm->celsius / 5.0 + 32.0;
-    if (sm->is_multiple_of_five) {
-        printf("%dC = %.0fF\n", sm->celsius, round(sm->fahrenheit));
-    } else {
-        printf("%dC = %.1fF\n", sm->celsius, round(sm->fahrenheit * 10) / 10);
-    }
+    printf("%dC = %gF\n", sm->celsius, sm->fahrenheit);
     return NUMCHECK;
 }
 

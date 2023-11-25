@@ -16,7 +16,6 @@ StateMachine* MakeStateMachine(FILE* filename) {
     sm->celsius = 0;
     sm->num_is_found = 0;
     sm->fahrenheit = 0;
-    sm->is_multiple_of_five = false;
     return sm;
 }
 

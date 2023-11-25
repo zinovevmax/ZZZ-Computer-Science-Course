@@ -23,7 +23,6 @@ typedef struct {
     int celsius;
     int num_is_found;
     double fahrenheit;
-    bool is_multiple_of_five;
 } StateMachine;
 
 typedef struct State {
