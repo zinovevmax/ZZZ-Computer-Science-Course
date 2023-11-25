@@ -21,7 +21,7 @@ void Swap(int32_t* a, int32_t* b) {
     *a = *a ^ *b;
 }
 
-Matrix Replace(Matrix matrix, size_t* matrix_order, size_t num_min_comp, size_t num_max_comp) {
+Matrix SwapString(Matrix matrix, size_t* matrix_order, size_t num_min_comp, size_t num_max_comp) {
     for (size_t i = 0; i < *matrix_order; ++i) {
         Swap(&matrix[num_min_comp][i], &matrix[num_max_comp][i]);
     }
@@ -72,7 +72,7 @@ Matrix NewMatrix(Matrix matrix, size_t* matrix_order) {
             max_num_min_composition = i;
         }
     }
-    Replace(matrix, matrix_order, max_num_min_composition, max_num_max_composition);
+    SwapString(matrix, matrix_order, max_num_min_composition, max_num_max_composition);
     return matrix;
 }
 void PrintAfterMatrix(Matrix matrix, size_t matrix_order) {
@@ -84,7 +84,7 @@ void PrintAfterMatrix(Matrix matrix, size_t matrix_order) {
         printf("\n");
     }
 }
-Matrix CleanerMemory(Matrix matrix, size_t matrix_order) {
+Matrix DeleteMatrix(Matrix matrix, size_t matrix_order) {
     for (size_t i = 0; i < matrix_order; ++i) {
         free(matrix[i]);
     }
@@ -101,6 +101,6 @@ int Task() {
     PrintBeforeMatrix(matrix, matrix_order);
     NewMatrix(matrix, &matrix_order);
     PrintAfterMatrix(matrix, matrix_order);
-    CleanerMemory(matrix, matrix_order);
+    DeleteMatrix(matrix, matrix_order);
     return 0;
 }
