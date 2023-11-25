@@ -1,14 +1,8 @@
 #pragma once
 
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "fsm_realization.h"
 
 int Task() {
-    
     /*
     Regular expression for search: (-?\d*)°C
     Another for floating point numbers: (-?\d+\.?\d*)°C
@@ -31,7 +25,7 @@ int Task() {
     FILE* file = fopen("../tasks/finite_state_machine/tasks/18/input_file.txt", "r");
     StateMachine* sm = MakeStateMachine(file);
 
-    int result;
+    int result = 0;
     while (true) {
         result = Step(sm);
         if (result) {
@@ -39,7 +33,7 @@ int Task() {
             break;
         }
     }
-
+    
     DeleteStateMachine(sm);
     fclose(file);
     return 0;

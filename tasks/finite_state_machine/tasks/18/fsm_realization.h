@@ -1,5 +1,9 @@
 #pragma once
 
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "shared_header.h"
 #include "state.h"
 
@@ -17,8 +21,7 @@ StateMachine* MakeStateMachine(FILE* filename) {
 }
 
 int Step(StateMachine* sm) {
-    StateName next;
-    next = sm->pipeline[(int)sm->cur_state].action(sm);
+    StateName next = sm->pipeline[(int)sm->cur_state].action(sm);
     if (next == END) {
         return 1;
     }

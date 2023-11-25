@@ -1,3 +1,9 @@
+#pragma once
+
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef enum {
     START = 0,
     NUMCHECK,
@@ -5,7 +11,7 @@ typedef enum {
     // Add new states here
     STATECOUNT,
     END
-} StateName; 
+} StateName;
 
 typedef struct State State;
 
@@ -16,7 +22,7 @@ typedef struct {
     FILE* file;
     int celsius;
     int num_is_found;
-    float fahrenheit;
+    double fahrenheit;
     bool is_multiple_of_five;
 } StateMachine;
 

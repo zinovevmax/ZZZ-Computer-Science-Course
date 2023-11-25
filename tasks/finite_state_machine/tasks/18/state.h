@@ -1,3 +1,11 @@
+#pragma once
+
+#include <math.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+#include "shared_header.h"
+
 StateName Start(StateMachine* sm) {
     ++sm->step;
     printf("Finite State Machine has started its execution:\n\n");
@@ -14,15 +22,13 @@ StateName NumCheck(StateMachine* sm) {
             sm->is_multiple_of_five = false;
         }
         return CONVERT;
-    } else {
-        return END;
     }
-    
+    return END;
 }
 
 StateName Convert(StateMachine* sm) {
     ++sm->step;
-    sm->fahrenheit = 9.0 * sm->celsius / 5.0 + 32;
+    sm->fahrenheit = 9.0 * sm->celsius / 5.0 + 32.0;
     if (sm->is_multiple_of_five) {
         printf("%dC = %.0fF\n", sm->celsius, round(sm->fahrenheit));
     } else {
@@ -36,7 +42,7 @@ StateName Convert(StateMachine* sm) {
 State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * STATECOUNT);
     int i = 0;
-    
+
     st[i].name = (StateName)i;
     st[i].action = &Start;
     i++;
@@ -53,7 +59,6 @@ State* MakeStates() {
 
     return st;
 }
-
 
 void DeleteStates(State* st) {
     free(st);
