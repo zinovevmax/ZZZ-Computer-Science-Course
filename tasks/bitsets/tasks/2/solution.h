@@ -5,9 +5,9 @@
 #include <stdio.h>
 
 typedef uint32_t Bitset;
-const uint32_t CONSONANTS = 66043630u;  //number of Bitset consonants
+const uint32_t CONSONANTS = 66043630u;  // number of Bitset consonants
 
-// Getting Bitset of consonants 
+// Getting Bitset of consonants
 // Bitset ConsonantsAlphabet() {
 //     char text[] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x',
 //     'y', 'z'}; uint32_t Set = 0; for (int i = 0; i < strlen(text); ++i) { Set = Set | (1u << (text[i] - 'a')); return
