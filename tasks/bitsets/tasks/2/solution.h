@@ -34,7 +34,7 @@ int Task() {
     bool repeated_consonant = false;
     char sign = 0;
     uint32_t space_counter = 0;
-    while ((sign = (char)getchar()) != '0') {
+    while ((sign = (char)getchar()) != EOF) {
         if ((sign == ' ') || (sign == '\n')) {
             space_counter++;
             if ((repeated_consonant == 0) && (space_counter == 0)) {
