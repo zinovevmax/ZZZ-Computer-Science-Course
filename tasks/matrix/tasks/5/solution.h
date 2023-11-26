@@ -70,6 +70,17 @@ Matrix MatrixWithRearrangedLines(Matrix matrix, int32_t n) {
     return matrix;
 }
 
+// Печать матрицы
+void PrintMatrix(Matrix matrix, int32_t n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
 // Освобождения памяти
 void FreeMatrix(Matrix matrix, int32_t n) {
     for (int i = 0; i < n; i++) {
@@ -87,24 +98,14 @@ int Task() {
     Matrix matrix = InitializeMatrixFromFile(filename, &n);
 
     // Вывод исходной матрицы
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            printf("%d ", matrix[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
+    PrintMatrix(matrix, n);
 
     // Преобразуем матрицу
     matrix = MatrixWithRearrangedLines(matrix, n);
 
     // Вывод итоговой матрицы
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            printf("%d ", matrix[i][j]);
-        }
-        printf("\n");
-    }
+    PrintMatrix(matrix, n);
+
     FreeMatrix(matrix, n);
     return 0;
 }
