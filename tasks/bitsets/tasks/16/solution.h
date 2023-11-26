@@ -1,12 +1,8 @@
 #pragma once
 
-#include <stdint.h>
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <ctype.h>
-
-
-typedef uint32_t Bitset;
 
 unsigned int char_to_set(char c) {
     c = tolower(c);
@@ -18,7 +14,6 @@ unsigned int char_to_set(char c) {
 }
 
 int Task() {
-    // write your solution here
     char c;
     unsigned int letters_set_1 = 0;
     unsigned int letters_set_2 = 0;
@@ -38,5 +33,4 @@ int Task() {
     } else {
         printf("NO");
     }
-    return 0;
 }
