@@ -93,7 +93,7 @@ int Task() {
     // write your solution here
     int32_t n = 0;
 
-    // Вводим сюда путь к файлу
+    // Вводим путь к файлу
     const char* filename = "../tasks/matrix/tasks/5/matrix.txt";
     Matrix matrix = InitializeMatrixFromFile(filename, &n);
 
