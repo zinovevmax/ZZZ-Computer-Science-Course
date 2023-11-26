@@ -29,7 +29,7 @@ int Task() {
     while (true) {
         result = Step(sm);
         if (result) {
-            printf("\nFSM has completed its execution\n");
+            printf("\nFSM has completed its execution.\n");
             break;
         }
     }
