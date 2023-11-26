@@ -58,6 +58,6 @@ void SolveEquation(ld x0, ld x1, ld (*func)(ld), ld (*method)(ld, ld, ld (*)(ld)
 
 int Task() {
     SolveEquation(-1.0, 0.0, Func1, DichotomyMethod, 10);
-    SolveEquation(2.0, 3.0, Func2, IterativeMethod, 10);
+    SolveEquation(2.0, 3.0, Func2, IterativeMethod, 11);
     return 0;
 }
