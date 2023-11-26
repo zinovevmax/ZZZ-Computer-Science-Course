@@ -17,7 +17,7 @@ int Step(StateMachine* sm, char ch) {
     StateName next;
     next = sm->pipeline[(int)sm->cur_state].action(sm, ch);
     if (next == END) {
-        return 1;
+        return 2;
     }
     sm->cur_state = next;
     return 0;

@@ -25,5 +25,5 @@ typedef struct {
 
 typedef struct State {
     StateName name;
-    StateName (*action)(StateMachine*, char ch);
+    StateName (*action)(StateMachine*, char c);
 } State;

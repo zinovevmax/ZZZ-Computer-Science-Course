@@ -3,7 +3,7 @@
 #include "shared_header.c"
 
 StateName FindFirstSymbolComments1(StateMachine* sm, char ch) {
-    printf(" Programm started and finding symbol - / - this is start comment\n");
+    printf("Programm started and finding symbol - / - this is start comment\n");
     if (ch == '/') {
         ++sm->step;
         printf(" I am finding / symbol in start of comment\n");

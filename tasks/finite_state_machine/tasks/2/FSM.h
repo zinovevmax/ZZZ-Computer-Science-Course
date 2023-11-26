@@ -6,7 +6,7 @@
 #include "fsm.c"
 
 int Task() {
-    // "/\*([^*]|[\n\r]|(\*+([^*/]|[\n\r])))*\*+/" regex
+    //  "/\*([^*]|[\n\r]|(\*+([^*/]|[\n\r])))*\*+/" regex
     StateMachine* sm = MakeStateMachine();
     char ch = 0;
     int res = 0;
