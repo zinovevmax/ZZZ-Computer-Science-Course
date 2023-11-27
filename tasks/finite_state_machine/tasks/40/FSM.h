@@ -9,7 +9,6 @@ int Task() {
     // mama mila ram123u 7629 -> 123 762
     FILE* file = fopen("../tasks/finite_state_machine/tasks/40/input_file.txt", "r");
     StateMachine* sm = MakeStateMachine(file);
-    
 
     printf("Finite State Machine has started\n\n");
 
