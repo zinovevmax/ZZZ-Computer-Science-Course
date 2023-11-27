@@ -15,26 +15,19 @@ const uint32_t CONSONANTS = 66043630u;  // number of Bitset consonants
 // }
 
 bool CheckIfConsonant(char sign) {
-    if (CONSONANTS == (CONSONANTS | (1u << (sign - 'a')))) {
-        return true;
-    }
-    return false;
+    return (CONSONANTS == (CONSONANTS | (1u << (sign - 'a'))));
 }
 
 bool CheckIfBeenBefore(char sign, Bitset consonants_before) {
-    if (consonants_before < (consonants_before ^ (1u << (sign - 'a')))) {
-        return false;
-    }
-    return true;
+    return (consonants_before >= (consonants_before ^ (1u << (sign - 'a'))));
 }
 
 int main() {
-    // write your solution here
     Bitset consonants_before = 0;
     bool repeated_consonant = false;
     char sign = 0;
     uint32_t space_counter = 0;
-    while ((sign = (char)getchar()) != '\n') {
+    while ((sign = (char)getchar()) != EOF) {
         if ((sign == ' ') || (sign == '\n')) {
             if ((repeated_consonant == false) && (space_counter == 0)) {
                 printf("there is at least one word with non-repeating consonants");
