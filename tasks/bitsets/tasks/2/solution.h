@@ -1,4 +1,3 @@
-#pragma once
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -24,30 +23,31 @@ bool CheckIfConsonant(char sign) {
 
 bool CheckIfBeenBefore(char sign, Bitset consonants_before) {
     if (consonants_before < (consonants_before ^ (1u << (sign - 'a')))) {
-        return true;
+        return false;
     }
-    return false;
+    return true;
 }
 
-int Task() {
+int main() {
+    // write your solution here
     Bitset consonants_before = 0;
     bool repeated_consonant = false;
     char sign = 0;
     uint32_t space_counter = 0;
-    while ((sign = (char)getchar()) != EOF) {
+    while ((sign = (char)getchar()) != '\n') {
         if ((sign == ' ') || (sign == '\n')) {
-            space_counter++;
-            if ((repeated_consonant == 0) && (space_counter == 0)) {
+            if ((repeated_consonant == false) && (space_counter == 0)) {
                 printf("there is at least one word with non-repeating consonants");
                 return 0;
             }
+            space_counter++;
             consonants_before = 0;
             repeated_consonant = false;
             continue;
         }
         space_counter = 0;
         if (CheckIfConsonant(sign)) {
-            if (CheckIfBeenBefore(sign, consonants_before)) {
+            if (CheckIfBeenBefore(sign, consonants_before) == false) {
                 consonants_before = (consonants_before ^ (1u << (sign - 'a')));
             } else {
                 repeated_consonant = true;
