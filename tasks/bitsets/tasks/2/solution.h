@@ -22,7 +22,7 @@ bool CheckIfBeenBefore(char sign, Bitset consonants_before) {
     return (consonants_before >= (consonants_before ^ (1u << (sign - 'a'))));
 }
 
-int main() {
+int Task() {
     Bitset consonants_before = 0;
     bool repeated_consonant = false;
     char sign = 0;
