@@ -3,7 +3,6 @@
 #include <stdint.h>
 #include <stdio.h>
 
-
 int Task() {
     int flag = 0;
     uint64_t number = 358325775252;
