@@ -6,9 +6,9 @@
 int Task() {
     int flag = 0;
     uint64_t number = 358325775252;
-    int first_number;
-    int second_number;
-    int third_number;
+    uint64_t first_number = 0;
+    uint64_t second_number = 0;
+    uint64_t third_number = 0;  
 
     while (number >= 100) {
         first_number = number % 10;
