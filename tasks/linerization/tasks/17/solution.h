@@ -122,7 +122,7 @@ int32_t* LinearMatrix(int32_t** matrix, const int32_t rows, const int32_t column
         step_length = (square_order)*AltSign(square_order + 1);
         row = row - step_length;
         for (int32_t i = 0; i < rows - square_order; ++i) {
-            step_length = (square_order + i)*AltSign(square_order + 1 + i);
+            step_length = (square_order + i) * AltSign(square_order + 1 + i);
             row = row + step_length;
             if (Abs(step_length) % 2 == 0) {
                 // Строка снизу
@@ -138,7 +138,7 @@ int32_t* LinearMatrix(int32_t** matrix, const int32_t rows, const int32_t column
         }
     } else if (columns > square_order) {
         for (int32_t i = 0; i < columns - square_order; ++i) {
-            step_length = (square_order + i)*AltSign(square_order + 1 + i);
+            step_length = (square_order + i) * AltSign(square_order + 1 + i);
             column = column + step_length;
             if ((Abs(step_length) - 1) % 2 == 0) {
                 // Столбец справа
