@@ -74,7 +74,6 @@ int32_t* LinearMatrix(int32_t** matrix, const int32_t rows, const int32_t column
     // Рабоает только для квадратной матрицы четного порядка, т.к. начальная позиция выбирается специфично
     int32_t* linear_matrix = (int32_t*)malloc(rows * columns * sizeof(int32_t));
     int32_t linear_index = 0;
-    const int32_t linear_size = rows * columns;
     const int32_t square_order = Min(rows, columns);
     const int32_t linear_square_size = square_order * square_order;
 
