@@ -15,7 +15,7 @@ int Task() {
         first_number = number % 10;
         second_number = number % 100 / 10;
         third_number = number % 1000 / 100;
-        
+
         if (first_number == second_number + third_number) {
             printf("%d\n", first_number);
             flag = 1;
