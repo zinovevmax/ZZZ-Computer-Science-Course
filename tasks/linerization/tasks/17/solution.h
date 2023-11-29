@@ -89,8 +89,7 @@ int32_t* LinearMatrix(int32_t** matrix, const int32_t rows, const int32_t column
     while (linear_index < linear_square_size) {
         step_length += 1;
         // Вниз
-        for (step_border = linear_index + step_length; linear_index < step_border;
-             ++linear_index) {
+        for (step_border = linear_index + step_length; linear_index < step_border; ++linear_index) {
             linear_matrix[linear_index] = matrix[row][column];
             row += 1;
         }
@@ -98,15 +97,13 @@ int32_t* LinearMatrix(int32_t** matrix, const int32_t rows, const int32_t column
             break;
         }
         // Вправо
-        for (step_border = linear_index + step_length; linear_index < step_border;
-             ++linear_index) {
+        for (step_border = linear_index + step_length; linear_index < step_border; ++linear_index) {
             linear_matrix[linear_index] = matrix[row][column];
             column += 1;
         }
         step_length += 1;
         // Вверх
-        for (step_border = linear_index + step_length; linear_index < step_border;
-             ++linear_index) {
+        for (step_border = linear_index + step_length; linear_index < step_border; ++linear_index) {
             linear_matrix[linear_index] = matrix[row][column];
             row -= 1;
         }
@@ -114,8 +111,7 @@ int32_t* LinearMatrix(int32_t** matrix, const int32_t rows, const int32_t column
             break;
         }
         // Влево
-        for (step_border = linear_index + step_length; linear_index < step_border;
-             ++linear_index) {
+        for (step_border = linear_index + step_length; linear_index < step_border; ++linear_index) {
             linear_matrix[linear_index] = matrix[row][column];
             column -= 1;
         }
@@ -123,10 +119,10 @@ int32_t* LinearMatrix(int32_t** matrix, const int32_t rows, const int32_t column
     // Обход лент (оставшиеся либо строки, либо столбцы)
     if (rows > square_order) {
         // Подгоняем начальные условия
-        step_length = (square_order) * AltSign(square_order + 1);
+        step_length = (square_order)*AltSign(square_order + 1);
         row = row - step_length;
         for (int32_t i = 0; i < rows - square_order; ++i) {
-            step_length = (square_order + i) * AltSign(square_order + 1 + i);
+            step_length = (square_order + i)*AltSign(square_order + 1 + i);
             row = row + step_length;
             if (Abs(step_length) % 2 == 0) {
                 // Строка снизу
@@ -140,9 +136,9 @@ int32_t* LinearMatrix(int32_t** matrix, const int32_t rows, const int32_t column
                 }
             }
         }
-    } else if (columns >  square_order) {
+    } else if (columns > square_order) {
         for (int32_t i = 0; i < columns - square_order; ++i) {
-            step_length = (square_order + i) * AltSign(square_order + 1 + i);
+            step_length = (square_order + i)*AltSign(square_order + 1 + i);
             column = column + step_length;
             if ((Abs(step_length) - 1) % 2 == 0) {
                 // Столбец справа
