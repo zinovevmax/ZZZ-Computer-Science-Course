@@ -167,15 +167,15 @@ int Task() {
     int32_t* linear_matrix = LinearMatrix(matrix, rows, columns);
     // Вывод
     // Исходная
-    for (size_t i = 0; i < rows; ++i) {
-        for (size_t j = 0; j < columns; ++j) {
+    for (int32_t i = 0; i < rows; ++i) {
+        for (int32_t j = 0; j < columns; ++j) {
             printf("%2d ", matrix[i][j]);
         }
         printf("\n");
     }
     printf("\n");
     // Линеризованная
-    for (size_t i = 0; i < rows * columns; ++i) {
+    for (int32_t i = 0; i < rows * columns; ++i) {
         printf("%d ", linear_matrix[i]);
     }
     printf("\n");
