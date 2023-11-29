@@ -10,7 +10,7 @@ int Task() {
     int first_number;
     int second_number;
     int third_number;
-    
+
     while (number >= 100) {
         first_number = number % 10;
         second_number = number % 100 / 10;
