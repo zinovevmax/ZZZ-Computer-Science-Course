@@ -23,7 +23,6 @@ int64_t CountDigits(int64_t num) {
 
 int64_t Pow(int64_t base, int64_t power) {
     int64_t res = 1;
-    int64_t counter = 0;
     if (power < 0) {
         return -1;  // В другой раз
     } else if (power == 0) {
@@ -62,6 +61,6 @@ int64_t DeleteMidDigit(int64_t num) {
 int Task() {
     int64_t number = -INT64_MAX;
     // scanf("%lld", &number);
-    printf("%lld\n", DeleteMidDigit(number));
+    printf("%ld\n", DeleteMidDigit(number));
     return 0;
 }
