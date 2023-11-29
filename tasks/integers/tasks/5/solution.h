@@ -12,7 +12,7 @@ int Task() {
     uint64_t number = 358325775252;
     uint64_t first_number = 0;
     uint64_t second_number = 0;
-    uint64_t third_number = 0;  
+    uint64_t third_number = 0;
 
     while (number >= NUMBER_100) {
         first_number = number % NUMBER_10;
