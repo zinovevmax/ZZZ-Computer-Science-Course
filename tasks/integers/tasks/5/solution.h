@@ -20,7 +20,7 @@ int Task() {
         third_number = number % NUMBER_1000 / NUMBER_100;
 
         if (first_number == second_number + third_number) {
-            printf("%d\n", first_number);
+            printf("%lu\n", first_number);
             flag = 1;
         }
 
