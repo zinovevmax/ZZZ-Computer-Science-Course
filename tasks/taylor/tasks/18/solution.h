@@ -28,8 +28,7 @@ void OutputTable(double start_segment, double end_segment, int32_t number_partit
     BoundaryRowsTable;
     double current_x = start_segment;
     for (int32_t i = 0; i <= number_partitions; ++i) {
-        int32_t iteration = 1;
-        while (iteration <= 100) {
+        for (int32_t iteration = 1; iteration <= 100; ++iteration) {
             if (fabs(Taylor(current_x, iteration) - Func(current_x)) < DBL_EPSILON * accuracy_factor) {
                 // 17 потому что в этом диапозоне видна разница функции и Тейлора,
                 // можно взять и больше
@@ -37,7 +36,6 @@ void OutputTable(double start_segment, double end_segment, int32_t number_partit
                        iteration);
                 break;
             }
-            ++iteration;
         }
         current_x += ((end_segment - start_segment) / number_partitions);
     }
