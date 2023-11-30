@@ -2,32 +2,34 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdbool.h>
 
-const uint64_t NUMBER_10 = 10;
-const uint64_t NUMBER_100 = 100;
-const uint64_t NUMBER_1000 = 1000;
+uint64_t FirstNumber (uint64_t number) {
+    return number % 10;
+}
+
+uint64_t SecondNumber (uint64_t number) {
+    return number % 100 / 10;
+}
+
+uint64_t ThirdNumber (uint64_t number) {
+    return number % 1000 / 100;
+}
 
 int Task() {
-    int flag = 0;
+    bool flag = false;
     uint64_t number = 358325775252;
-    uint64_t first_number = 0;
-    uint64_t second_number = 0;
-    uint64_t third_number = 0;
-
-    while (number >= NUMBER_100) {
-        first_number = number % NUMBER_10;
-        second_number = number % NUMBER_100 / NUMBER_10;
-        third_number = number % NUMBER_1000 / NUMBER_100;
-
-        if (first_number == second_number + third_number) {
-            printf("%lu\n", first_number);
-            flag = 1;
+    
+    while (number >= 100) {
+        if (FirstNumber(number) == SecondNumber(number) + ThirdNumber(number)) {
+            printf("%lu\n", FirstNumber(number));
+            flag = true;
         }
 
-        number /= NUMBER_10;
+        number /= 10;
     }
 
-    if (flag == 0) {
+    if (flag == false) {
         printf("There are no numbers that satisfy the condition");
     }
 
