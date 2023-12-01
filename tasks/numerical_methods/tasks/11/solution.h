@@ -8,6 +8,9 @@
 
 #define ld long double
 
+const ld EXPECTED_VALUE_1 = -0.2877;
+const ld EXPECTED_VALUE_2 = 2.8459;
+
 int8_t Sign(ld x) {
     if (fabsl(x) < LDBL_EPSILON) {
         return 0;
@@ -52,12 +55,12 @@ ld IterativeMethod(ld x0, ld x1, ld (*func)(ld)) {
     return func(x) + x;
 }
 
-void SolveEquation(ld x0, ld x1, ld (*func)(ld), ld (*method)(ld, ld, ld (*)(ld)), uint8_t precision) {
-    printf("%.*Lf\n", precision, method(x0, x1, func));
+void SolveEquation(ld x0, ld x1, ld (*func)(ld), ld (*method)(ld, ld, ld (*)(ld)), uint8_t precision, const ld ex_val) {
+    printf("%.*Lf (%Lg)\n", precision, method(x0, x1, func), ex_val);
 }
 
 int Task() {
-    SolveEquation(-1.0, 0.0, Func1, DichotomyMethod, 10);
-    SolveEquation(2.0, 3.0, Func2, IterativeMethod, 11);
+    SolveEquation(-1.0, 0.0, Func1, DichotomyMethod, 10, EXPECTED_VALUE_1);
+    SolveEquation(2.0, 3.0, Func2, IterativeMethod, 10, EXPECTED_VALUE_2);
     return 0;
 }
