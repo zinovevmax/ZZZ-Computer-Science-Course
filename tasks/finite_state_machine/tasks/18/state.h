@@ -5,26 +5,72 @@
 
 #include "shared_header.h"
 
+double CelsiusToFahrenheit(int celsius) {
+    return celsius * 9.0 / 5.0 + 32;
+}
+
 StateName Start(StateMachine* sm) {
-    ++sm->step;
     printf("Finite State Machine has started its execution:\n\n");
-    return NUMCHECK;
-}
-
-StateName NumCheck(StateMachine* sm) {
-    ++sm->step;
-    sm->num_is_found = fscanf(sm->file, "%d", &sm->celsius);
-    if (sm->num_is_found == 1) {
-        return CONVERT;
+    if (sm->ch == '-') {
+        sm->num_is_neg = true;
+        return VALUEFORMING;
+    } else if (sm->ch >= '0' && sm->ch <= '9') {
+        sm->num = sm->ch - '0';
+        return VALUEFORMING;
+    } else {
+        return CHARCHECK;
     }
-    return END;
 }
 
-StateName Convert(StateMachine* sm) {
-    ++sm->step;
-    sm->fahrenheit = 9.0 * sm->celsius / 5.0 + 32.0;
-    printf("%dC = %gF\n", sm->celsius, sm->fahrenheit);
-    return NUMCHECK;
+StateName CharCheck(StateMachine* sm) {
+    if (sm->ch == '-') {
+        sm->num_is_neg = true;
+        return VALUEFORMING;
+    } else if (sm->ch >= '0' && sm->ch <= '9') {
+        sm->num = sm->ch - '0';
+        return VALUEFORMING;
+    } else if (sm->ch == EOF) {
+        return END;
+    } else {
+        return CHARCHECK;
+    }
+}
+
+StateName ValueForming(StateMachine* sm) {
+    if (sm->ch == '*') {
+        return TOFAHRENHEIT;
+    } else if (sm->ch >= '0' && sm->ch <= '9') {
+        sm->num = sm->num * 10 + (sm->ch - '0');
+        return VALUEFORMING;
+    } else if (sm->ch == EOF) {
+        return END;
+    } else {
+        sm->num_is_neg = false;
+        sm->num = 0;
+        return CHARCHECK;
+    }
+}
+
+StateName ToFahrenheit(StateMachine* sm) {
+    if (sm->ch == 'C') {
+        if (sm->num_is_neg) {
+            sm->num *= -1;
+        }
+        printf("%dC = %gF\n", sm->num, CelsiusToFahrenheit(sm->num));
+        return CHARCHECK;
+    } else if (sm->ch >= '0' && sm->ch <= '9') {
+        sm->num = sm->ch - '0';
+        return VALUEFORMING;
+    } else if (sm->ch == '-') {
+        sm->num_is_neg = true;
+        return VALUEFORMING;
+    } else if (sm->ch == EOF) {
+        return END;
+    } else {
+        sm->num_is_neg = false;
+        sm->num = 0;
+        return CHARCHECK;
+    }
 }
 
 // Add StateNames here
@@ -38,11 +84,15 @@ State* MakeStates() {
     i++;
 
     st[i].name = (StateName)i;
-    st[i].action = &NumCheck;
+    st[i].action = &CharCheck;
     i++;
 
     st[i].name = (StateName)i;
-    st[i].action = &Convert;
+    st[i].action = &ValueForming;
+    i++;
+
+    st[i].name = (StateName)i;
+    st[i].action = &ToFahrenheit;
     i++;
 
     // Add initializations for states here

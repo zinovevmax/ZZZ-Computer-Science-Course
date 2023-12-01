@@ -6,8 +6,9 @@
 
 typedef enum {
     START = 0,
-    NUMCHECK,
-    CONVERT,
+    CHARCHECK,
+    VALUEFORMING,
+    TOFAHRENHEIT,
     // Add new states here
     STATECOUNT,
     END
@@ -18,11 +19,9 @@ typedef struct State State;
 typedef struct {
     State* pipeline;
     StateName cur_state;
-    int step;
-    FILE* file;
-    int celsius;
-    int num_is_found;
-    double fahrenheit;
+    char ch;
+    bool num_is_neg;
+    int num;
 } StateMachine;
 
 typedef struct State {

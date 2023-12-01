@@ -23,16 +23,17 @@ int Task() {
 
     // Enter the file path here:
     FILE* file = fopen("../tasks/finite_state_machine/tasks/18/input_file.txt", "r");
-    StateMachine* sm = MakeStateMachine(file);
+    StateMachine* sm = MakeStateMachine();
 
     int result = 0;
     while (true) {
-        result = Step(sm);
+        result = Step(sm, (char)fgetc(file));
         if (result) {
             printf("\nFSM has completed its execution\n");
             break;
         }
     }
+
     DeleteStateMachine(sm);
     fclose(file);
     return 0;

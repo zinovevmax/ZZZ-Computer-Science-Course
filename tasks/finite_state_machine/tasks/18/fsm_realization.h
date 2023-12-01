@@ -7,20 +7,18 @@
 #include "shared_header.h"
 #include "state.h"
 
-StateMachine* MakeStateMachine(FILE* filename) {
+StateMachine* MakeStateMachine() {
     StateMachine* sm = (StateMachine*)malloc(sizeof(StateMachine));
     sm->pipeline = MakeStates();
     sm->cur_state = START;
-    sm->step = 0;
-    sm->file = filename;
-    sm->celsius = 0;
-    sm->num_is_found = 0;
-    sm->fahrenheit = 0;
+    sm->num_is_neg = false;
+    sm->num = 0;
     return sm;
 }
 
-int Step(StateMachine* sm) {
+int Step(StateMachine* sm, char c) {
     StateName next = sm->pipeline[(int)sm->cur_state].action(sm);
+    sm->ch = c;
     if (next == END) {
         return 1;
     }
