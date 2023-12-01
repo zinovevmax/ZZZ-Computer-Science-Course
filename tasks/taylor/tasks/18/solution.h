@@ -6,40 +6,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define BoundaryRowsTable printf("------------------------------------------------------------\n");
-#define StringNamesTableElements printf("|  x  |       Taylor       |        Func        | Iteration|\n");
-
 double Func(double x) {
-    double function_value = ((1 + pow(x, 2)) / 2) * atan(x) - x / 2;
-    return function_value;
+    return ((1 + pow(x, 2)) / 2) * atan(x) - x / 2;
 }
 
-double Taylor(double x, int32_t iterations) {
-    double partial_sum_series = 0.0;
-    for (int32_t i = 1; i <= iterations; ++i) {
-        partial_sum_series += pow(-1, i + 1) * (pow(x, 2 * i + 1) / (4 * pow(i, 2) - 1));
+double Taylor(double x, int32_t i, double sum_taylor_row) {
+    return sum_taylor_row += pow(-1, i + 1) * (pow(x, 2 * i + 1) / (4 * pow(i, 2) - 1));
+}
+
+void CompareValues(double current_x, int32_t accuracy_factor) {
+    double sum_taylor_row = 0.0;
+    for (int32_t iteration = 1; iteration <= 100; ++iteration) {
+        sum_taylor_row = Taylor(current_x, iteration, sum_taylor_row);
+        if (fabs(sum_taylor_row - Func(current_x)) < DBL_EPSILON * accuracy_factor) {
+            printf("|%.3lf| %.15lf| %.15lf| %9d|\n", current_x, sum_taylor_row, Func(current_x), iteration);
+            break;
+        }
     }
-    return partial_sum_series;
 }
 
 void OutputTable(double start_segment, double end_segment, int32_t number_partitions, int32_t accuracy_factor) {
-    BoundaryRowsTable;
-    StringNamesTableElements;
-    BoundaryRowsTable;
+    printf("--------------------------------------------------------\n");
+    printf("|  x  |      Taylor      |       Func       | Iteration|\n");
+    printf("--------------------------------------------------------\n");
     double current_x = start_segment;
     for (int32_t i = 0; i <= number_partitions; ++i) {
-        for (int32_t iteration = 1; iteration <= 100; ++iteration) {
-            if (fabs(Taylor(current_x, iteration) - Func(current_x)) < DBL_EPSILON * accuracy_factor) {
-                // 17 потому что в этом диапозоне видна разница функции и Тейлора,
-                // можно взять и больше
-                printf("|%.3lf| %.17lf| %.17lf| %9d|\n", current_x, Taylor(current_x, iteration), Func(current_x),
-                       iteration);
-                break;
-            }
-        }
+        CompareValues(current_x, accuracy_factor);
         current_x += ((end_segment - start_segment) / number_partitions);
     }
-    BoundaryRowsTable;
+    printf("--------------------------------------------------------\n");
 }
 
 int Task() {
