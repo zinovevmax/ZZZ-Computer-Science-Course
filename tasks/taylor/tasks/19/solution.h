@@ -5,6 +5,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
+const int32_t FIFTY_TWO = 52;
+
 double Func(double x) {
     // write your function here
     double function = cosh(x);
@@ -18,20 +20,19 @@ int64_t Factorial(int32_t x) {
     return x * Factorial(x - 1);
 }
 
-double Taylor(double x, int32_t iterations) {
-    double taylor_row_sum = 0.0;
-    for (int32_t i = 0; i <= iterations; i += 2) {
-        taylor_row_sum += pow(x, i) / (double)Factorial(i);
-    }
+double Taylor(double x, int32_t iterations, double taylor_row_sum) {
+    taylor_row_sum += pow(x, iterations * 2) / (double)Factorial(iterations * 2);
     return taylor_row_sum;
 }
 
 void PrintComparison(double current_x, int32_t precision, int32_t iterations) {
-    while (iterations <= 20) {  // 20 так как используется функция факториала
-        if (fabs(Taylor(current_x, iterations) - Func(current_x)) < DBL_EPSILON * precision) {
+    double taylor_row_sum = 0.0;
+    while (iterations <= 10) {  // 10 так как используется функция факториала, а переменная в функции Taylor удваивается
+        taylor_row_sum = Taylor(current_x, iterations, taylor_row_sum);
+        if (fabs(taylor_row_sum - Func(current_x)) < DBL_EPSILON * precision) {
             // 13 знаков после запятой, так как тогда видно различия у всех итераций
-            printf(" %.2lf  |  %.13lf   |  %.13lf  |         %d        |\n", current_x, Taylor(current_x, iterations),
-                   Func(current_x), iterations);
+            printf(" %.2lf  |  %.13lf   |  %.13lf  |         %d        |\n", current_x, taylor_row_sum, Func(current_x),
+                   iterations);
             break;
         }
         ++iterations;
