@@ -38,16 +38,14 @@ long double TailorResult(long double x, uint16_t iterations, uint8_t precision) 
     return result;
 }
 
-void PrintString(long double x, long double tailor_result, long double func_result) {
+void PrintTable(long double x, long double tailor_result, long double func_result) {
     static int iter = 0;
     printf("iter = %d  x = %.3Lf Tailor = %.12Lf Func = %.12Lf\n", iter, x, tailor_result, func_result);
     ++iter;
 }
 
-int main() {
-    const uint8_t num_bits_fract = 52;
+int Task() {
     uint8_t precision = 40;
-    // My precision output == num_bits_fract - precision
     uint8_t n = 10;
     uint16_t iterations_for_tailor = 100;
     const long double a = 0.2;
@@ -55,7 +53,7 @@ int main() {
     long double step = (b - a) / n;
     long double x = a;
     for (int i = 0; i <= n; ++i) {
-        PrintString(x, TailorResult(x, iterations_for_tailor, precision), Func(x));
+        PrintTable(x, TailorResult(x, iterations_for_tailor, precision), Func(x));
         x += step;
     }
     return 0;
