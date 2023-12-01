@@ -4,15 +4,23 @@
 
 const int64_t NUMBER = 42352356;  // write the number here
 
-int divis(int x) {
+int Divis(int x) {
     if ((x - 1) == 0) {
         return 1;
     } else {
-        return degree(10, (x - 1));
+        int a = 10;
+        int b = (x - 1);
+        int varible_1 = a;
+        b -= 1;
+        while (b > 0) {
+            a = a * varible_1;
+            b -= 1;
+        }
+        return a;
     }
 }
 
-int degree(int a, int b) {
+int Degree(int a, int b) {
     int varible = a;
     b -= 1;
     while (b > 0) {
@@ -22,12 +30,12 @@ int degree(int a, int b) {
     return a;
 }
 
-int test() {
+int Test() {
     int64_t number = NUMBER;
     int32_t figurs = 0;
     int32_t step = 1;
-    int8_t left;
-    int8_t right;
+    int64_t left = 0;
+    int64_t right = 0;
     int8_t answer = 0;
     while (number > 0) {
         figurs += 1;
@@ -35,8 +43,8 @@ int test() {
     }
     number = NUMBER;
     while (step != ((figurs / 2) + 1)) {
-        left = (number / degree(10, (figurs - step))) % 10;
-        right = ((number % degree(10, step)) / divis(step));
+        left = (number / Degree(10, (figurs - step))) % 10;
+        right = ((number % Degree(10, step)) / Divis(step));
         if (left == right) {
             step += 1;
         } else {
