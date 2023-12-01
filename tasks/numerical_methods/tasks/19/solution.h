@@ -6,8 +6,8 @@
 #include <stdio.h>
 
 typedef struct {
-    double start_segment;
-    double end_segment;
+    double start;
+    double end;
     double x0;
 } Segment;
 
@@ -23,27 +23,27 @@ double SecondFunc(double x) {
     return 0.1 * pow(x, 2) - x * log(x);
 }
 
-double MethodSimpleIteartions(double x0, double (*first_func)(double x)) {
+double MethodSimpleIteartions(double x0, double (*func)(double x)) {
     // x0 это x(n-1)
     // xn просто x
     // xn1 это x(n+1)
-    double xn = first_func(x0);
-    double xn1 = first_func(xn);
+    double xn = func(x0);
+    double xn1 = func(xn);
     while (fabs((xn1 - xn) / (1 - ((xn1 - xn) / (xn - x0)))) > DBL_EPSILON) {
         x0 = xn;
         xn = xn1;
-        xn1 = first_func(xn);
+        xn1 = func(xn);
     }
     return xn;
 }
 
-double NewtonMethod(double x0, double (*second_func)(double x), double (*calculating_derivatie)(double x)) {
-    double xn = x0 - (second_func(x0) / calculating_derivatie(x0));
-    double xn1 = xn - (second_func(xn) / calculating_derivatie(xn));
+double NewtonMethod(double x0, double (*func)(double x), double (*calculating_derivatie)(double x)) {
+    double xn = x0 - (func(x0) / calculating_derivatie(x0));
+    double xn1 = xn - (func(xn) / calculating_derivatie(xn));
     while (fabs((xn1 - xn) / (1 - ((xn1 - xn) / (xn - x0)))) >= DBL_EPSILON) {
         x0 = xn;
         xn = xn1;
-        xn1 = xn - second_func(xn) / calculating_derivatie(xn);
+        xn1 = xn - func(xn) / calculating_derivatie(xn);
     }
     return xn;
 }
@@ -52,10 +52,10 @@ int Task() {
     Segment first_function = {0.0, 0.85, (0.85 - 0.0) / 2};
     Segment second_function = {1.0, 2.0, (2.0 - 1.0) / 2};
     double root_first_function = MethodSimpleIteartions(first_function.x0, FirstFunc);
-    printf("Method: iterations | segment [%lf, %lf] | approximate root: %lf\n", first_function.start_segment,
-           first_function.end_segment, root_first_function);
+    printf("Method: iterations | segment: [%lf, %lf] | approximate root: %lf | root for comparison 0.2624:\n",
+           first_function.start, first_function.end, root_first_function);
     double root_second_function = NewtonMethod(second_function.x0, SecondFunc, CalculatingDerivatie);
-    printf("Method: Newton | segment [%lf, %lf] | approximate root: %lf\n", second_function.start_segment,
-           second_function.end_segment, root_second_function);
+    printf("Method: Newton | segment: [%lf, %lf] | approximate root: %lf | root for comparison 1.1183:\n",
+           second_function.start, second_function.end, root_second_function);
     return 0;
 }
