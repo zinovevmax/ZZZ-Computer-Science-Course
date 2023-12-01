@@ -21,19 +21,19 @@ uint64_t ThirdNumber(uint64_t number) {
 }
 
 int Task() {
-    bool IsSolutionExist = false;
+    bool is_solution_exist = false;
     uint64_t number = 358325775252;
 
     while (IsMoreTwoDigits(number)) {
         if (FirstNumber(number) == SecondNumber(number) + ThirdNumber(number)) {
             printf("%lu\n", FirstNumber(number));
-            IsSolutionExist = true;
+            is_solution_exist = true;
         }
 
         number /= 10;
     }
 
-    if (IsSolutionExist == false) {
+    if (is_solution_exist == false) {
         printf("There are no numbers that satisfy the condition");
     }
 
