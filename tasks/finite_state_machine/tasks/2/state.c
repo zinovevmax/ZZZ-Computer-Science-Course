@@ -3,7 +3,7 @@
 #include "shared_header.c"
 
 StateName FindFirstSymComStart(StateMachine* sm, char ch) {
-    sm->lastsym = ' ';
+    sm->last_sym = ' ';
     printf(" Programm started and finding symbol - / - this is start comment\n");
     if (ch == '/') {
         printf(" I am finding / symbol in start of comment\n");
@@ -13,7 +13,7 @@ StateName FindFirstSymComStart(StateMachine* sm, char ch) {
 }
 
 StateName FindSecondSymComStart(StateMachine* sm, char ch) {
-    sm->lastsym = ' ';
+    sm->last_sym = ' ';
     if (ch == '*') {
         printf(" I am finding * symbol in start of comment\n");
         return COMMENTDETECTED;
@@ -24,32 +24,31 @@ StateName FindSecondSymComStart(StateMachine* sm, char ch) {
 }
 
 StateName CommentDetected(StateMachine* sm, char ch) {
-    if (ch == '/' && sm->lastsym == '*') {
+    if (ch == '/' && sm->last_sym == '*') {
         printf("Last symbol was - * and now symbol - / - comment finished \n");
         ++sm->count_words;
         return END;
     }
-    if (ch == '\n' && sm->lastsym != ' ') {
+    if (ch == '\n' && sm->last_sym != ' ') {
         ++sm->count_words;
     }
-    if (ch == ' ' && sm->lastsym != ' ' && sm->lastsym != '\n') {
+    if (ch == ' ' && sm->last_sym != ' ' && sm->lastsym != '\n') {
         ++sm->count_words;
     } else if (ch == '*') {
         printf("Find * and go to check future symbol\n");
         return FINDFIRSTSYMFINISHCOM;
     }
-    sm->lastsym = ch;
+    sm->last_sym = ch;
     return COMMENTDETECTED;
 }
 
 StateName FindSecondSymComFin(StateMachine* sm, char ch) {
     if (ch == '/') {
         printf("Last symbol was - * and now symbol - / - comment finished \n");
-        if (sm->lastsym == '\n') {
-            //--sm->count;
+        if (sm->last_sym == '\n') {
             return END;
         }
-        if (sm->lastsym != ' ') {
+        if (sm->last_sym != ' ') {
             ++sm->count_words;
         }
         return END;
@@ -58,7 +57,7 @@ StateName FindSecondSymComFin(StateMachine* sm, char ch) {
         if (ch == ' ') {
             ++sm->count_words;
         }
-        sm->lastsym = ch;
+        sm->last_sym = ch;
         return COMMENTDETECTED;
     }
 }

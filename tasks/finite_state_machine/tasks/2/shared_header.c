@@ -19,7 +19,7 @@ typedef struct {
     StateName cur_state;
     State* pipeline;
     int count_words;
-    char lastsym;
+    char last_sym;
 } StateMachine;
 
 typedef struct State {
