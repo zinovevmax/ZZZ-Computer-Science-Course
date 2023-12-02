@@ -32,7 +32,7 @@ StateName CommentDetected(StateMachine* sm, char ch) {
     if (ch == '\n' && sm->last_sym != ' ') {
         ++sm->count_words;
     }
-    if (ch == ' ' && sm->last_sym != ' ' && sm->lastsym != '\n') {
+    if (ch == ' ' && sm->last_sym != ' ' && sm->last_sym != '\n') {
         ++sm->count_words;
     } else if (ch == '*') {
         printf("Find * and go to check future symbol\n");
