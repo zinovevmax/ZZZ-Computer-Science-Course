@@ -4,7 +4,7 @@
 
 StateName FindFirstSymComStart(StateMachine* sm, char ch) {
     sm->last_sym = ' ';
-    printf(" Programm started and finding symbol - / - this is start comment\n");
+    printf(" Programm started and finding  symbol - / - this is start comment\n");
     if (ch == '/') {
         printf(" I am finding / symbol in start of comment\n");
         return FINDSECONDSYMSTARTCOMM;

@@ -1,4 +1,4 @@
-#pragma once 
+#pragma once
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -22,7 +22,7 @@ int Task() {
             break;
         }
     }
-    printf("RESULT COUNT WORDS %d", sm->count_words);
+    printf("RESULT COUNT  WORDS %d", sm->count_words);
     DeleteStateMachine(sm);
     return 0;
 }

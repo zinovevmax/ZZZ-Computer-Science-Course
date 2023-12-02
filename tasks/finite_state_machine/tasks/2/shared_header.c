@@ -18,8 +18,8 @@ typedef struct State State;
 typedef struct {
     StateName cur_state;
     State* pipeline;
-    char last_sym;
     int count_words;
+    char last_sym;
 } StateMachine;
 
 typedef struct State {
