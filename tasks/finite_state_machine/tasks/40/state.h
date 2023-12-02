@@ -70,7 +70,7 @@ StateName ConvertToBinary(StateMachine* sm) {
 
 State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * STATECOUNT);
-    StateName (*actions[STATECOUNT]) (StateMachine*) = {&Start, &NumCheck, &ValueForming, &ConvertToBinary};
+    StateName (*actions[STATECOUNT])(StateMachine*) = {&Start, &NumCheck, &ValueForming, &ConvertToBinary};
     for (int i = 0; i < STATECOUNT; ++i) {
         st[i].name = (StateName)i;
         st[i].action = actions[i];
