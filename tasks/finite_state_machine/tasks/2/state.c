@@ -2,7 +2,8 @@
 
 #include "shared_header.c"
 
-StateName FindFirstSymbolComments1(StateMachine* sm, char ch) {
+StateName FindFirstSymComStart(StateMachine* sm, char ch) {
+    sm->lastsym = ' ';
     printf(" Programm started and finding symbol - / - this is start comment\n");
     if (ch == '/') {
         printf(" I am finding / symbol in start of comment\n");
@@ -11,7 +12,8 @@ StateName FindFirstSymbolComments1(StateMachine* sm, char ch) {
     return FINDFIRSTSYMSTARTCOMM;
 }
 
-StateName FindSecondSymbolComments1(StateMachine* sm, char ch) {
+StateName FindSecondSymComStart(StateMachine* sm, char ch) {
+    sm->lastsym = ' ';
     if (ch == '*') {
         printf(" I am finding * symbol in start of comment\n");
         return COMMENTDETECTED;
@@ -40,7 +42,7 @@ StateName CommentDetected(StateMachine* sm, char ch) {
     return COMMENTDETECTED;
 }
 
-StateName FindSecondSymbolComments2(StateMachine* sm, char ch) {
+StateName FindSecondSymComFin(StateMachine* sm, char ch) {
     if (ch == '/') {
         printf("Last symbol was - * and now symbol - / - comment finished \n");
         if (sm->lastsym == '\n') {
@@ -52,7 +54,7 @@ StateName FindSecondSymbolComments2(StateMachine* sm, char ch) {
         }
         return END;
     } else {
-        printf("Last symbol was - * - but now symbol is not - / - comment continue\n");
+        printf("Last symbol was - * - but now symbol is not - / - comment continue \n");
         if (ch == ' ') {
             ++sm->count_words;
         }
@@ -65,16 +67,16 @@ State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * STATECOUNT);
     int i = 0;
     st[i].name = (StateName)i;
-    st[i].action = &FindFirstSymbolComments1;
+    st[i].action = &FindFirstSymComStart;
     ++i;
     st[i].name = (StateName)i;
-    st[i].action = &FindSecondSymbolComments1;
+    st[i].action = &FindSecondSymComStart;
     ++i;
     st[i].name = (StateName)i;
     st[i].action = &CommentDetected;
     ++i;
     st[i].name = (StateName)i;
-    st[i].action = &FindSecondSymbolComments2;
+    st[i].action = &FindSecondSymComFin;
     return st;
 }
 

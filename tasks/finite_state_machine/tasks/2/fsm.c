@@ -7,8 +7,8 @@ StateMachine* MakeStateMachine() {
     StateMachine* sm = (StateMachine*)malloc(sizeof(StateMachine));
     sm->pipeline = MakeStates();
     sm->cur_state = FINDFIRSTSYMSTARTCOMM;
-    sm->count_words = 0;
     sm->lastsym = ' ';
+    sm->count_words = 0;
     return sm;
 }
 

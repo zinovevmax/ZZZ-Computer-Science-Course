@@ -16,8 +16,8 @@ typedef enum {
 typedef struct State State;
 
 typedef struct {
-    State* pipeline;
     StateName cur_state;
+    State* pipeline;
     int count_words;
     char lastsym;
 } StateMachine;
