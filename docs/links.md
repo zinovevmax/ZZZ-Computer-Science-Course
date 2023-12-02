@@ -10,3 +10,4 @@
 - [HDD и SSD](https://cs4118.github.io/www/2023-1/lect/22-hdd-ssd.html)
 - [Cache hierarchy for Intel core i7](https://images.slideplayer.com/27/8910767/slides/slide_18.jpg)
 - [Nvidia GPU](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html)
+- [Extreme C. Глава 4 про структуру памяти процесса](https://drive.google.com/file/d/1EZUAY5rZG0PZvmFS_gLyabao-fOPZsiH/view?usp=sharing)
