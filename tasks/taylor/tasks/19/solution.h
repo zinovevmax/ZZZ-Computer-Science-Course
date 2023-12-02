@@ -30,7 +30,6 @@ void PrintComparison(double current_x, int32_t precision, int32_t iterations) {
     while (iterations <= 10) {  // 10 так как используется функция факториала, а переменная в функции Taylor удваивается
         taylor_row_sum = Taylor(current_x, iterations, taylor_row_sum);
         if (fabs(taylor_row_sum - Func(current_x)) < DBL_EPSILON * precision) {
-            // 13 знаков после запятой, так как тогда видно различия у всех итераций
             printf(" %.2lf  |  %.15lf   |  %.15lf  |         %d        |\n", current_x, taylor_row_sum, Func(current_x),
                    iterations);
             break;
