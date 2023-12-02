@@ -27,11 +27,14 @@ typedef struct {
 } Point;
 
 int CheckZone(Point p) {
+    // Write a code here that checks whether a point belongs to a given area
+    return 0;
     return ((p.x - 10) * (p.x - 10) + (p.y - 10) * (p.y - 10) <= 100) &&
            ((p.x - 20) * (p.x - 20) + (p.y - 20) * (p.y - 20) <= 100);
 }
 
-int Task() {
+int main() {
+    // write main code here
     int i = I;
     int j = J;
     int l = L;
@@ -43,9 +46,11 @@ int Task() {
         i = Mod((p.x + p.y), 30) / (Mod(Abs(l), 5) + 1) + Mod((p.x + l), 30) / (Mod(Abs(l), 5) + 1);
         j = Mod(Max(k * p.x, (k + 1) * p.y), 25) - Abs(p.y - l) / 10;
         l = Abs(j - l) / 10 + Min((Mod((p.x + l), 20)), Mod(p.y * k, 20));
+        p.x = i;
+        p.y = j;
 
         if (CheckZone(p)) {
-            in_zone += 1;
+                        in_zone += 1;
         }
     }
     if (in_zone == 0) {
