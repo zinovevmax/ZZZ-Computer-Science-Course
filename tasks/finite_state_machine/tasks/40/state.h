@@ -6,14 +6,42 @@
 
 #include "shared_header.h"
 
-StateName NumCheck(StateMachine* sm) {
-    if (fscanf(sm->file, "%d", &sm->octal_number) == 1) {
-        return REVERSE;
+StateName Start(StateMachine* sm) {
+    if (sm->ch >= '0' && sm->ch <= '7') {
+        sm->octal_number = sm->ch - '0';
+        return VALUEFORMING;
+    } else if (sm->ch == EOF) {
+        return END;
+    } else {
+        return NUMCHECK;
     }
-    return END;
 }
 
-StateName Reverse(StateMachine* sm) {
+StateName NumCheck(StateMachine* sm) {
+    if (sm->ch >= '0' && sm->ch <= '7') {
+        sm->octal_number = sm->ch - '0';
+        return VALUEFORMING;
+    } else if (sm->ch == EOF) {
+        return END;
+    } else {
+        return NUMCHECK;
+    }
+}
+
+StateName ValueForming(StateMachine* sm) {
+    if (sm->ch == ' ' || sm->ch == '.') {
+        return CONVERT;
+    } else if (sm->ch >= '0' && sm->ch <= '7') {
+        sm->octal_number = sm->octal_number * 10 + (sm->ch - '0');
+        return VALUEFORMING;
+    } else if (sm->ch == EOF) {
+        return END;
+    } else {
+        return NUMCHECK;
+    }
+}
+
+StateName ConvertToBinary(StateMachine* sm) {
     int start_number = sm->octal_number;
     sm->reversed_number = 0;
     int division_remainder = 0;
@@ -22,10 +50,6 @@ StateName Reverse(StateMachine* sm) {
         sm->reversed_number = sm->reversed_number * 10 + division_remainder;
         start_number /= 10;
     }
-    return CONVERT;
-}
-
-StateName Convert(StateMachine* sm) {
     int value_power_of_ten = 1;
     printf("Octal number:%d \nBinary form of digits: ", sm->octal_number);
     while (sm->reversed_number >= value_power_of_ten) {
@@ -46,20 +70,12 @@ StateName Convert(StateMachine* sm) {
 
 State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * STATECOUNT);
-    int i = 0;
-
-    st[i].name = (StateName)i;
-    st[i].action = &NumCheck;
-    i++;
-
-    st[i].name = (StateName)i;
-    st[i].action = &Reverse;
-    i++;
-
-    st[i].name = (StateName)i;
-    st[i].action = &Convert;
-    i++;
-
+    StateName (*actions[STATECOUNT]) (StateMachine*) = 
+              {&Start, &NumCheck, &ValueForming, &ConvertToBinary};
+    for (int i = 0; i < STATECOUNT; ++i) {
+        st[i].name = (StateName)i;
+        st[i].action = actions[i];
+    }
     return st;
 }
 
