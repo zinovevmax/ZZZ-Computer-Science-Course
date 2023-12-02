@@ -91,7 +91,7 @@ int Task() {
 
     // указываю путь к файлу с заданной матрицей
     const char *file_path = "../tasks/matrix/tasks/25/matrix25.txt";
-    ReadMatrixFromFile(file_path, &n);
+    matrix = ReadMatrixFromFile(file_path, &n);
 
     // Создаем временный массив, в котором все значения false
     bool *temp_rows_to_remove = (bool *)calloc(n, sizeof(bool));
