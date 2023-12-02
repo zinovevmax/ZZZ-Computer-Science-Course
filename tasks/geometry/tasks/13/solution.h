@@ -33,7 +33,7 @@ int CheckZone(Point p) {
            ((p.x - 20) * (p.x - 20) + (p.y - 20) * (p.y - 20) <= 100);
 }
 
-int main() {
+int Task() {
     // write main code here
     int i = I;
     int j = J;
