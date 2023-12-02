@@ -6,9 +6,8 @@
 StateMachine* MakeStateMachine() {
     StateMachine* sm = (StateMachine*)malloc(sizeof(StateMachine));
     sm->pipeline = MakeStates();
-    sm->cur_state = FINDFIRSTSYMBOLCOMMENTS1;
-    sm->step = 0;
-    sm->count = 0;
+    sm->cur_state = FINDFIRSTSYMSTARTCOMM;
+    sm->count_words = 0;
     sm->lastsym = ' ';
     return sm;
 }
@@ -17,7 +16,7 @@ int Step(StateMachine* sm, char ch) {
     StateName next;
     next = sm->pipeline[(int)sm->cur_state].action(sm, ch);
     if (next == END) {
-        return 2;
+        return 1;
     }
     sm->cur_state = next;
     return 0;

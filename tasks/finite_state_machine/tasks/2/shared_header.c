@@ -5,10 +5,10 @@
 #include "stdlib.h"
 
 typedef enum {
-    FINDFIRSTSYMBOLCOMMENTS1 = 0,
-    FINDSECONDSYMBOLCOMMENTS1,
+    FINDFIRSTSYMSTARTCOMM = 0,
+    FINDSECONDSYMSTARTCOMM,
     COMMENTDETECTED,
-    FINDFIRSTSYMBOLCOMMENTS2,
+    FINDFIRSTSYMFINISHCOM,
     STATECOUNT,
     END
 } StateName;
@@ -18,12 +18,11 @@ typedef struct State State;
 typedef struct {
     State* pipeline;
     StateName cur_state;
-    int step;
-    int count;
+    int count_words;
     char lastsym;
 } StateMachine;
 
 typedef struct State {
     StateName name;
-    StateName (*action)(StateMachine*, char c);
+    StateName (*action)(StateMachine*, char ch);
 } State;

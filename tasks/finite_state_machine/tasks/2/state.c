@@ -3,38 +3,38 @@
 #include "shared_header.c"
 
 StateName FindFirstSymbolComments1(StateMachine* sm, char ch) {
-    printf("Programm started and finding symbol - / - this is start comment\n");
+    printf(" Programm started and finding symbol - / - this is start comment\n");
     if (ch == '/') {
-        ++sm->step;
         printf(" I am finding / symbol in start of comment\n");
-        return FINDSECONDSYMBOLCOMMENTS1;
+        return FINDSECONDSYMSTARTCOMM;
     }
-    return FINDFIRSTSYMBOLCOMMENTS1;
+    return FINDFIRSTSYMSTARTCOMM;
 }
 
 StateName FindSecondSymbolComments1(StateMachine* sm, char ch) {
     if (ch == '*') {
         printf(" I am finding * symbol in start of comment\n");
-        ++sm->step;
         return COMMENTDETECTED;
     } else {
         printf(" I dont find second symbol - * - because i go to first state\n");
-        --sm->step;
-        return FINDFIRSTSYMBOLCOMMENTS1;
+        return FINDFIRSTSYMSTARTCOMM;
     }
 }
 
-StateName FindCountWords(StateMachine* sm, char ch) {
+StateName CommentDetected(StateMachine* sm, char ch) {
     if (ch == '/' && sm->lastsym == '*') {
         printf("Last symbol was - * and now symbol - / - comment finished \n");
-        ++sm->count;
+        ++sm->count_words;
         return END;
     }
-    if (ch == ' ' && sm->lastsym != ' ') {
-        ++sm->count;
+    if (ch == '\n' && sm->lastsym != ' ') {
+        ++sm->count_words;
+    }
+    if (ch == ' ' && sm->lastsym != ' ' && sm->lastsym != '\n') {
+        ++sm->count_words;
     } else if (ch == '*') {
         printf("Find * and go to check future symbol\n");
-        return FINDFIRSTSYMBOLCOMMENTS2;
+        return FINDFIRSTSYMFINISHCOM;
     }
     sm->lastsym = ch;
     return COMMENTDETECTED;
@@ -43,14 +43,18 @@ StateName FindCountWords(StateMachine* sm, char ch) {
 StateName FindSecondSymbolComments2(StateMachine* sm, char ch) {
     if (ch == '/') {
         printf("Last symbol was - * and now symbol - / - comment finished \n");
+        if (sm->lastsym == '\n') {
+            //--sm->count;
+            return END;
+        }
         if (sm->lastsym != ' ') {
-            ++sm->count;
+            ++sm->count_words;
         }
         return END;
     } else {
         printf("Last symbol was - * - but now symbol is not - / - comment continue\n");
         if (ch == ' ') {
-            ++sm->count;
+            ++sm->count_words;
         }
         sm->lastsym = ch;
         return COMMENTDETECTED;
@@ -67,7 +71,7 @@ State* MakeStates() {
     st[i].action = &FindSecondSymbolComments1;
     ++i;
     st[i].name = (StateName)i;
-    st[i].action = &FindCountWords;
+    st[i].action = &CommentDetected;
     ++i;
     st[i].name = (StateName)i;
     st[i].action = &FindSecondSymbolComments2;

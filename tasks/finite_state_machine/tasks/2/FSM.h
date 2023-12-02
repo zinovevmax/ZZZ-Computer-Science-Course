@@ -1,5 +1,3 @@
-#pragma once
-
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -18,11 +16,11 @@ int Task() {
         }
         res = Step(sm, ch);
         if (res) {
-            printf("Finish\n");
+            printf("Finish \n");
             break;
         }
     }
-    printf("RESULT COUNT WORDS %d", sm->count);
+    printf("RESULT COUNT WORDS %d", sm->count_words);
     DeleteStateMachine(sm);
     return 0;
 }
