@@ -30,7 +30,7 @@ int Degree(int a, int b) {
     return a;
 }
 
-int Test() {
+int Task() {
     int64_t number = NUMBER;
     int32_t figurs = 0;
     int32_t step = 1;
