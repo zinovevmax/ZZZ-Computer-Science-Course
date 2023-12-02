@@ -81,7 +81,6 @@ int Task() {
 
     int owned_point_counter = 0;
     
-    
     for (int k = ONE; k <= ITERATION_COUNT; ++k) {
         i = Mod((Sign(p.x - k) * l - Sign(p.y - l) * p.x + Sign(p.x - l) * p.y - k), THIRTYFIVE);
         j = Max((p.x * Max(p.y, l)), THIRTY) + Mod((p.y * Min(p.x, l)), TWENTY) - k;
