@@ -7,7 +7,7 @@
 typedef int32_t** Matrix;
 
 Matrix CreateMatrix(int32_t height, int32_t width);
-int32_t* Matrix_Linearization(Matrix matrix, int32_t height, int32_t width);
+int32_t* MatrixLinearization(Matrix matrix, int32_t height, int32_t width);
 
 void MatrixInitialization(Matrix matrix);
 void FreeMatrix(Matrix matrix, int32_t height);
@@ -24,7 +24,7 @@ int Task() {
     printf("Just a regular 4 by 4 matrix:\n");
     PrintMatrix(matrix, height, width);
 
-    int32_t* linearized_matrix = Matrix_Linearization(matrix, height, width);
+    int32_t* linearized_matrix = MatrixLinearization(matrix, height, width);
 
     printf("Successfuly linearized matrix-chad:\n");
     PrintLinearizedMatrix(linearized_matrix, height * width);
@@ -68,7 +68,7 @@ void FreeMatrix(Matrix matrix, int32_t height) {
     free(matrix);
 }
 
-int32_t* Matrix_Linearization(Matrix matrix, int32_t height, int32_t width) {
+int32_t* MatrixLinearization(Matrix matrix, int32_t height, int32_t width) {
     int32_t* linearized_matrix = (int32_t*)malloc(sizeof(int32_t) * width * height);
     int32_t y_pos = 0;
     int32_t x_pos = width - 1;
