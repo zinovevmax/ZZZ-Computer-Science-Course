@@ -52,10 +52,10 @@ StateName ConvertToBinary(StateMachine* sm) {
     }
     int value_power_of_ten = 1;
     printf("Octal number:%d \nBinary form of digits: ", sm->octal_number);
+    int binary_number = 0;
+    int power_of_ten = 1;
     while (sm->reversed_number >= value_power_of_ten) {
         sm->digit = (sm->reversed_number / value_power_of_ten) % 10;
-        int binary_number = 0;
-        int power_of_ten = 1;
         while (sm->digit != 0) {
             binary_number += (sm->digit % 2) * power_of_ten;
             power_of_ten *= 10;
