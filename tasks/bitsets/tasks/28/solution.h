@@ -28,7 +28,7 @@ int Task() {
     // Цикл до ко конца строки
     while (c != '\n') {
         c = tolower(c);
-        // заполнение bitset
+        // Заполнение bitset
         if (isalpha(c)) {
             set = set | (1 << (c - 'a'));
         }
@@ -45,9 +45,9 @@ int Task() {
         counter++;
     }
     if (counter > 0) {
-        printf("Да, %d подходит", counter);
+        printf("Да, %d подходит.", counter);
     } else {
-        printf("Нет слов, состоящих только из гласных букв");
+        printf("Нет слов, состоящих только из гласных букв.");
     }
     return 0;
 }
