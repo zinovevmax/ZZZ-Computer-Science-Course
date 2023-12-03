@@ -5,7 +5,6 @@
 #include <stdio.h>
 
 typedef uint32_t Bitset;
-Bitset CONSONANTS = 0u;  // number of Bitset consonants
 
 // Getting Bitset of consonants
 Bitset ConsonantsAlphabet() {
@@ -29,6 +28,7 @@ int Task() {
     bool repeated_consonant = false;
     uint32_t space_counter = 0;
     Bitset consonants_before = 0;
+    Bitset CONSONANTS = 0u;
     char symbol = 0;
     CONSONANTS = ConsonantsAlphabet();
     while ((symbol = (char)getchar()) != EOF) {
