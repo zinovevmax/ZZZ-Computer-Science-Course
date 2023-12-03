@@ -13,63 +13,63 @@ StateName Start(StateMachine* sm) {
     printf("Finite State Machine has started its execution:\n\n");
     if (sm->ch == '-') {
         sm->num_is_neg = true;
-        return VALUEFORMING;
+        return CELSIUSVALUEFORMING;
     } else if (sm->ch >= '0' && sm->ch <= '9') {
         sm->num = sm->ch - '0';
-        return VALUEFORMING;
+        return CELSIUSVALUEFORMING;
     } else {
-        return CHARCHECK;
+        return SUITABLECHARSEARCH;
     }
 }
 
-StateName CharCheck(StateMachine* sm) {
+StateName SuitableCharSearch(StateMachine* sm) {
     if (sm->ch == '-') {
         sm->num_is_neg = true;
-        return VALUEFORMING;
+        return CELSIUSVALUEFORMING;
     } else if (sm->ch >= '0' && sm->ch <= '9') {
         sm->num = sm->ch - '0';
-        return VALUEFORMING;
+        return CELSIUSVALUEFORMING;
     } else if (sm->ch == EOF) {
         return END;
     } else {
-        return CHARCHECK;
+        return SUITABLECHARSEARCH;
     }
 }
 
-StateName ValueForming(StateMachine* sm) {
+StateName CelsiusValueForming(StateMachine* sm) {
     if (sm->ch == '*') {
-        return TOFAHRENHEIT;
+        return CONVERSIONTOFAHRENHEIT;
     } else if (sm->ch >= '0' && sm->ch <= '9') {
         sm->num = sm->num * 10 + (sm->ch - '0');
-        return VALUEFORMING;
+        return CELSIUSVALUEFORMING;
     } else if (sm->ch == EOF) {
         return END;
     } else {
         sm->num_is_neg = false;
         sm->num = 0;
-        return CHARCHECK;
+        return SUITABLECHARSEARCH;
     }
 }
 
-StateName ToFahrenheit(StateMachine* sm) {
+StateName ConversionToFahrenheit(StateMachine* sm) {
     if (sm->ch == 'C') {
         if (sm->num_is_neg) {
             sm->num *= -1;
         }
         printf("%dC = %gF\n", sm->num, CelsiusToFahrenheit(sm->num));
-        return CHARCHECK;
+        return SUITABLECHARSEARCH;
     } else if (sm->ch >= '0' && sm->ch <= '9') {
         sm->num = sm->ch - '0';
-        return VALUEFORMING;
+        return CELSIUSVALUEFORMING;
     } else if (sm->ch == '-') {
         sm->num_is_neg = true;
-        return VALUEFORMING;
+        return CELSIUSVALUEFORMING;
     } else if (sm->ch == EOF) {
         return END;
     } else {
         sm->num_is_neg = false;
         sm->num = 0;
-        return CHARCHECK;
+        return SUITABLECHARSEARCH;
     }
 }
 
@@ -79,9 +79,9 @@ State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * STATECOUNT);
     int i = -1;
     st[i] = State{(StateName)i++, &Start};
-    st[i] = State{(StateName)i++, &CharCheck};
-    st[i] = State{(StateName)i++, &ValueForming};
-    st[i] = State{(StateName)i++, &ToFahrenheit};
+    st[i] = State{(StateName)i++, &SuitableCharSearch};
+    st[i] = State{(StateName)i++, &CelsiusValueForming};
+    st[i] = State{(StateName)i++, &ConversionToFahrenheit};
     // Add initializations for states here
     return st;
 }

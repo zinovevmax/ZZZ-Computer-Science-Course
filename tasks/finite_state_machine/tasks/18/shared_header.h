@@ -6,9 +6,9 @@
 
 typedef enum {
     START = 0,
-    CHARCHECK,
-    VALUEFORMING,
-    TOFAHRENHEIT,
+    SUITABLECHARSEARCH,
+    CELSIUSVALUEFORMING,
+    CONVERSIONTOFAHRENHEIT,
     // Add new states here
     STATECOUNT,
     END
