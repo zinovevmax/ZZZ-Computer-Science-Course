@@ -46,7 +46,7 @@ StateName MakePR(StateMachine* sm) {
 
 StateName TryGetApprove(StateMachine* sm) {
     ++sm->step;
-    if ( (rand() % 100 ) % 2){
+    if ((rand() % 100) % 2) {
         return DEFEND;
     }
     printf("Looks like *****, go away!\n");
@@ -55,7 +55,7 @@ StateName TryGetApprove(StateMachine* sm) {
 
 StateName Defend(StateMachine* sm) {
     ++sm->step;
-    if ( (rand() % 10 ) % 2){
+    if ((rand() % 10) % 2) {
         return END;
     }
     printf("Go to defend...\n");
@@ -66,7 +66,7 @@ State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * (int)STATECOUNT);
     int i = -1;
     // Read: https://en.cppreference.com/w/c/language/struct_initialization
-    st[i] = State{(StateName)i++, &Start}; // Списки инициализации для структур. 
+    st[i] = State{(StateName)i++, &Start};  // Списки инициализации для структур.
     st[i] = State{(StateName)i++, &Code};
     st[i] = State{(StateName)i++, &Add};
     st[i] = State{(StateName)i++, &Commit};
@@ -76,7 +76,6 @@ State* MakeStates() {
     st[i] = State{(StateName)i++, &Defend};
     return st;
 }
-
 
 void DeleteStates(State* st) {
     free(st);

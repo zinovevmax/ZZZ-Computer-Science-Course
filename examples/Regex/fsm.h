@@ -1,13 +1,11 @@
 #pragma once
 
 #include "shared_header.h"
-
 #include "state.h"
-
 
 StateMachine* MakeStateMachine() {
     StateMachine* sm = (StateMachine*)malloc(sizeof(StateMachine));
-    sm->pipeline = MakeStates(); // Каждая структура должна умеет конструироваться и уничтожаться.
+    sm->pipeline = MakeStates();  // Каждая структура должна умеет конструироваться и уничтожаться.
     sm->cur_state = START;
     sm->step = 0;
     sm->is_pr_exists = false;
@@ -16,7 +14,8 @@ StateMachine* MakeStateMachine() {
 
 int Step(StateMachine* sm) {
     StateName next;
-    next = sm->pipeline[(int)sm->cur_state].action(sm); // Выполнить функцию текущего состояния и получить следующее состояние
+    next = sm->pipeline[(int)sm->cur_state].action(
+        sm);  // Выполнить функцию текущего состояния и получить следующее состояние
     if (next == END) {
         return 1;
     }

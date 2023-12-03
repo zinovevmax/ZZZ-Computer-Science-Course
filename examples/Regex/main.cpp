@@ -1,8 +1,7 @@
-#include <stdio.h>
 #include <stdbool.h>
- 
-#include "fsm.h"
+#include <stdio.h>
 
+#include "fsm.h"
 
 int main(void) {
     StateMachine* sm = MakeStateMachine();
