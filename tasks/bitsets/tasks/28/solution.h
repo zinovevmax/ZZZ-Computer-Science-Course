@@ -16,30 +16,28 @@ bool VowelWord(Bitset num, Bitset a, Bitset b) {
 }
 
 int Task() {
-    // Объявление переменной и ввод
-    char c = ' ';
-    c = getchar();
+    // Вводим последовательность слов
+    char input[] = "aye kjgafdj oiie oooooo kfdjgoi";
+    int i = 0;
     Bitset vowels = (1 << ('e' - 'a')) + (1 << ('y' - 'a')) + (1 << ('u' - 'a')) + (1 << ('i' - 'a')) +
                     (1 << ('o' - 'a')) + (1 << ('a' - 'a')) + (1 << ('j' - 'a'));
     Bitset consonants = ~vowels;
     Bitset set = 0;
+
     // Счётчик слов
     uint16_t counter = 0;
-    // Цикл до ко конца строки
-    while (c != '\n') {
-        c = tolower(c);
-        // Заполнение bitset
-        if (isalpha(c)) {
-            set = set | (1 << (c - 'a'));
-        }
-        // Проверка слова
-        else if (c == ' ') {
+    char letter = ' ';
+    while (input[i] != '\0') {
+        letter = input[i];
+        if (letter >= 'a' && letter <= 'z') {
+            set = set | (1 << (letter - 'a'));
+        } else {
             if (VowelWord(set, vowels, consonants)) {
                 counter++;
             }
             set = 0;
         }
-        c = getchar();
+        ++i;
     }
     if (VowelWord(set, vowels, consonants)) {
         counter++;
