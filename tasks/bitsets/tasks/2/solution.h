@@ -33,8 +33,8 @@ int Task() {
     Bitset consonants_before = 0;
     char symbol = 0;
     consonants = ConsonantsAlphabet();
-    while ((symbol = (char)getchar()) != '\n') {
-        if ((symbol == ' ') || (symbol == '\n')) {
+    while ((symbol = (char)getchar()) != EOF) {
+        if ((symbol == ' ') || (symbol == EOF)) {
             if ((repeated_consonant == false) && (space_counter == 0)) {
                 printf("there is at least one word with non-repeating consonants");
                 return 0;
