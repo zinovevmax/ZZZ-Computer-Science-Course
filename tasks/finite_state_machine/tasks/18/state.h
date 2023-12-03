@@ -77,26 +77,12 @@ StateName ToFahrenheit(StateMachine* sm) {
 
 State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * STATECOUNT);
-    int i = 0;
-
-    st[i].name = (StateName)i;
-    st[i].action = &Start;
-    i++;
-
-    st[i].name = (StateName)i;
-    st[i].action = &CharCheck;
-    i++;
-
-    st[i].name = (StateName)i;
-    st[i].action = &ValueForming;
-    i++;
-
-    st[i].name = (StateName)i;
-    st[i].action = &ToFahrenheit;
-    i++;
-
+    int i = -1;
+    st[i] = State{(StateName)i++, &Start};
+    st[i] = State{(StateName)i++, &CharCheck};
+    st[i] = State{(StateName)i++, &ValueForming};
+    st[i] = State{(StateName)i++, &ToFahrenheit};
     // Add initializations for states here
-
     return st;
 }
 
