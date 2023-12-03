@@ -10,7 +10,7 @@ int main(void) {
     char c;
     int res;
     while ((c = getchar()) != EOF) {
-        res = Step(sm, c);
+        res = Step(sm);
         if (res) {
             printf("Finish\n");
             break;

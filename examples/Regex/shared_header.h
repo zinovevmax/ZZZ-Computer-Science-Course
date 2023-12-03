@@ -16,7 +16,7 @@ typedef enum {
     END // Означает состояние, когда можно завершать программу
 } StateName; 
 
-struct State;
+typedef struct State State;
 
 typedef struct {
     State* pipeline; // Массив состояний
