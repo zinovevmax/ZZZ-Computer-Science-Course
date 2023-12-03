@@ -12,8 +12,8 @@ int32_t* Matrix_Linearization(Matrix matrix, int32_t height, int32_t width);
 void MatrixInitialization(Matrix matrix);
 void FreeMatrix(Matrix matrix, int32_t height);
 
-void Print_Matrix(const Matrix matrix, int32_t height, int32_t width);
-void Print_Linearized_Matrix(const int32_t* linearized_matrix, size_t size);
+void PrintMatrix(const Matrix matrix, int32_t height, int32_t width);
+void PrintLinearizedMatrix(const int32_t* linearized_matrix, size_t size);
 
 int Task() {
     int32_t height = 4;
@@ -22,12 +22,12 @@ int Task() {
     Matrix matrix = CreateMatrix(height, width);
     MatrixInitialization(matrix);
     printf("Just a regular 4 by 4 matrix:\n");
-    Print_Matrix(matrix, height, width);
+    PrintMatrix(matrix, height, width);
 
     int32_t* linearized_matrix = Matrix_Linearization(matrix, height, width);
 
     printf("Successfuly linearized matrix-chad:\n");
-    Print_Linearized_Matrix(linearized_matrix, height * width);
+    PrintLinearizedMatrix(linearized_matrix, height * width);
 
     free(linearized_matrix);
     FreeMatrix(matrix, height);
@@ -96,7 +96,7 @@ int32_t* Matrix_Linearization(Matrix matrix, int32_t height, int32_t width) {
     return linearized_matrix;
 }
 
-void Print_Matrix(const Matrix matrix, int32_t height, int32_t width) {
+void PrintMatrix(const Matrix matrix, int32_t height, int32_t width) {
     for (int32_t i = 0; i < height; ++i) {
         for (int32_t j = 0; j < width; ++j) {
             printf("%d ", matrix[i][j]);
@@ -105,7 +105,7 @@ void Print_Matrix(const Matrix matrix, int32_t height, int32_t width) {
     }
 }
 
-void Print_Linearized_Matrix(const int32_t* linearized_matrix, size_t size) {
+void PrintLinearizedMatrix(const int32_t* linearized_matrix, size_t size) {
     for (size_t i = 0; i < size; ++i) {
         printf("%d ", linearized_matrix[i]);
     }
