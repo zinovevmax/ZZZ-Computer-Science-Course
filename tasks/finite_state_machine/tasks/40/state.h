@@ -56,6 +56,8 @@ StateName ConvertToBinary(StateMachine* sm) {
     int power_of_ten = 1;
     while (sm->reversed_number >= value_power_of_ten) {
         sm->digit = (sm->reversed_number / value_power_of_ten) % 10;
+        binary_number = 0;
+        power_of_ten = 1;
         while (sm->digit != 0) {
             binary_number += (sm->digit % 2) * power_of_ten;
             power_of_ten *= 10;
