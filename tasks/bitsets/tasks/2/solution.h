@@ -8,16 +8,18 @@ typedef uint32_t Bitset;
 
 // Getting Bitset of consonants
 Bitset ConsonantsAlphabet() {
-    char text[] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
-    uint32_t Set = 0;
-    for (int i = 0; i < strlen(text); ++i) {
-        Set = Set | (1u << (text[i] - 'a'));
+    uint32_t consonants_amount = 21;
+    char text[] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n',
+                   'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
+    uint32_t set = 0;
+    for (uint32_t i = 0; i < consonants_amount; i++) {
+        set = set | (1u << (text[i] - 'a'));
     }
-    return Set
+    return set;
 }
 
-bool IsConsonant(char symbol) {
-    return (CONSONANTS == (CONSONANTS | (1u << (symbol - 'a'))));
+bool IsConsonant(char symbol, Bitset consonants) {
+    return (consonants == (consonants | (1u << (symbol - 'a'))));
 }
 
 bool IsBeenBefore(char symbol, Bitset consonants_before) {
@@ -27,11 +29,11 @@ bool IsBeenBefore(char symbol, Bitset consonants_before) {
 int Task() {
     bool repeated_consonant = false;
     uint32_t space_counter = 0;
+    Bitset consonants = 0u;
     Bitset consonants_before = 0;
-    Bitset CONSONANTS = 0u;
     char symbol = 0;
-    CONSONANTS = ConsonantsAlphabet();
-    while ((symbol = (char)getchar()) != EOF) {
+    consonants = ConsonantsAlphabet();
+    while ((symbol = (char)getchar()) != '\n') {
         if ((symbol == ' ') || (symbol == '\n')) {
             if ((repeated_consonant == false) && (space_counter == 0)) {
                 printf("there is at least one word with non-repeating consonants");
@@ -43,7 +45,7 @@ int Task() {
             continue;
         }
         space_counter = 0;
-        if (IsConsonant(symbol)) {
+        if (IsConsonant(symbol, consonants)) {
             if (IsBeenBefore(symbol, consonants_before) == false) {
                 consonants_before = (consonants_before ^ (1u << (symbol - 'a')));
             } else {
@@ -52,9 +54,9 @@ int Task() {
         }
     }
     if (repeated_consonant == 0) {
-        printf("there is at least one word with non-repeating consonants");
+        printf("there is at least one word with non-repeating consonants\n");
         return 0;
     }
-    printf("no word with non-repeating consonants");
+    printf("no word with non-repeating consonants\n");
     return 0;
 }
