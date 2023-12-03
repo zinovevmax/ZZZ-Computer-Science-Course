@@ -3,7 +3,7 @@
 ### Memory
 - [Registers Intel x86-64](https://wiki.osdev.org/CPU_Registers_x86-64#Pointer_Registers)
 - [Latency Numbers Every Programmer Should Know](https://gist.github.com/jboner/2841832)
-- [Calling Conversion](https://aaronbloomfield.github.io/pdr/book/x86-64bit-ccc-chapter.pdf)
+- [Calling Convention](https://aaronbloomfield.github.io/pdr/book/x86-64bit-ccc-chapter.pdf)
 - [Virtual Memory](https://cs4118.github.io/www/2023-1/lect/20-virt-mem.html)
 - [TLB cache](https://cs4118.github.io/www/2023-1/lect/19-TLB.html)
 - [Page Table](https://cs4118.github.io/www/2023-1/lect/18-x86-paging.html)
