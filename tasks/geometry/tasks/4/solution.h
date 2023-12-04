@@ -98,7 +98,7 @@ int CheckZone(Point p) {
 
 int Task() {
     int is_inside = 0;
-    int flag = 1;
+    int is_not_inside = 1;
     int i, j;
     int l = L0;
     Point p = {I0, J0};
@@ -111,12 +111,12 @@ int Task() {
         is_inside = CheckZone(p);
         if (is_inside) {
             printf("The point fell into the specified area at x = %d, y = %d, l = %d, iteration = %d\n", p.x, p.y, l, is_inside, k);
-            flag = 0;
+            is_not_inside = 0;
         } else {
             printf("iteration = %i, x = %i, y = %i, l = %i, result = %i\n", k, p.x, p.y, l, is_inside);
         }
     }
-    if (flag) {
+    if (is_not_inside) {
         printf("The point did not hit the area in 50 iterations");
     }
     return 0;
