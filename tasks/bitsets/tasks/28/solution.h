@@ -1,6 +1,5 @@
 #pragma once
 
-#include <ctype.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -8,7 +7,7 @@
 typedef uint32_t Bitset;
 
 // Проверка на присутствие буквы в слове
-bool VowelWord(Bitset num, Bitset a, Bitset b) {
+bool WordContainsOnlyVowels(Bitset num, Bitset a, Bitset b) {
     if ((num & a) > 0 && (num & b) == 0) {
         return true;
     }
@@ -20,7 +19,7 @@ int Task() {
     char input[] = "aye kjgafdj oiie oooooo kfdjgoi";
     int i = 0;
     Bitset vowels = (1 << ('e' - 'a')) + (1 << ('y' - 'a')) + (1 << ('u' - 'a')) + (1 << ('i' - 'a')) +
-                    (1 << ('o' - 'a')) + (1 << ('a' - 'a')) + (1 << ('j' - 'a'));
+                    (1 << ('o' - 'a')) + (1 << ('a' - 'a'));
     Bitset consonants = ~vowels;
     Bitset set = 0;
 
@@ -32,14 +31,14 @@ int Task() {
         if (letter >= 'a' && letter <= 'z') {
             set = set | (1 << (letter - 'a'));
         } else {
-            if (VowelWord(set, vowels, consonants)) {
+            if (WordContainsOnlyVowels(set, vowels, consonants)) {
                 counter++;
             }
             set = 0;
         }
         ++i;
     }
-    if (VowelWord(set, vowels, consonants)) {
+    if (WordContainsOnlyVowels(set, vowels, consonants)) {
         counter++;
     }
     if (counter > 0) {
