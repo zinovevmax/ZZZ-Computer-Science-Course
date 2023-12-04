@@ -13,7 +13,7 @@ StateName Read(StateMachine* sm) {
     sm->c = (char)fgetc(sm->in_file);
     if (sm->c == EOF) {
         return END;
-    } else if (isalpha(sm-> c)) {
+    } else if (isalpha(sm->c)) {
         ++sm->char_counter;
         return ENCODE;
     } else {
