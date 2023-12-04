@@ -35,8 +35,8 @@ int Task() {
     TableTitleOutput();
 
     for (long double x = a; x <= b; x += step) {
-        long double sum_of_taylor_series = 0;  // сумма ряда Тейлора
-        int iterations_count = 0;              // счетчик итераций для цикла
+        long double sum_of_taylor_series = 0;  // Сумма ряда Тейлора
+        int iterations_count = 0;              // Счетчик итераций для цикла
         // вычисление суммы ряда Тейлора
         for (int iter = 0; iter < 100; ++iter) {
             long double current_term = powl(-1, iter) * powl(x, 2 * iter + 1) / powl(9, iter + 1);
