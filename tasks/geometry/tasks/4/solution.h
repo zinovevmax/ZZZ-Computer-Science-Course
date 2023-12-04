@@ -13,13 +13,13 @@ const int radius_of_outer = 10;
 const int I0 = 26;
 const int J0 = 8;
 const int L0 = -3;
-const int max_iterations = 50;
+const int Max_iterations = 50;
 const int one = 1;
 const int ten = 10;
 const int twenty = 20;
 const int thirty = 30;
 
-double root(double num) {
+double Root(double num) {
     if (num == 0) {
         double x1 = 0;
         return x1;
@@ -42,7 +42,7 @@ double root(double num) {
     }
 }
 
-int sign(int num) {
+int Sign(int num) {
     if (num > 0) {
         return 1;
     } else if (num < 0){
@@ -52,7 +52,7 @@ int sign(int num) {
     }
 } 
 
-int max(int first, int second, int third){
+int Max(int first, int second, int third){
     if (first > second) {
         if (first > third) {
             return first;
@@ -68,7 +68,7 @@ int max(int first, int second, int third){
     } 
 }
 
-int min(int first, int second){
+int Min(int first, int second){
     if (first < second) {
         return first;
     } else {
@@ -76,11 +76,11 @@ int min(int first, int second){
         } 
 }
 
-int mod(int num, int del){
+int Mod(int num, int del){
     return (num % del + del) % del;
 }
 
-int ABS(int num){
+int Abs(int num){
     if (num > 0) {
         return num;
     } else {
@@ -89,10 +89,10 @@ int ABS(int num){
 }
 
 int CheckZone(Point p) {
-    int projection_on_x = ABS(p.x - Center.x);
-    int projection_on_y = ABS(p.y - Center.y);
+    int projection_on_x = Abs(p.x - Center.x);
+    int projection_on_y = Abs(p.y - Center.y);
     int square_of_distance = projection_on_x * projection_on_x + projection_on_y * projection_on_y;
-    double distance = root(square_of_distance);
+    double distance = Root(square_of_distance);
     return (distance <= radius_of_outer && distance >= radius_of_inner);
 }
 
@@ -102,10 +102,10 @@ int Task() {
     int i, j;
     int l = L0;
     Point p = {I0, J0};
-    for (int k = 1; k <= max_iterations; ++k) {
-        i = mod((min(p.x + p.y, p.x + l) * (k + one)), thirty);
-        j = p.y + mod(l * sign(p.y), twenty) + mod(k * sign(p.x), ten);
-        l = mod(max(p.x * p.y, p.x * l, p.y * l), thirty);
+    for (int k = 1; k <= Max_iterations; ++k) {
+        i = Mod((Min(p.x + p.y, p.x + l) * (k + one)), thirty);
+        j = p.y + Mod(l * Sign(p.y), twenty) + Mod(k * Sign(p.x), ten);
+        l = Mod(Max(p.x * p.y, p.x * l, p.y * l), thirty);
         p.x = i;
         p.y = j;
         is_inside = CheckZone(p);
