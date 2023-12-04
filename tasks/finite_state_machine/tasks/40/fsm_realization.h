@@ -10,7 +10,7 @@
 StateMachine* MakeStateMachine() {
     StateMachine* sm = (StateMachine*)malloc(sizeof(StateMachine));
     sm->pipeline = MakeStates();
-    sm->cur_state = START;
+    sm->cur_state = NUMCHECK;
     sm->octal_number = 0;
     sm->digit = 0;
     sm->reversed_number = 0;
