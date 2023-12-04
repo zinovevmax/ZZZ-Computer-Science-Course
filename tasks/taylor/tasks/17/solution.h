@@ -42,7 +42,8 @@ long double TailorResult(long double x, uint16_t iterations, uint8_t precision, 
 
 void PrintTable(long double x, long double tayl_res, long double func_res, uint8_t num_tayl_it) {
     static int it = 0;
-    printf("iter = %d  x = %.3Lf Tailor = %.12Lf Func = %.12Lf\n NumTaylorIt - %u", it, x, tayl_res, func_res, num_tayl_it);
+    printf("iter = %d  x = %.3Lf Tailor = %.12Lf Func = %.12Lf\n NumTaylorIt - %u", it, x, tayl_res, func_res,
+           num_tayl_it);
     ++it;
 }
 
