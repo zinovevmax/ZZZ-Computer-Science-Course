@@ -50,7 +50,7 @@ int Min(int first, int second) {
         return first;
     } else {
         return second;
-        } 
+    } 
 }
 
 int Mod(int num, int del) {
@@ -69,7 +69,8 @@ int CheckZone(Point p) {
     int projection_on_x = Abs(p.x - Center.x);
     int projection_on_y = Abs(p.y - Center.y);
     int square_of_distance = projection_on_x * projection_on_x + projection_on_y * projection_on_y;
-    return (square_of_distance <= radius_of_outer * radius_of_outer && square_of_distance >= radius_of_inner * radius_of_inner);
+    return (square_of_distance <= radius_of_outer * radius_of_outer &&
+            square_of_distance >= radius_of_inner * radius_of_inner);
 }
 
 int Task() {
@@ -87,7 +88,7 @@ int Task() {
         is_inside = CheckZone(p);
         if (is_inside) {
             printf("The point fell into the specified area at x = %d, y = %d, l = %d, iteration = %d\n", p.x, p.y, l,
-+                   k);
+                   k);
             is_not_inside = 0;
         } else {
             printf("iteration = %i, x = %i, y = %i, l = %i, result = %i\n", k, p.x, p.y, l, is_inside);
