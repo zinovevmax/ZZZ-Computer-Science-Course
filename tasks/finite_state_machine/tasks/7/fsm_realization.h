@@ -3,7 +3,7 @@
 #include "shared_header.h"
 #include "state.h"
 
-StateMachine* MakeStateMachine(char* in_file_name, char* out_file_name, int32_t shift) {
+StateMachine* MakeStateMachine(const char* in_file_name, const char* out_file_name, int32_t shift) {
     StateMachine* sm = (StateMachine*)malloc(sizeof(StateMachine));
     sm->pipeline = MakeStates();
     sm->cur_state = START;
