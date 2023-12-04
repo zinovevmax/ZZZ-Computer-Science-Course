@@ -47,7 +47,7 @@ void PrintTable(long double x, long double tayl_res, long double func_res, uint8
     ++it;
 }
 
-int main() {
+int Task() {
     uint8_t precision = 40;
     uint8_t num_taylor_it = 0;
     uint8_t n = 10;
