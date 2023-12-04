@@ -40,10 +40,10 @@ long double TailorResult(long double x, uint16_t iterations, uint8_t precision, 
     return result;
 }
 
-void PrintTable(long double x, long double tailor_result, long double func_result, uint8_t num_taylor_it) {
-    static int iter = 0;
-    printf("iter = %d  x = %.3Lf Tailor = %.12Lf Func = %.12Lf\n NumTaylorIt - %u", iter, x, tailor_result, func_result, num_taylor_it);
-    ++iter;
+void PrintTable(long double x, long double tayl_res, long double func_res, uint8_t num_tayl_it) {
+    static int it = 0;
+    printf("iter = %d  x = %.3Lf Tailor = %.12Lf Func = %.12Lf\n NumTaylorIt - %u", it, x, tayl_res, func_res, num_tayl_it);
+    ++it;
 }
 
 int main() {
