@@ -19,29 +19,6 @@ const int ten = 10;
 const int twenty = 20;
 const int thirty = 30;
 
-double Root(double num) {
-    if (num == 0) {
-        double x1 = 0;
-        return x1;
-    } else {
-        double x0 = num / 2.0;
-        double epsilon = 0.000001;
-        while (1) {
-            double x1 = 0.5 * (x0 + (num / x0));
-            if (x1 - x0 > 0) {
-                if (x1 - x0 < epsilon) {
-                    return x1;
-                }
-            } else {
-                if (-(x1 - x0) < epsilon) {
-                    return x1; 
-                }
-            }
-            x0 = x1;
-        }
-    }
-}
-
 int Sign(int num) {
     if (num > 0) {
         return 1;
@@ -92,8 +69,7 @@ int CheckZone(Point p) {
     int projection_on_x = Abs(p.x - Center.x);
     int projection_on_y = Abs(p.y - Center.y);
     int square_of_distance = projection_on_x * projection_on_x + projection_on_y * projection_on_y;
-    double distance = Root(square_of_distance);
-    return (distance <= radius_of_outer && distance >= radius_of_inner);
+    return (square_of_distance <= radius_of_outer * radius_of_outer && square_of_distance >= radius_of_inner * radius_of_inner);
 }
 
 int Task() {
@@ -110,7 +86,7 @@ int Task() {
         p.y = j;
         is_inside = CheckZone(p);
         if (is_inside) {
-            printf("The point fell into the specified area at x = %d, y = %d, l = %d, iteration = %d\n", p.x, p.y, l, is_inside, k);
+            printf("The point fell into the specified area at x = %d, y = %d, l = %d, iteration = %d\n", p.x, p.y, l, k);
             is_not_inside = 0;
         } else {
             printf("iteration = %i, x = %i, y = %i, l = %i, result = %i\n", k, p.x, p.y, l, is_inside);
