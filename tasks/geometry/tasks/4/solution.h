@@ -22,14 +22,14 @@ const int thirty = 30;
 int Sign(int num) {
     if (num > 0) {
         return 1;
-    } else if (num < 0){
+    } else if (num < 0) {
         return -1;
     } else {
         return 0;
     }
 } 
 
-int Max(int first, int second, int third){
+int Max(int first, int second, int third) {
     if (first > second) {
         if (first > third) {
             return first;
@@ -45,7 +45,7 @@ int Max(int first, int second, int third){
     } 
 }
 
-int Min(int first, int second){
+int Min(int first, int second) {
     if (first < second) {
         return first;
     } else {
@@ -53,11 +53,11 @@ int Min(int first, int second){
         } 
 }
 
-int Mod(int num, int del){
+int Mod(int num, int del) {
     return (num % del + del) % del;
 }
 
-int Abs(int num){
+int Abs(int num) {
     if (num > 0) {
         return num;
     } else {
@@ -86,7 +86,8 @@ int Task() {
         p.y = j;
         is_inside = CheckZone(p);
         if (is_inside) {
-            printf("The point fell into the specified area at x = %d, y = %d, l = %d, iteration = %d\n", p.x, p.y, l, k);
+            printf("The point fell into the specified area at x = %d, y = %d, l = %d, iteration = %d\n", p.x, p.y, l,
++                   k);
             is_not_inside = 0;
         } else {
             printf("iteration = %i, x = %i, y = %i, l = %i, result = %i\n", k, p.x, p.y, l, is_inside);
