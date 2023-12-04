@@ -17,8 +17,7 @@ StateMachine* MakeStateMachine(char* in_file_name, char* out_file_name, int32_t 
 }
 
 int Step(StateMachine* sm) {
-    StateName next;
-    next = sm->pipeline[(int)sm->cur_state].action(sm);
+    StateName next = sm->pipeline[(int)sm->cur_state].action(sm);
     if (next == END) {
         return 1;
     }
