@@ -7,17 +7,17 @@ typedef struct {
     int y;
 } Point;
 
-const Point Center = {10, 10};
-const int radius_of_inner = 5;
-const int radius_of_outer = 10;
+const Point CENTER = {10, 10};
+const int RADIUS_OF_INNER = 5;
+const int RADIUS_OF_OUTER = 10;
 const int I0 = 26;
 const int J0 = 8;
 const int L0 = -3;
-const int Max_iterations = 50;
-const int one = 1;
-const int ten = 10;
-const int twenty = 20;
-const int thirty = 30;
+const int MAX_ITERATIONS = 50;
+const int ONE = 1;
+const int TEN = 10;
+const int TWENTY = 20;
+const int THIRTY = 30;
 
 int Sign(int num) {
     if (num > 0) {
@@ -27,7 +27,7 @@ int Sign(int num) {
     } else {
         return 0;
     }
-} 
+}
 
 int Max(int first, int second, int third) {
     if (first > second) {
@@ -42,7 +42,7 @@ int Max(int first, int second, int third) {
         } else {
             return third;
         }
-    } 
+    }
 }
 
 int Min(int first, int second) {
@@ -50,7 +50,7 @@ int Min(int first, int second) {
         return first;
     } else {
         return second;
-    } 
+    }
 }
 
 int Mod(int num, int del) {
@@ -65,27 +65,28 @@ int Abs(int num) {
     }
 }
 
-int CheckZone(Point p) {
-    int projection_on_x = Abs(p.x - Center.x);
-    int projection_on_y = Abs(p.y - Center.y);
+int CheckZONE(Point p) {
+    int projection_on_x = Abs(p.x - CENTER.x);
+    int projection_on_y = Abs(p.y - CENTER.y);
     int square_of_distance = projection_on_x * projection_on_x + projection_on_y * projection_on_y;
-    return (square_of_distance <= radius_of_outer * radius_of_outer &&
-            square_of_distance >= radius_of_inner * radius_of_inner);
+    return (square_of_distance <= RADIUS_OF_OUTER * RADIUS_OF_OUTER &&
+            square_of_distance >= RADIUS_OF_INNER * RADIUS_OF_INNER);
 }
 
 int Task() {
     int is_inside = 0;
     int is_not_inside = 1;
-    int i, j;
+    int i = 0;
+    int j = 0;
     int l = L0;
     Point p = {I0, J0};
-    for (int k = 1; k <= Max_iterations; ++k) {
-        i = Mod((Min(p.x + p.y, p.x + l) * (k + one)), thirty);
-        j = p.y + Mod(l * Sign(p.y), twenty) + Mod(k * Sign(p.x), ten);
-        l = Mod(Max(p.x * p.y, p.x * l, p.y * l), thirty);
+    for (int k = 1; k <= MAX_ITERATIONS; ++k) {
+        i = Mod((Min(p.x + p.y, p.x + l) * (k + ONE)), THIRTY);
+        j = p.y + Mod(l * Sign(p.y), TWENTY) + Mod(k * Sign(p.x), TEN);
+        l = Mod(Max(p.x * p.y, p.x * l, p.y * l), THIRTY);
         p.x = i;
         p.y = j;
-        is_inside = CheckZone(p);
+        is_inside = CheckZONE(p);
         if (is_inside) {
             printf("The point fell into the specified area at x = %d, y = %d, l = %d, iteration = %d\n", p.x, p.y, l,
                    k);
