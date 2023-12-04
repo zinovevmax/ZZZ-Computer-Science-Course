@@ -6,7 +6,7 @@
 
 StateName Start(StateMachine* sm) {
     sm->char_counter = 0;
-    sm->c = '';
+    sm->c = ' ';
     return READ;
 }
 
