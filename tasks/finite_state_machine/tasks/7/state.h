@@ -5,7 +5,8 @@
 #include "shared_header.h"
 
 StateName Start(StateMachine* sm) {
-    // А что тут писать то?
+    sm->char_counter = 0;
+    sm->c = '';
     return READ;
 }
 
