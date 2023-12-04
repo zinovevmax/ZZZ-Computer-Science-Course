@@ -6,15 +6,16 @@
 
 #include "shared_header.h"
 
-StateName Start(StateMachine* sm) {
-    if (sm->ch >= '0' && sm->ch <= '7') {
-        sm->octal_number = sm->ch - '0';
-        return VALUEFORMING;
-    } else if (sm->ch == EOF) {
-        return END;
-    } else {
-        return NUMCHECK;
+int Reverse(int number_to_reverse) {
+    int start_number = number_to_reverse;
+    int reversed_number = 0;
+    int division_remainder = 0;
+    while (start_number != 0) {
+        division_remainder = start_number % 10;
+        reversed_number = reversed_number * 10 + division_remainder;
+        start_number /= 10;
     }
+    return reversed_number;
 }
 
 StateName NumCheck(StateMachine* sm) {
@@ -43,21 +44,13 @@ StateName ValueForming(StateMachine* sm) {
 
 StateName ConvertToBinary(StateMachine* sm) {
     int start_number = sm->octal_number;
-    sm->reversed_number = 0;
-    int division_remainder = 0;
-    while (start_number != 0) {
-        division_remainder = start_number % 10;
-        sm->reversed_number = sm->reversed_number * 10 + division_remainder;
-        start_number /= 10;
-    }
+    sm->reversed_number = Reverse(start_number);
     int value_power_of_ten = 1;
     printf("Octal number:%d \nBinary form of digits: ", sm->octal_number);
-    int binary_number = 0;
-    int power_of_ten = 1;
     while (sm->reversed_number >= value_power_of_ten) {
         sm->digit = (sm->reversed_number / value_power_of_ten) % 10;
-        binary_number = 0;
-        power_of_ten = 1;
+        int binary_number = 0;
+        int power_of_ten = 1;
         while (sm->digit != 0) {
             binary_number += (sm->digit % 2) * power_of_ten;
             power_of_ten *= 10;
@@ -72,7 +65,7 @@ StateName ConvertToBinary(StateMachine* sm) {
 
 State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * STATECOUNT);
-    StateName (*actions[STATECOUNT])(StateMachine*) = {&Start, &NumCheck, &ValueForming, &ConvertToBinary};
+    StateName (*actions[STATECOUNT])(StateMachine*) = {&NumCheck, &ValueForming, &ConvertToBinary};
     for (int i = 0; i < STATECOUNT; ++i) {
         st[i].name = (StateName)i;
         st[i].action = actions[i];
