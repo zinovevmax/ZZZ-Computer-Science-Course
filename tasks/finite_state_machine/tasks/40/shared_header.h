@@ -21,4 +21,3 @@ typedef struct State {
     StateName name;
     StateName (*action)(StateMachine*);
 } State;
-
