@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef enum { START = 0, NUMCHECK, VALUEFORMING, CONVERT, STATECOUNT, END } StateName;
+typedef enum { NUMCHECK = 0, VALUEFORMING, CONVERT, STATECOUNT, END } StateName;
 
 typedef struct State State;
 
@@ -21,3 +21,4 @@ typedef struct State {
     StateName name;
     StateName (*action)(StateMachine*);
 } State;
+
