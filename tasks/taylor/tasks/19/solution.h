@@ -5,8 +5,6 @@
 #include <stdint.h>
 #include <stdio.h>
 
-const int32_t FIFTY_TWO = 52;
-
 double Func(double x) {
     // write your function here
     double function = cosh(x);
