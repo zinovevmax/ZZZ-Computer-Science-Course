@@ -1,8 +1,7 @@
-#include <stdio.h>
 #include <stdbool.h>
- 
-#include "fsm.h"
+#include <stdio.h>
 
+#include "fsm.h"
 
 int main(void) {
     StateMachine* sm = MakeStateMachine();
@@ -10,7 +9,7 @@ int main(void) {
     char c;
     int res;
     while ((c = getchar()) != EOF) {
-        res = Step(sm, c);
+        res = Step(sm);
         if (res) {
             printf("Finish\n");
             break;
