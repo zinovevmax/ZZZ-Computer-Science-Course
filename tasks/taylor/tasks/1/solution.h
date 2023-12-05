@@ -29,7 +29,7 @@ int Task() {
     int32_t n = 10;                                  // Задаем значение по умолчанию для n
     int32_t k = 50;                                  // Задаем значение по умолчанию для k
     const long double precision = LDBL_EPSILON * k;  // Точность вычислений
-    const long double step = (b - a) / (double)n;
+    const long double step = (b - a) / n;
     // scanf("%d %d", &n, &k);
 
     TableTitleOutput();
@@ -38,14 +38,12 @@ int Task() {
         long double sum_of_taylor_series = 0;  // Сумма ряда Тейлора
         int iterations_count = 0;              // Счетчик итераций для цикла
         // вычисление суммы ряда Тейлора
-        for (int iter = 0; iter < 100; ++iter) {
-            long double current_term = powl(-1, iter) * powl(x, 2 * iter + 1) / powl(9, iter + 1);
+        while (fabsl(sum_of_taylor_series - Func(x)) >= precision) {
+            long double current_term =
+                powl(-1, iterations_count) * powl(x, 2 * iterations_count + 1) / powl(9, iterations_count + 1);
             sum_of_taylor_series += current_term;
             ++iterations_count;
             // Если дошли до заданной точности
-            if (fabsl(sum_of_taylor_series - Func(x)) < precision) {
-                break;
-            }
         }
 
         LineOutput(x, sum_of_taylor_series, iterations_count);
