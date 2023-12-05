@@ -40,7 +40,7 @@ int Task() {
         int32_t iteration_num = 0;
         long double extension = LDBL_MAX;
         while (fabsl(extension) >= precision) {
-            iteration_num += 1;
+            ++iteration_num;
             factorial *= iteration_num;
             extension = powl(x_value, 2 * iteration_num) / factorial;
             sum_teylor += extension;
