@@ -46,7 +46,7 @@ int Task() {
             factorial = factorial * count_iterations;
             if (count_iterations % 2 != 0) {
                 extension = pow(x, count_iterations) / factorial;
-                row_of_taylor = row_of_taylor + extension; 
+                row_of_taylor = row_of_taylor + extension;
             }
         }
         LineOutput(x, row_of_taylor, count_iterations);
