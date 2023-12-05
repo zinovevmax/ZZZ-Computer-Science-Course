@@ -111,8 +111,8 @@ void FreeMemory(Matrix matrix, int32_t* linearized_matrix, int32_t n) {
 int Task() {
     int32_t n = 4;  // for example
     int32_t m = 4;  // for example
-    int32_t* linearized_matrix = nullptr;
-    Matrix matrix = nullptr;
+    int32_t* linearized_matrix = NULL;
+    Matrix matrix = NULL;
     // For check
     // scanf("%i%i", &n, &m);
     matrix = CreateMatrix(n, m);
