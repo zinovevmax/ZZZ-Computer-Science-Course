@@ -15,13 +15,13 @@ double SecondEquation(double x) {
 }
 
 // Функция для выполнения итерационного процесса с критерием остановки
-double EquationSolve(double (*EquationFunc)(double), double initial_approximation, const int max_iterations) {
+double EquationSolve(double (*equation_func)(double), double initial_approximation, const int max_iterations) {
     double x = initial_approximation;  // Начальное приближение
     double prev_x = 0.0;  // Переменная для хранения предыдущего значения x
 
     for (int iteration = 0; iteration < max_iterations; iteration++) {
-        prev_x = x;           // Сохраняем текущее значение x
-        x = EquationFunc(x);  // Обновляем значение x
+        prev_x = x;            // Сохраняем текущее значение x
+        x = equation_func(x);  // Обновляем значение x
 
         if (fabs(x - prev_x) < DBL_EPSILON)  // Проверяем, меньше ли разница между итерациями DBL_EPSILON
         {
