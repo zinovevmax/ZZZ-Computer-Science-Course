@@ -26,11 +26,11 @@ double Taylor(double x, int32_t iterations, double taylor_row_sum) {
 void PrintComparison(double current_x, int32_t precision, int32_t iterations) {
     double taylor_row_sum = 0.0;
     double func_value = 0.0;
+    func_value = Func(current_x);
 
     while (iterations <= 10) {  // 10 так как используется функция факториала, а переменная в функции Taylor удваивается
 
         taylor_row_sum = Taylor(current_x, iterations, taylor_row_sum);
-        func_value = Func(current_x);
 
         if (fabs(taylor_row_sum - func_value) < DBL_EPSILON * precision) {
             printf(" %.2lf  |  %.15lf   |  %.15lf  |         %d        |\n", current_x, taylor_row_sum, func_value,
