@@ -7,13 +7,12 @@
 #include "shared_header.h"
 
 int Reverse(int number_to_reverse) {
-    int start_number = number_to_reverse;
     int reversed_number = 0;
     int division_remainder = 0;
-    while (start_number != 0) {
-        division_remainder = start_number % 10;
+    while (number_to_reverse != 0) {
+        division_remainder = number_to_reverse % 10;
         reversed_number = reversed_number * 10 + division_remainder;
-        start_number /= 10;
+        number_to_reverse /= 10;
     }
     return reversed_number;
 }
