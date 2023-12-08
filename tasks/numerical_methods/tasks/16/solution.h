@@ -7,22 +7,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-bool ContinueIter(double x0, double x1) {
+bool IsIterAvailible(double x0, double x1) {
     return fabs((x1 - x0) / (1.0 - ((x1 - x0) / (x1 - x0)))) > DBL_EPSILON;
 }
 
 // block SimplyIteration functions
 
-double FuncForSimplyIterations(double x0) {
+double IterationsMethodHelper(double x0) {
     return (3.8 - 3 * sin(sqrt(x0))) / 0.35;
 }
 
-double SimplyIterations(double a, double b) {
+double IterationsMethod(double a, double b) {
     double x0 = (a + b) / 2.0;
-    double x1 = FuncForSimplyIterations(x0);
-    while (ContinueIter(x0, x1)) {
+    double x1 = IterationsMethodHelper(x0);
+    while (IsIterAvailible(x0, x1)) {
         x0 = x1;
-        x1 = FuncForSimplyIterations(x0);
+        x1 = IterationsMethodHelper(x0);
     }
     return x1;
 }
@@ -40,7 +40,7 @@ double DerivativeFunc(double x) {
 double NewtonMethod(double a, double b) {
     double x0 = (a + b) / 2.0;
     double x1 = x0 - Func(x0) / DerivativeFunc(x0);
-    while (ContinueIter(x0, x1)) {
+    while (IsIterAvailible(x0, x1)) {
         x0 = x1;
         x1 = x0 - Func(x0) / DerivativeFunc(x0);
     }
@@ -50,7 +50,7 @@ int Task() {
     // block for first method - simply operations
     const double a1 = 2.0;
     const double b1 = 3.0;
-    printf("%.4f \n", SimplyIterations(a1, b1));
+    printf("%.4f \n", IterationsMethod(a1, b1));
     // block for second method - newton
     const double a2 = 0.0;
     const double b2 = 2.0;
