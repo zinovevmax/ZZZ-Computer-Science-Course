@@ -34,11 +34,13 @@ int Task() {
     long double step = (b - a) / (double)(n - 1);
     long double precision = LDBL_EPSILON * k;
     long double x_value = a;
+    int32_t iteration_num = 0;
+    long double extension = LDBL_MAX;
     for (int i = 0; i < n; ++i) {
         factorial = 1.0;
         sum_teylor = 1.0;
-        int32_t iteration_num = 0;
-        long double extension = LDBL_MAX;
+        iteration_num = 0;
+        extension = LDBL_MAX;
         while (fabsl(extension) >= precision) {
             ++iteration_num;
             factorial *= iteration_num;
