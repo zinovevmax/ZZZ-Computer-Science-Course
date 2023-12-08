@@ -20,7 +20,7 @@ void TableTitleOutput() {
 
 // Вывод строки таблицы
 void LineOutput(long double x, long double row_of_taylor, int count_iterations) {
-    printf("| %.7Lf | %.15Lf | %.15Lf | %.9d |\n", x, row_of_taylor, Func(x), count_iterations);
+    printf("| %.7Lf | %.15Lf | %.15Lf |     %.2d    |\n", x, row_of_taylor, Func(x), count_iterations);
     printf("-----------------------------------------------------------------\n");
 }
 
