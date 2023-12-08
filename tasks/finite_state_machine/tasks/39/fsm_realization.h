@@ -17,6 +17,7 @@ void Step(StateMachine* sm, char c) {
     sm->current_char = c;
     StateName next = sm->pipeline[sm->cur_state].action(sm);
     sm->cur_state = next;
+    sm->last_char = sm->current_char;
 }
 
 void DeleteStateMachine(StateMachine* sm) {

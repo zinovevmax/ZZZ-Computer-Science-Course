@@ -22,7 +22,7 @@ StateName Prefix(StateMachine* sm) {
     if (sm->current_char == 'x' || sm->current_char == 'X') {
         return CHECKSIGN;
     } else {
-        return FIND;
+        return Find(sm);
     }
 }
 
@@ -32,7 +32,7 @@ StateName CheckSign(StateMachine* sm) {
         ++sm->length_count;
         return CHECKCORRECT;
     } else {
-        return FIND;
+        return Find(sm);
     }
 }
 
@@ -46,11 +46,16 @@ StateName CheckCorrect(StateMachine* sm) {
     // Иначе если это было HEX числом, увеличиваем счётчик подошедших чисел.
     if (sm->length_count == HEX_LENGTH) {
         ++sm->numbers_count;
+        sm->length_count = 0;
+        return FIND;
     }
 
-    // потом обнуляем счётчик длины проверяемого слова и снова ищем новое число
+    // Иначе просто обнуляем счётчик длины проверяемого слова и снова ищем новое число
     sm->length_count = 0;
-    return FIND;
+    if (sm->last_char == '0') {
+        return Prefix(sm);
+    }
+    return Find(sm);
 }
 
 State* MakeStates() {

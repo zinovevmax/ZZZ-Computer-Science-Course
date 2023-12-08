@@ -20,6 +20,7 @@ typedef struct {
     size_t length_count;
     size_t numbers_count;
     char current_char;
+    char last_char;
 } StateMachine;
 
 typedef struct State {
