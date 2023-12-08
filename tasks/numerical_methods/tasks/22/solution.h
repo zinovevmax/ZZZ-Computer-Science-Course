@@ -26,7 +26,7 @@ double Func2(double x) {
 double NewtonMethod(double x0, double x1, double (*func)(double)) {
     double xn0 = (x0 + x1) / 2.0;
     double xn1 = xn0 - func(xn0) / CalculatingDerivatie(xn0);
-    while (fabs((xn1 - xn0) / (1.0 - ((xn1 - xn0) / (xn1 - xn0)))) > DBL_EPSILON) {
+    while (fabs((xn1 - xn0) / (1.0 - ((xn1 - xn0) / (xn1 - xn0)))) >= DBL_EPSILON) {
         xn0 = xn1;
         xn1 = xn0 - func(xn0) / CalculatingDerivatie(xn0);
     }
