@@ -13,37 +13,45 @@ uint32_t Factorial(uint32_t n) {
     return fact;
 }
 
-long double Func(long double x) {
-    long double y = sin(x) * sin(x);
+double Func(double x) {
+    double y = sin(x) * sin(x);
     return y;
 }
 
-long double FirstFactor(uint32_t iteration) {
-    return pow(-1.0, (long double)(iteration - 1));
+double FirstFactor(uint32_t iteration) {
+    if (iteration % 2 == 0) {
+        return -1.0;
+    } else {
+        return 1.0;
+    }
 }
 
-long double Numerator(uint32_t iteration, long double x) {
-    return (pow(2.0, (long double)(2u * iteration - 1u))) * pow(x, (long double)(2u * iteration));
+double Numerator(uint32_t iteration, double x) {
+    return (pow(2.0, (double)(2u * iteration - 1u))) * pow(x, (double)(2u * iteration));
 }
 
-long double Denumerator(uint32_t iteration) {
+double Denumerator(uint32_t iteration) {
     return (double)Factorial(2u * iteration);
 }
 
-long double Taylor(long double x, uint32_t iterations, long double y_func) {
-    long double y = 0;
+double Taylor(double x, uint32_t iterations, double y_func) {
+    double y = 0;
     iterations = 0u;
-    long double rate = 0.0000001;
-    printf("Lf epsilon = %.25Lf\n", LDBL_EPSILON);
-    printf("lf epsilon = %.25lf\n", DBL_EPSILON);
-    printf("f epsilon  = %.25f\n", FLT_EPSILON);
-    printf("set rate   = %.25Lf\n", rate);
+    // double rate = 0.00000001;
+    // printf("Lf epsilon = %.50f\n", EPSILON);
+    printf("Lf epsilon = %.50Lf\n", LDBL_EPSILON);
+    printf("lf epsilon = %.50lf\n", DBL_EPSILON);
+    printf("f epsilon  = %.50f\n", FLT_EPSILON);
+    // printf("set rate   = %.25lf\n", rate);
     for (uint32_t iteration = 1u; iteration < 100; ++iteration) {
         ++iterations;
         y += FirstFactor(iteration) * Numerator(iteration, x) / Denumerator(iteration);
-        printf("difference:  %.25Lf     ", abs(y_func - y));
-        printf("taylor = %Lf     sin = %Lf\n", y, y_func);
-        if (abs(y_func - y) < rate) {
+        printf("difference:  %.25lf     ", abs(y_func - y));
+        printf("taylor = %lf     sin = %lf\n", y, y_func);
+        if (abs(y_func - y) < DBL_EPSILON) {
+            break;
+        }
+        if (abs(y) > 100.0) {
             break;
         }
     }
@@ -53,11 +61,11 @@ long double Taylor(long double x, uint32_t iterations, long double y_func) {
 
 int Task() {
     uint32_t iterations = 0u;
-    long double x = 1;
-    long double y_func = Func(x);
-    long double y_taylor = Taylor(x, iterations, y_func);
-    printf("Sin(x)^2:            %.25Lf\n", y_func);
-    printf("Значение по тейлору: %.25Lf\n", y_taylor);
-    printf("Количество итераций: %u\n", iterations);
+    double x = 0.5;
+    double y_func = Func(x);
+    double y_taylor = Taylor(x, iterations, y_func);
+    printf("Sin(x)^2:            %.25lf\n", y_func);
+    printf("Значение по тейлору: %.25lf\n", y_taylor);
+    // printf("Количество итераций: %u\n", iterations);
     return 0;
 }
