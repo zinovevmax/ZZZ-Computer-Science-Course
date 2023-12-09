@@ -38,7 +38,7 @@ int Task() {
 
     for (long double x = a; x <= b; x += step) {
         sum_of_taylor_series = 0;
-        iterations_count = 0;        
+        iterations_count = 0;
         // вычисление суммы ряда Тейлора
         while (fabsl(sum_of_taylor_series - Func(x)) >= precision) {
             long double current_term =
