@@ -7,46 +7,6 @@
 
 typedef int32_t** Matrix;
 
-Matrix CreateMatrix(int32_t size);
-Matrix CopyMatrix(const Matrix matrix, int32_t size);
-int32_t ReadMatrixFromFile(const char* file_name, Matrix matrix, int32_t size);
-
-void PrintMatrix(const Matrix matrix, int32_t size);
-void FreeMatrix(Matrix matrix, int32_t size);
-
-int32_t MaxElemOfMatrix(const Matrix matrix, int32_t size);
-int32_t MinElemOfRow(const int32_t* row, int32_t size);
-
-bool IsRowContainsElem(const int32_t* row, int32_t size, int32_t elem);
-bool AreTwoRowsEqual(const int32_t* f_row, const int32_t* s_row, int32_t size);
-int32_t* FindRowContainsElem(const Matrix matrix, int32_t size, int32_t elem, int32_t* exception);
-void ReplaceRow(int32_t* row_to_replace, const int32_t* replacement_row, int32_t size);
-
-void ReplaceMatrixRows(Matrix original, Matrix copy, int32_t size);
-
-int Task() {
-    int32_t size_of_matrix = 4;
-    const char* file_path = "../tasks/matrix/tasks/29/matrix.txt";
-
-    Matrix matrix = CreateMatrix(size_of_matrix);
-    if (ReadMatrixFromFile(file_path, matrix, size_of_matrix) != 0) {
-        printf("Default matrix:\n");
-        PrintMatrix(matrix, size_of_matrix);
-    } else {
-        FreeMatrix(matrix, size_of_matrix);
-        exit(EXIT_FAILURE);
-    }
-
-    Matrix new_matrix = CopyMatrix(matrix, size_of_matrix);
-    ReplaceMatrixRows(matrix, new_matrix, size_of_matrix);
-    printf("Updated matrix:\n");
-    PrintMatrix(new_matrix, size_of_matrix);
-
-    FreeMatrix(new_matrix, size_of_matrix);
-    FreeMatrix(matrix, size_of_matrix);
-    return 0;
-}
-
 Matrix CreateMatrix(int32_t size) {
     Matrix matrix = (Matrix)malloc(size * sizeof(int32_t*));
     for (int32_t i = 0; i < size; ++i) {
@@ -110,13 +70,13 @@ int32_t MaxElemOfMatrix(const Matrix matrix, int32_t size) {
 }
 
 int32_t MinElemOfRow(const int32_t* row, int32_t size) {
-    int32_t max_elem = INT32_MAX;
+    int32_t minElem = INT32_MAX;
     for (int32_t i = 0; i < size; ++i) {
-        if (row[i] < max_elem) {
-            max_elem = row[i];
+        if (row[i] < minElem) {
+            minElem = row[i];
         }
     }
-    return max_elem;
+    return minElem;
 }
 
 bool IsRowContainsElem(const int32_t* row, int32_t size, int32_t elem) {
@@ -156,8 +116,8 @@ void ReplaceMatrixRows(Matrix original, Matrix copy, int32_t size) {
     int32_t max_elem = MaxElemOfMatrix(original, size);
     for (int32_t i = 0; i < size; ++i) {
         if (IsRowContainsElem(copy[i], size, max_elem)) {
-            int32_t max_elem = MinElemOfRow(copy[i], size);
-            int32_t* replacement_row = FindRowContainsElem(original, size, max_elem, copy[i]);
+            int32_t minElem = MinElemOfRow(copy[i], size);
+            int32_t* replacement_row = FindRowContainsElem(original, size, minElem, copy[i]);
             if (replacement_row != NULL) {
                 ReplaceRow(copy[i], replacement_row, size);
             } else {
@@ -165,4 +125,27 @@ void ReplaceMatrixRows(Matrix original, Matrix copy, int32_t size) {
             }
         }
     }
+}
+
+int Task() {
+    int32_t size_of_matrix = 4;
+    const char* file_path = "../tasks/matrix/tasks/29/matrix.txt";
+
+    Matrix matrix = CreateMatrix(size_of_matrix);
+    if (ReadMatrixFromFile(file_path, matrix, size_of_matrix) != 0) {
+        printf("Default matrix:\n");
+        PrintMatrix(matrix, size_of_matrix);
+    } else {
+        FreeMatrix(matrix, size_of_matrix);
+        exit(EXIT_FAILURE);
+    }
+
+    Matrix new_matrix = CopyMatrix(matrix, size_of_matrix);
+    ReplaceMatrixRows(matrix, new_matrix, size_of_matrix);
+    printf("Updated matrix:\n");
+    PrintMatrix(new_matrix, size_of_matrix);
+
+    FreeMatrix(new_matrix, size_of_matrix);
+    FreeMatrix(matrix, size_of_matrix);
+    return 0;
 }
