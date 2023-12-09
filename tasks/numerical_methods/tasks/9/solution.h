@@ -8,7 +8,7 @@
 const double ROOT_1 = 2.0267;
 const double ROOT_2 = 0.6533;
 
-double FuncSimpleIterations(double x) {
+double FuncIterations(double x) {
     return x * x - log(1 + x) - 3;
 }
 
@@ -16,13 +16,13 @@ double FuncNewton(double x) {
     return 2 * x * sin(x) - cos(x);
 }
 
-double SimpleIterations(double x_0, double (*func_simple_iterations)(double x)) {
-    double x_n = func_simple_iterations(x_0);
-    double x_n_plus_1 = func_simple_iterations(x_n);
-    while (fabs((x_n_plus_1 - x_n) / (1 - (x_n_plus_1 - x_n) / (x_n - x_0))) > DBL_EPSILON) {
+double IterationsMethod(double x_0, double (*func_iterations)(double x)) {
+    double x_n = func_iterations(x_0);
+    double x_n_plus_1 = func_iterations(x_n);
+    while (fabs((x_n_plus_1 - x_n) / (1 - (x_n_plus_1 - x_n) / (x_n - x_0))) >= DBL_EPSILON) {
         x_0 = x_n;
         x_n = x_n_plus_1;
-        x_n_plus_1 = func_simple_iterations(x_n);
+        x_n_plus_1 = func_iterations(x_n_plus_1);
     }
     return x_n;
 }
@@ -31,10 +31,11 @@ double DerivativeNewton(double x) {
     return 2 * x * cos(x) + 3 * sin(x);
 }
 
-double Newton(double x_0, double (*func_newton)(double x)) {
+
+double NewtonMethod(double x_0, double (*func_newton)(double x)) {
     double x_n = x_0 - (func_newton(x_0) / DerivativeNewton(x_0));
     double x_n_plus_1 = x_n - (func_newton(x_n) / DerivativeNewton(x_n));
-    while (fabs((x_n_plus_1 - x_n) / (1 - (x_n_plus_1 - x_n) / (x_n - x_0))) > DBL_EPSILON) {
+    while (fabs((x_n_plus_1 - x_n) / (1 - (x_n_plus_1 - x_n) / (x_n - x_0))) >= DBL_EPSILON) {
         x_0 = x_n;
         x_n = x_n_plus_1;
         x_n_plus_1 = x_n - (func_newton(x_n) / DerivativeNewton(x_n));
@@ -52,9 +53,9 @@ int Task() {
     double ending_1 = 3;
     double beginning_2 = 0.4;
     double ending_2 = 1;
-    double x1 = SimpleIterations((beginning_1 + ending_1) / 2, FuncSimpleIterations);
+    double x1 = IterationsMethod((ending_1 + beginning_1) / 2, FuncIterations);
     PrintAnswer(x1, ROOT_1);
-    double x2 = Newton((beginning_2 + ending_2) / 2, FuncNewton);
+    double x2 = NewtonMethod((ending_2 + beginning_2) / 2, FuncNewton);
     PrintAnswer(x2, ROOT_2);
     return 0;
 }
