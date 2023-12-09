@@ -64,7 +64,7 @@ const int SEMI_MINOR_AXIS = 5;
 
 typedef struct {
     int x;
-    int y;
+    unsigned long int y;
 } Point;
 
 int CheckZone(Point p) {
