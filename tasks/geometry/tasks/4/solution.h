@@ -20,13 +20,7 @@ const int TWENTY = 20;
 const int THIRTY = 30;
 
 int Sign(int num) {
-    if (num > 0) {
-        return 1;
-    } else if (num < 0) {
-        return -1;
-    } else {
-        return 0;
-    }
+    num > 0 ? 1 : num < 0 ? -1 : 0;
 }
 
 int Max(int first, int second, int third) {
