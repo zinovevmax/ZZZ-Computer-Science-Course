@@ -11,39 +11,34 @@ double Func(double x) {
     return function;
 }
 
-int64_t Factorial(int32_t x) {
-    if (x == 0) {
-        return 1;
-    }
-    return x * Factorial(x - 1);
-}
-
-double Taylor(double x, int32_t iterations, double taylor_row_sum) {
-    taylor_row_sum += pow(x, iterations * 2) / (double)Factorial(iterations * 2);
+double Taylor(double x, int32_t iterations, double taylor_row_sum, uint64_t factorial) {
+    taylor_row_sum += pow(x, iterations * 2) / (double)factorial;
     return taylor_row_sum;
 }
 
 void PrintComparison(double current_x, int32_t precision, int32_t iterations) {
     double taylor_row_sum = 0.0;
     double func_value = 0.0;
+    uint64_t factorial = 1;
+    int32_t factorial_multiplyer = 2;
     func_value = Func(current_x);
 
-    while (iterations <= 10) {  // 10 так как используется функция факториала, а переменная в функции Taylor удваивается
-
-        taylor_row_sum = Taylor(current_x, iterations, taylor_row_sum);
-
+    while (iterations <= 100) {
+        taylor_row_sum = Taylor(current_x, iterations, taylor_row_sum, factorial);
         if (fabs(taylor_row_sum - func_value) < DBL_EPSILON * precision) {
             printf(" %.2lf  |  %.15lf   |  %.15lf  |         %d        |\n", current_x, taylor_row_sum, func_value,
                    iterations);
             break;
         }
+        factorial *= factorial_multiplyer * (factorial_multiplyer - 1);
+        factorial_multiplyer += 2;
         ++iterations;
     }
 }
 
 void PrintAnswer(double lower_edge, double upper_edge, int32_t number_of_divisions, int32_t precision) {
-    printf("=====================================================================\n");
-    printf("   x   |       Taylor       |       cosh        |      iteration    |\n");
+    printf("========================================================================\n");
+    printf("   x   |        Taylor        |        cosh         |     iteration    |\n");
 
     int32_t iterations = 0;
     double current_x = lower_edge;
@@ -68,7 +63,7 @@ int Task() {
     fscanf(file, "%lf", &upper_edge);
     fscanf(file, "%d", &precision);
     fclose(file);
-    printf("%lf %lf %d %d\n", lower_edge, upper_edge, number_of_divisions, precision);
+    // printf("%lf %lf %d %d\n", lower_edge, upper_edge, number_of_divisions, precision);
     PrintAnswer(lower_edge, upper_edge, number_of_divisions, precision);
     return 0;
 }
