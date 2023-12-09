@@ -22,14 +22,14 @@ z1,-,m,zmp2
 z1,m,>,z1
 z1,0,n,z1
 z1,n,>,z1
+z1, ,>,z1n
 z1,1,=,zz
 z1,2,=,zz
 
-#Если одни нули
-z1, ,>,zz1
-zz1, ,0,zz2
-zz2,0,<,zz2
-zz2, ,<,zz
+z1n,-,0,z1n
+z1n, ,0,z1n
+z1n,0,<,z1nn
+z1nn, ,<,v1
 
 zmp2,m,>,zmp2
 zmp2,0,>,zmp2
