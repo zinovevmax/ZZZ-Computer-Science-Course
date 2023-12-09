@@ -30,19 +30,7 @@ int Sign(int num) {
 }
 
 int Max(int first, int second, int third) {
-    if (first > second) {
-        if (first > third) {
-            return first;
-        } else {
-            return third;
-        }
-    } else {
-        if (second > third) {
-            return second;
-        } else {
-            return third;
-        }
-    }
+    return first > second ? first > third ? first : third : second > third ? second : third;
 }
 
 int Min(int first, int second) {
