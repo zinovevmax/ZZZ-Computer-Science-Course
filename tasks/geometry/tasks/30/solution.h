@@ -82,7 +82,7 @@ int Task() {
     for (int k = ONE; k <= ITERATION_COUNT; ++k) {
         i = Mod((Sign(p.x - k) * l - Sign(p.y - l) * p.x + Sign(p.x - l) * p.y - k), THIRTYFIVE);
         j = Max((p.x * Max(p.y, l)), THIRTY) + Mod((p.y * Min(p.x, l)), TWENTY) - k;
-        l = Mod(((p.x + k) * (p.y - k) * (l + k)), TWENTYFIVE); 
+        l = Mod(((p.x + k) * (p.y - k) * (l + k)), TWENTYFIVE);
         p.x = i;
         p.y = j;
         printf("k = %d, x = %d, y = %d, l = %d belong %d \n", k, p.x, p.y, l, Check_Zone(p));
