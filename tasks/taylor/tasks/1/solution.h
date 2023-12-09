@@ -31,12 +31,14 @@ int Task() {
     const long double precision = LDBL_EPSILON * k;  // Точность вычислений
     const long double step = (b - a) / n;
     // scanf("%d %d", &n, &k);
+    long double sum_of_taylor_series = 0;  // Сумма ряда Тейлора
+    int iterations_count = 0;              // Счетчик итераций для цикла
 
     TableTitleOutput();
 
     for (long double x = a; x <= b; x += step) {
-        long double sum_of_taylor_series = 0;  // Сумма ряда Тейлора
-        int iterations_count = 0;              // Счетчик итераций для цикла
+        sum_of_taylor_series = 0;
+        iterations_count = 0;        
         // вычисление суммы ряда Тейлора
         while (fabsl(sum_of_taylor_series - Func(x)) >= precision) {
             long double current_term =
