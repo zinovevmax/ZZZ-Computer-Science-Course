@@ -86,7 +86,7 @@ int Task() {
         l = Mod(Max(p.x * p.y, p.x * l, p.y * l), THIRTY);
         p.x = i;
         p.y = j;
-        is_inside = CheckZONE(p);
+        is_inside = CheckZone(p);
         if (is_inside) {
             printf("The point fell into the specified area at x = %d, y = %d, l = %d, iteration = %d\n", p.x, p.y, l,
                    k);
