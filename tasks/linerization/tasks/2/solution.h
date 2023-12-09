@@ -6,34 +6,6 @@
 
 typedef int32_t** Matrix;
 
-Matrix CreateMatrix(int32_t height, int32_t width);
-int32_t* MatrixLinearization(Matrix matrix, int32_t height, int32_t width);
-
-void MatrixInitialization(Matrix matrix);
-void FreeMatrix(Matrix matrix, int32_t height);
-
-void PrintMatrix(const Matrix matrix, int32_t height, int32_t width);
-void PrintLinearizedMatrix(const int32_t* linearized_matrix, size_t size);
-
-int Task() {
-    int32_t height = 4;
-    int32_t width = 4;
-
-    Matrix matrix = CreateMatrix(height, width);
-    MatrixInitialization(matrix);
-    printf("Just a regular 4 by 4 matrix:\n");
-    PrintMatrix(matrix, height, width);
-
-    int32_t* linearized_matrix = MatrixLinearization(matrix, height, width);
-
-    printf("Successfuly linearized matrix-chad:\n");
-    PrintLinearizedMatrix(linearized_matrix, height * width);
-
-    free(linearized_matrix);
-    FreeMatrix(matrix, height);
-    return 0;
-}
-
 Matrix CreateMatrix(int32_t height, int32_t width) {
     Matrix matrix = (Matrix)malloc(sizeof(int32_t*) * height);
     for (int32_t i = 0; i < height; ++i) {
@@ -68,6 +40,14 @@ void FreeMatrix(Matrix matrix, int32_t height) {
     free(matrix);
 }
 
+bool CanMoveRightDown(int32_t height, int32_t width, int32_t temp_x, int32_t temp_y) {
+    return ((temp_x <= width - 1) || (temp_y <= height - 1));
+}
+
+bool TouchesMatrixBounds(int32_t height, int32_t width, int32_t temp_x, int32_t temp_y) {
+    return (temp_x == width || temp_y == height);
+}
+
 int32_t* MatrixLinearization(Matrix matrix, int32_t height, int32_t width) {
     int32_t* linearized_matrix = (int32_t*)malloc(sizeof(int32_t) * width * height);
     int32_t y_pos = 0;
@@ -78,12 +58,12 @@ int32_t* MatrixLinearization(Matrix matrix, int32_t height, int32_t width) {
     while (item_counter < height * width) {
         temp_y = y_pos;
         temp_x = x_pos;
-        while ((temp_x <= width - 1) || (temp_y <= height - 1)) {
+        while (CanMoveRightDown(height, width, temp_x, temp_y)) {
             linearized_matrix[item_counter] = matrix[temp_y][temp_x];
             ++temp_y;
             ++temp_x;
             ++item_counter;
-            if (temp_x == width || temp_y == height) {
+            if (TouchesMatrixBounds(height, width, temp_x, temp_y)) {
                 if (x_pos != 0) {
                     --x_pos;
                 } else {
@@ -109,4 +89,23 @@ void PrintLinearizedMatrix(const int32_t* linearized_matrix, size_t size) {
     for (size_t i = 0; i < size; ++i) {
         printf("%d ", linearized_matrix[i]);
     }
+}
+
+int Task() {
+    int32_t height = 4;
+    int32_t width = 4;
+
+    Matrix matrix = CreateMatrix(height, width);
+    MatrixInitialization(matrix);
+    printf("Just a regular 4 by 4 matrix:\n");
+    PrintMatrix(matrix, height, width);
+
+    int32_t* linearized_matrix = MatrixLinearization(matrix, height, width);
+
+    printf("Successfuly linearized matrix:\n");
+    PrintLinearizedMatrix(linearized_matrix, height * width);
+
+    free(linearized_matrix);
+    FreeMatrix(matrix, height);
+    return 0;
 }
