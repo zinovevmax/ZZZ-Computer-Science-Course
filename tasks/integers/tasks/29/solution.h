@@ -25,6 +25,6 @@ int ConvertFromDecimalToOctal(int input_number) {
 int Task() {
     uint64_t input_number = 3456748945;  // input number here
     uint64_t result = ConvertFromDecimalToOctal(input_number);
-    printf("The result: %u\n", result);
+    printf("The result: %lu\n", result);
     return 0;
 }
