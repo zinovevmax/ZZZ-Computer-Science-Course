@@ -65,7 +65,7 @@ int Abs(int num) {
     }
 }
 
-int CheckZONE(Point p) {
+int CheckZone(Point p) {
     int projection_on_x = Abs(p.x - CENTER.x);
     int projection_on_y = Abs(p.y - CENTER.y);
     int square_of_distance = projection_on_x * projection_on_x + projection_on_y * projection_on_y;
