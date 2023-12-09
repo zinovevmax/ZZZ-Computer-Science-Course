@@ -44,7 +44,7 @@ int Abs(int x) {
     }
 }
 
-int Square_degree(int a) {
+int SquareDegree(int a) {
     return a * a;
 }
 
@@ -67,8 +67,8 @@ typedef struct {
     int y;
 } Point;
 
-int Check_Zone(Point p) {
-    return ((p.x - X_0) / Square_degree(SEMI_MAJOR_AXIS)) + ((p.y - Y_0) / Square_degree(SEMI_MINOR_AXIS)) == ONE;
+int CheckZone(Point p) {
+    return ((p.x - X_0) / SquareDegree(SEMI_MAJOR_AXIS)) + ((p.y - Y_0) / SquareDegree(SEMI_MINOR_AXIS)) == ONE;
 }
 
 int Task() {
@@ -85,8 +85,8 @@ int Task() {
         l = Mod(((p.x + k) * (p.y - k) * (l + k)), TWENTYFIVE);
         p.x = i;
         p.y = j;
-        printf("k = %d, x = %d, y = %d, l = %d belong %d \n", k, p.x, p.y, l, Check_Zone(p));
-        if (Check_Zone(p)) {
+        printf("k = %d, x = %d, y = %d, l = %d belong %d \n", k, p.x, p.y, l, CheckZone(p));
+        if (CheckZone(p)) {
             owned_point_counter++;
         }
     }
