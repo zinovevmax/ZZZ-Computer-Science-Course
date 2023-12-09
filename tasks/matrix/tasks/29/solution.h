@@ -70,13 +70,13 @@ int32_t MaxElemOfMatrix(const Matrix matrix, int32_t size) {
 }
 
 int32_t MinElemOfRow(const int32_t* row, int32_t size) {
-    int32_t minElem = INT32_MAX;
+    int32_t min_elem = INT32_MAX;
     for (int32_t i = 0; i < size; ++i) {
-        if (row[i] < minElem) {
-            minElem = row[i];
+        if (row[i] < min_elem) {
+            min_elem = row[i];
         }
     }
-    return minElem;
+    return min_elem;
 }
 
 bool IsRowContainsElem(const int32_t* row, int32_t size, int32_t elem) {
@@ -116,8 +116,8 @@ void ReplaceMatrixRows(Matrix original, Matrix copy, int32_t size) {
     int32_t max_elem = MaxElemOfMatrix(original, size);
     for (int32_t i = 0; i < size; ++i) {
         if (IsRowContainsElem(copy[i], size, max_elem)) {
-            int32_t minElem = MinElemOfRow(copy[i], size);
-            int32_t* replacement_row = FindRowContainsElem(original, size, minElem, copy[i]);
+            int32_t min_elem = MinElemOfRow(copy[i], size);
+            int32_t* replacement_row = FindRowContainsElem(original, size, min_elem, copy[i]);
             if (replacement_row != NULL) {
                 ReplaceRow(copy[i], replacement_row, size);
             } else {
