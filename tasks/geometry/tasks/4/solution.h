@@ -46,11 +46,7 @@ int Max(int first, int second, int third) {
 }
 
 int Min(int first, int second) {
-    if (first < second) {
-        return first;
-    } else {
-        return second;
-    }
+    return first < second ? first : second;
 }
 
 int Mod(int num, int del) {
@@ -58,11 +54,7 @@ int Mod(int num, int del) {
 }
 
 int Abs(int num) {
-    if (num > 0) {
-        return num;
-    } else {
-        return -num;
-    }
+    return num * Sign(num);
 }
 
 int CheckZone(Point p) {
