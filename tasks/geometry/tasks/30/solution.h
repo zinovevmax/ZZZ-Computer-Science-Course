@@ -78,9 +78,7 @@ int Task() {
     Point p;
     p.x = i;
     p.y = j;
-
     int owned_point_counter = 0;
-    
     for (int k = ONE; k <= ITERATION_COUNT; ++k) {
         i = Mod((Sign(p.x - k) * l - Sign(p.y - l) * p.x + Sign(p.x - l) * p.y - k), THIRTYFIVE);
         j = Max((p.x * Max(p.y, l)), THIRTY) + Mod((p.y * Min(p.x, l)), TWENTY) - k;
@@ -88,14 +86,10 @@ int Task() {
         p.x = i;
         p.y = j;
         printf("k = %d, x = %d, y = %d, l = %d belong %d \n", k, p.x, p.y, l, Check_Zone(p));
-    
         if (Check_Zone(p)) {
             owned_point_counter++;
         }
     }
-    
     printf("Number of points belonging to the area: %d\n", owned_point_counter);
-
     return 0;
 }
-
