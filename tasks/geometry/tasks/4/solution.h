@@ -20,7 +20,7 @@ const int TWENTY = 20;
 const int THIRTY = 30;
 
 int Sign(int num) {
-    num > 0 ? 1 : num < 0 ? -1 : 0;
+    return num > 0 ? 1 : num < 0 ? -1 : 0;
 }
 
 int Max(int first, int second, int third) {
