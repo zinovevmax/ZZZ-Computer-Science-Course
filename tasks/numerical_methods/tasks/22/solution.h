@@ -36,7 +36,7 @@ double NewtonMethod(double x0, double x1, double (*func)(double)) {
 double IterativeMethod(double x0, double x1, double (*func)(double)) {
     double x = (x0 + x1) / 2.0;
     double prev_x = x0;
-    while (fabsl((func(x) - x) / (1 - ((func(x) - x) / (x - prev_x)))) >= DBL_EPSILON) {
+    while (fabs((func(x) - x) / (1 - ((func(x) - x) / (x - prev_x)))) >= DBL_EPSILON) {
         prev_x = x;
         x = func(x) + x;
     }
