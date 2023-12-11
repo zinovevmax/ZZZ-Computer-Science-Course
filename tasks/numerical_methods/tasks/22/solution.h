@@ -41,7 +41,7 @@ double IterativeMethod(double x0, double x1, double (*func)(double)) {
     return func(x) + x;
 }
 
-void SolveEquation(double x0, double x1, double (*func)(double), double (*method)(double, double, double (*)(double)), 
+void SolveEquation(double x0, double x1, double (*func)(double), double (*method)(double, double, double (*)(double)),
                    uint8_t precision, const double ex_val) {
     printf("Найденный корень:%.*f Значение для сравнения:%g\n", precision, method(x0, x1, func), ex_val);
 }
