@@ -50,10 +50,10 @@ int Task() {
     // block for first method - simply operations
     const double a1 = 2.0;
     const double b1 = 3.0;
-    printf("%.4f \n", IterationsMethod(a1, b1));
+    printf("%.4f Table result - 2.2985\n", IterationsMethod(a1, b1));
     // block for second method - newton
     const double a2 = 0.0;
     const double b2 = 2.0;
-    printf("%.4f \n", NewtonMethod(a2, b2));
+    printf("%.4f Table result - 1.0001\n", NewtonMethod(a2, b2));
     return 0;
 }
