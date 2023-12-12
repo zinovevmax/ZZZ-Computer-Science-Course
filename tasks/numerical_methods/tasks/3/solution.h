@@ -6,8 +6,6 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#define db double
-
 const double APPROXIMATION_VALUE_1 = 1.1474;
 const double APPROXIMATION_VALUE_2 = 2.0692;
 
@@ -43,7 +41,8 @@ double MethodOfNewton(double x0, double x1, double (*func)(double)) {
     return xn1;
 }
 
-void OutputAnswer(db x0, db x1, db (*func)(db), db (*method)(db, db, db (*)(db)), uint8_t precision, const db ex_val) {
+void OutputAnswer(double x0, double x1, double (*func)(double), double (*method)(double, double, double (*)(double)),
+                   uint8_t precision, const double ex_val) {
     printf("-Отрезок: [%.2lf, %.2lf]\n", x0, x1);
     printf("-Найденный корень: %.*f\n", precision, method(x0, x1, func));
     printf("-Значение для сравнения: %g\n", ex_val);
