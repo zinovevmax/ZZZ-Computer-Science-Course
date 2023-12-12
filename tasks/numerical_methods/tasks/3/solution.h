@@ -8,6 +8,7 @@
 
 const double APPROXIMATION_VALUE_1 = 1.1474;
 const double APPROXIMATION_VALUE_2 = 2.0692;
+const int ACCURACY = 10;
 
 double Func1(double x) {
     return 1 - x + sin(x) - log(1 + x);
@@ -42,9 +43,9 @@ double MethodOfNewton(double x0, double x1, double (*func)(double)) {
 }
 
 void OutputAnswer(double x0, double x1, double (*func)(double), double (*method)(double, double, double (*)(double)),
-                   uint8_t precision, const double ex_val) {
+                  uint8_t accuracy, const double ex_val) {
     printf("-Отрезок: [%.2lf, %.2lf]\n", x0, x1);
-    printf("-Найденный корень: %.*f\n", precision, method(x0, x1, func));
+    printf("-Найденный корень: %.*f\n", accuracy, method(x0, x1, func));
     printf("-Значение для сравнения: %g\n", ex_val);
     printf("-------------------------------\n");
 }
@@ -56,8 +57,8 @@ int Task() {
     double end_section_2 = 3.0;
     printf("-------------------------------\n");
     printf("Method: Iterations\n");
-    OutputAnswer(start_section_1, end_section_1, Func1, MethodOfIterative, 10, APPROXIMATION_VALUE_1);
+    OutputAnswer(start_section_1, end_section_1, Func1, MethodOfIterative, ACCURACY, APPROXIMATION_VALUE_1);
     printf("Method: Newton\n");
-    OutputAnswer(start_section_2, end_section_2, Func2, MethodOfNewton, 10, APPROXIMATION_VALUE_2);
+    OutputAnswer(start_section_2, end_section_2, Func2, MethodOfNewton, ACCURACY, APPROXIMATION_VALUE_2);
     return 0;
 }
