@@ -28,16 +28,16 @@ double MethodOfIterative(double x0, double x1, double (*func)(double)) {
     return func(x) + x;
 }
 
-double CalculatingOfDerivatie(double x) {
+double Func2Derivative(double x) {
     return 3 + exp(x) + exp(x);
 }
 
 double MethodOfNewton(double x0, double x1, double (*func)(double)) {
     double xn0 = (x0 + x1) / 2.0;
-    double xn1 = xn0 - func(xn0) / CalculatingOfDerivatie(xn0);
-    while (fabs((xn1 - xn0) / (1.0 - ((xn1 - xn0) / (xn1 - xn0)))) > DBL_EPSILON) {
+    double xn1 = xn0 - func(xn0) / Func2Derivative(xn0);
+    while (fabs((xn1 - xn0) / (1.0 - ((xn1 - xn0) / (xn1 - xn0)))) >= DBL_EPSILON) {
         xn0 = xn1;
-        xn1 = xn0 - func(xn0) / CalculatingOfDerivatie(xn0);
+        xn1 = xn0 - func(xn0) / Func2Derivative(xn0);
     }
     return xn1;
 }
