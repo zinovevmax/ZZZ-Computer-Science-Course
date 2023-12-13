@@ -56,7 +56,6 @@ int Task() {
     for (Ld x = A; x <= B + step; x += step) {
         counter_of_iterations = 0;
         tylor_result = TylorCounting(x, &counter_of_iterations);
-        double sinus = sin(x);
         Output(tylor_result, sin(x), counter_of_iterations, x);
     }
     return 0;
