@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 const int MAX_ITERATIONS = 100;
 const long long K = 277;
 const long double A = 0.0;
