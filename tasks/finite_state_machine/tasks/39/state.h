@@ -68,7 +68,6 @@ StateName LastSkip(StateMachine* sm) {
     return Zero(sm);
 }
 
-
 StateName Sign(StateMachine* sm) {
     if (IsHexDigit(sm->current_char) && (sm->last_char >= '8')) {
         sm->length_count = 0;

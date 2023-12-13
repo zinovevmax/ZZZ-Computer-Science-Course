@@ -9,7 +9,7 @@
 
 int Task() {
     StateMachine* sm = CreateStateMachine();
-    FILE* fp = fopen("../tasks/finite_state_machine/tasks/39/test.txt", "r"); // ../tasks/finite_state_machine/tasks/39/test.txt
+    FILE* fp = fopen("../tasks/finite_state_machine/tasks/39/test.txt", "r");
     char c = ' ';
 
     while ((c = (char)fgetc(fp)) != EOF) {
