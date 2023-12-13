@@ -25,20 +25,20 @@ long double Func(long double x) {
 
 double Taylor(double x, size_t* iterations, double* powers_of_two) {
     double answer = log(2);
-    size_t i = 1;  // количество итераций
+    size_t i = 0;  // количество итераций
     double power_x = x;
 
-    double raise = DBL_EPSILON * PRECISION + 1;
-    while (i <= MAX_ITERATIONS && fabs(raise) >= DBL_EPSILON * PRECISION) {
-        raise = power_x / ((double)i * powers_of_two[i]);  // Добавочек нового члена ряда
-        raise *= ((i - 1) % 2) ? -1 : 1;                          // вычитаем, если i - 1 нечётный
+    double raise = DBL_EPSILON * PRECISION;
+    while (i < MAX_ITERATIONS && fabs(raise) >= DBL_EPSILON * PRECISION) {
+        raise = power_x / ((double)(i + 1) * powers_of_two[i + 1]);  // Добавочек нового члена ряда
+        raise *= ((i % 2) ? -1 : 1);  // вычитаем, если i - 1 нечётный
 
         answer += raise;
         power_x *= x;
         ++i;
     }
 
-    *iterations = i - 1;
+    *iterations = i;
     return answer;
 }
 
@@ -62,7 +62,7 @@ int Task() {
         iterations = 0;
         y_func = Func(x);
         y_taylor = Taylor(x, &iterations, powers_of_two);
-        printf("| %6.3lf | %22.20Lf | %22.20lf | %20lu |\n", x, y_func, y_taylor, iterations);
+        printf("| %6.3lf | %22.20Lf | %22.19lf | %20lu |\n", x, y_func, y_taylor, iterations);
     }
     return 0;
 }
