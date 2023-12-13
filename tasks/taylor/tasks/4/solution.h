@@ -27,22 +27,18 @@ double Taylor(double x, size_t* iterations, double* powers_of_two) {
     double answer = log(2);
     size_t i = 1;  // количество итераций
     double power_x = x;
-    while (i <= MAX_ITERATIONS) {
-        double raise = power_x / ((double)i * powers_of_two[i]);  // Добавочек нового члена ряда
-        raise *= ((i - 1) % 2) ? -1 : 1;                          // вычитаем, если i - 1 нечётный
 
-        // если добавочек мал, заканчиваем считать
-        if (fabs(raise) < DBL_EPSILON * PRECISION) {
-            *iterations = i - 1;
-            return answer;
-        }
+    double raise = DBL_EPSILON * PRECISION + 1;
+    while (i <= MAX_ITERATIONS && fabs(raise) >= DBL_EPSILON * PRECISION) {
+        raise = power_x / ((double)i * powers_of_two[i]);  // Добавочек нового члена ряда
+        raise *= ((i - 1) % 2) ? -1 : 1;                          // вычитаем, если i - 1 нечётный
 
         answer += raise;
         power_x *= x;
         ++i;
     }
 
-    *iterations = MAX_ITERATIONS;
+    *iterations = i - 1;
     return answer;
 }
 
