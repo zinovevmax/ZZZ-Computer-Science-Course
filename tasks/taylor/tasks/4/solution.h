@@ -29,7 +29,7 @@ double Taylor(double x, size_t* iterations, double* powers_of_two) {
     double power_x = x;
     while (i <= MAX_ITERATIONS) {
         double raise = power_x / (i * powers_of_two[i]);  // Добавочек нового члена ряда
-        raise *= ((i - 1) % 2) ? -1 : 1;  // вычитаем, если i - 1 нечётный
+        raise *= ((i - 1) % 2) ? -1 : 1;                  // вычитаем, если i - 1 нечётный
 
         // если добавочек мал, заканчиваем считать
         if (fabs(raise) < DBL_EPSILON * precision) {
