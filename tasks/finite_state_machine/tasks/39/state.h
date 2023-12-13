@@ -10,58 +10,79 @@ bool IsHexDigit(char c) {
     return (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f') || (c >= '0' && c <= '9');
 }
 
-StateName Find(StateMachine* sm) {
+bool IsX(char c) {
+    return c == 'x' || c == 'X';
+}
+
+// Ищем ноль, так как числа вида 0x.....
+StateName Zero(StateMachine* sm) {
     if (sm->current_char == '0') {
         return PREFIX;
-    } else {
-        return FIND;
     }
+    return ZERO;
 }
 
+// Проверяем, что после нуля стоит x
 StateName Prefix(StateMachine* sm) {
-    if (sm->current_char == 'x' || sm->current_char == 'X') {
-        return CHECKSIGN;
-    } else {
-        return Find(sm);
+    if (IsX(sm->current_char)) {
+        return SKIP;
     }
+    return Zero(sm);
 }
 
-StateName CheckSign(StateMachine* sm) {
-    // Нам нужны только отрицательные числа, поэтому нужно проверить верхний разряд в довоичном представлении
-    if (IsHexDigit(sm->current_char) && (sm->current_char >= '8')) {
+// Теперь парами проверяем знаки. Будем пропускать первый знак в каждой паре
+StateName Skip(StateMachine* sm) {
+    if (IsHexDigit(sm->current_char)) {
         ++sm->length_count;
-        return CHECKCORRECT;
-    } else {
-        return Find(sm);
+        return HEX;
     }
-}
-
-StateName CheckCorrect(StateMachine* sm) {
-    // Если очередная цифра подходит, увеличиваем счётчик длины
-    if (sm->length_count < HEX_LENGTH && IsHexDigit(sm->current_char)) {
-        ++sm->length_count;
-        return CHECKCORRECT;
-    }
-
-    // Иначе если это было HEX числом, увеличиваем счётчик подошедших чисел.
-    if (sm->length_count == HEX_LENGTH) {
-        ++sm->numbers_count;
-        sm->length_count = 0;
-        return FIND;
-    }
-
-    // Иначе просто обнуляем счётчик длины проверяемого слова и снова ищем новое число
     sm->length_count = 0;
-    if (sm->last_char == '0') {
-        return Prefix(sm);
+    return Zero(sm);
+}
+
+// Проверяем второй знак. Если это тоже hex цифра, увеличиваем счётчик длины
+StateName Hex(StateMachine* sm) {
+    if (IsHexDigit(sm->current_char)) {
+        // Проверяем, чтобы пара не была предпоследней. Пары нумеруются с 1
+        if (sm->length_count < HEX_LENGTH - 1) {
+            return SKIP;
+        }
+        return LASTSKIP;
     }
-    return Find(sm);
+
+    // Может случиться такое: 0x0x..., Тогда машина начнёт проверять начало слова как пару, а это нам не нужно
+    if (IsX(sm->current_char) && (sm->last_char == '0')) {
+        sm->length_count = 0;
+        return SKIP;
+    }
+
+    sm->length_count = 0;
+    return Zero(sm);
+}
+
+StateName LastSkip(StateMachine* sm) {
+    if (IsHexDigit(sm->current_char)) {
+        return SIGN;
+    }
+    sm->length_count = 0;
+    return Zero(sm);
+}
+
+
+StateName Sign(StateMachine* sm) {
+    if (IsHexDigit(sm->current_char) && (sm->last_char >= '8')) {
+        sm->length_count = 0;
+        ++sm->numbers_count;
+        return ZERO;
+    }
+    sm->length_count = 0;
+    return Zero(sm);
 }
 
 State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * STATECOUNT);
 
-    StateName (*actions[STATECOUNT])(StateMachine*) = {&Find, &Prefix, &CheckSign, &CheckCorrect};
+    StateName (*actions[STATECOUNT])(StateMachine*) = {&Zero, &Prefix, &Skip, &Hex, &LastSkip, &Sign};
     for (size_t i = 0; i < STATECOUNT; ++i) {
         st[i].name = (StateName)i;
         st[i].action = actions[i];

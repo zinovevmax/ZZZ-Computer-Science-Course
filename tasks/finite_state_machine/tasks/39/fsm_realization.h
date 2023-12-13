@@ -6,7 +6,7 @@
 StateMachine* CreateStateMachine() {
     StateMachine* sm = (StateMachine*)malloc(sizeof(StateMachine));
     sm->pipeline = MakeStates();
-    sm->cur_state = FIND;
+    sm->cur_state = ZERO;
     sm->length_count = 0;
     sm->numbers_count = 0;
 

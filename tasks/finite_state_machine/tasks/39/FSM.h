@@ -9,13 +9,12 @@
 
 int Task() {
     StateMachine* sm = CreateStateMachine();
-    FILE* fp = fopen("../tasks/finite_state_machine/tasks/39/test.txt", "r");
+    FILE* fp = fopen("../tasks/finite_state_machine/tasks/39/test.txt", "r"); // ../tasks/finite_state_machine/tasks/39/test.txt
     char c = ' ';
 
     while ((c = (char)fgetc(fp)) != EOF) {
         Step(sm, c);
     }
-    Step(sm, ' ');
 
     printf("%lu negative hex numbers was finded!\n", sm->numbers_count);
 

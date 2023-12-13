@@ -1,6 +1,2 @@
-0xC300=-2234 0x80x8123
-asdfkjh 0x8360x8361 here you will find exactly the first number - 8360
-
-0x8888 0x1888 the first number is negative hex, the second number does not match the pattern
-
-answer: 4 negative hex numbers was finded!
+00xdc6c0080 0x0xdc006c80 0xaa00aa00 0x87650080xffffffff
+answer: 3 negative hex numbers finded!       ^ try to put extra 0 here (answer: 4)
