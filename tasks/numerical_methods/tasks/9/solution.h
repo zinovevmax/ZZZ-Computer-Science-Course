@@ -17,19 +17,19 @@ double FuncNewton(double x) {
 }
 
 void IterationsMethod(double x_0, double (*func_iterations)(double x)) {
-    double x_n = func_iterations(x_0);
-    double x_n_plus_1 = func_iterations(x_n);
-    printf("Функция принимает следующие значения по методу простых итераций:\n");
+    double x = func_iterations(x_0);
+    double x_next = func_iterations(x);
+    printf("The function takes the following values using the simple iteration method:\n");
     for (int8_t i = 0; i < 2; ++i) {
-        printf("%lf %lf %lf\n", x_0, x_n, x_n_plus_1);
-        x_0 = x_n;
-        x_n = x_n_plus_1;
-        x_n_plus_1 = func_iterations(x_n_plus_1);
+        printf("%lf %lf %lf\n", x_0, x, x_next);
+        x_0 = x;
+        x = x_next;
+        x_next = func_iterations(x_next);
     }
     printf(
-        "При х = %lf функция x * x - log(1 + x) - 3 не определена, так как подлогарифменное выражение < 0,\n"
-        "следовательно, решения с помощью данного метода нет.\n\n",
-        x_n);
+        "For x = %lf, the function x * x - log(1 + x) - 3 is not defined, since the sub-log expression is < 0,\n"
+        "therefore, there is no solution using this method.\n\n",
+        x);
 }
 
 double DerivativeNewton(double x) {
@@ -37,19 +37,18 @@ double DerivativeNewton(double x) {
 }
 
 double NewtonMethod(double x_0, double (*func_newton)(double x)) {
-    double x_n = x_0 - (func_newton(x_0) / DerivativeNewton(x_0));
-    double x_n_plus_1 = x_n - (func_newton(x_n) / DerivativeNewton(x_n));
-    while (fabs((x_n_plus_1 - x_n) / (1 - (x_n_plus_1 - x_n) / (x_n - x_0))) >= DBL_EPSILON) {
-        x_0 = x_n;
-        x_n = x_n_plus_1;
-        x_n_plus_1 = x_n - (func_newton(x_n) / DerivativeNewton(x_n));
+    double x = x_0 - (func_newton(x_0) / DerivativeNewton(x_0));
+    double x_next = x - (func_newton(x) / DerivativeNewton(x));
+    while (fabs((x_next - x) / (1 - (x_next - x) / (x - x_0))) >= DBL_EPSILON) {
+        x_0 = x;
+        x = x_next;
+        x_next = x - (func_newton(x) / DerivativeNewton(x));
     }
-    return x_n;
+    return x;
 }
 
 void PrintAnswer(double x, double root) {
-    printf("Найденный с помощью метода Ньютона корень = %lf\nПогрешность = %lf - %lf = %lf\n", x, root, x,
-           fabs(root - x));
+    printf("The root found using Newton's method = %lf\nError = %lf - %lf = %lf\n", x, root, x, fabs(root - x));
 }
 
 int Task() {
