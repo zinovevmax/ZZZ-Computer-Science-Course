@@ -5,10 +5,10 @@
 #include <stdint.h>
 #include <stdio.h>
 
-const double a = -1.0;
-const double b = 1.0;
-const double n = 10.0;
-const double precision = 10000.0;
+const double A = -1.0;
+const double B = 1.0;
+const double N = 10.0;
+const double PRECISION = 10000.0;
 
 const size_t MAX_ITERATIONS = 100;
 
@@ -28,11 +28,11 @@ double Taylor(double x, size_t* iterations, double* powers_of_two) {
     size_t i = 1;  // количество итераций
     double power_x = x;
     while (i <= MAX_ITERATIONS) {
-        double raise = power_x / (i * powers_of_two[i]);  // Добавочек нового члена ряда
-        raise *= ((i - 1) % 2) ? -1 : 1;                  // вычитаем, если i - 1 нечётный
+        double raise = power_x / ((double)i * powers_of_two[i]);  // Добавочек нового члена ряда
+        raise *= ((i - 1) % 2) ? -1 : 1;                          // вычитаем, если i - 1 нечётный
 
         // если добавочек мал, заканчиваем считать
-        if (fabs(raise) < DBL_EPSILON * precision) {
+        if (fabs(raise) < DBL_EPSILON * PRECISION) {
             *iterations = i - 1;
             return answer;
         }
@@ -52,7 +52,6 @@ int Task() {
     Prepare(powers_of_two);
 
     size_t iterations = 0;
-    char space[] = "         ";
     long double y_func = 0.0;
     double y_taylor = 0.0;
 
@@ -62,8 +61,8 @@ int Task() {
     printf("|   x    |         Func(x)        |       Taylor(x)        | number of iterations |\n");
     printf("-----------------------------------------------------------------------------------\n");
 
-    double delta = (b - a) / n;
-    for (double x = a; x <= b; x += delta) {
+    double delta = (B - A) / N;
+    for (double x = A; x <= B; x += delta) {
         iterations = 0;
         y_func = Func(x);
         y_taylor = Taylor(x, &iterations, powers_of_two);
