@@ -1,19 +1,18 @@
 #pragma once
-
 #include <stdint.h>
 #include <stdio.h>
 
-int SquareOfTen(int cycle_counter) {
-    int result_of_function = 1;
-    for (size_t degree_counter = 1; degree_counter <= cycle_counter; ++degree_counter) {
+int SquareOfTen(uint32_t cycle_counter) {
+    uint32_t result_of_function = 1;
+    for (uint32_t degree_counter = 1; degree_counter <= cycle_counter; ++degree_counter) {
         result_of_function = result_of_function * 10;
     }
     return result_of_function;
 }
 
-int ConvertFromDecimalToOctal(int input_number) {
-    int output_number = 0;
-    int cycle_counter = 0;
+int ConvertFromDecimalToOctal(uint32_t input_number) {
+    uint32_t output_number = 0;
+    uint32_t cycle_counter = 0;
     while (input_number > 0) {
         output_number += (input_number % 8) * SquareOfTen(cycle_counter);
         ++cycle_counter;
@@ -23,8 +22,8 @@ int ConvertFromDecimalToOctal(int input_number) {
 }
 
 int Task() {
-    uint64_t input_number = 3456748945;  // input number here
-    uint64_t result = ConvertFromDecimalToOctal(input_number);
+    uint32_t input_number = 34555674; //input number here
+    uint32_t result = ConvertFromDecimalToOctal(input_number);
     printf("The result: %lu\n", result);
     return 0;
 }
