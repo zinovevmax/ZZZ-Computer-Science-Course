@@ -2,8 +2,6 @@
 #include <stdint.h>
 #include <stdio.h>
 
-
-
 uint32_t SquareOfTen(uint32_t cycle_counter) {
     uint32_t result_of_function = 1;
     for (uint32_t degree_counter = 1; degree_counter <= cycle_counter; ++degree_counter) {
