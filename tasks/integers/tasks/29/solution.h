@@ -22,7 +22,7 @@ int ConvertFromDecimalToOctal(uint32_t input_number) {
 }
 
 int Task() {
-    uint32_t input_number = 34555674;  //input number here
+    uint32_t input_number = 34555674;  // input number here
     uint32_t result = ConvertFromDecimalToOctal(input_number);
     printf("The result: %lu\n", result);
     return 0;
