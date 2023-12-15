@@ -33,9 +33,9 @@ double Func2Derivative(double x) {
 }
 
 double MethodOfNewton(double x0, double x1, double (*func)(double)) {
-    double xn0 = (x0 + x1) / 2.0;
-    double xn1 = xn0 - func(xn0) / Func2Derivative(xn0);
-    while (fabs((xn1 - xn0) / (1.0 - ((xn1 - xn0) / (xn1 - xn0)))) >= DBL_EPSILON) {
+    double xn0 = 0.0;
+    double xn1 = (x0 + x1) / 2;
+    while (fabs(xn1 - xn0) >= DBL_EPSILON) {
         xn0 = xn1;
         xn1 = xn0 - func(xn0) / Func2Derivative(xn0);
     }
