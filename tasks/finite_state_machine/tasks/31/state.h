@@ -2,7 +2,7 @@
 
 #include "shared_header.h"
 
-StateName Start(StateMachine *sm) {
+StateName Start(StateMachine *sm __attribute__((unused))) {
     // Здесь, наверное, можно что-то другое, просто надо инициализировать старт
     printf("The program has now started. Transitioning to data reading...\n");
     return READ_CHAR;
@@ -40,23 +40,31 @@ StateName PrintBinary(StateMachine *sm) {
     return READ_CHAR;
 }
 
-StateName ErrorState(StateMachine *sm) {
+StateName ErrorState(StateMachine *sm __attribute__((unused))) {
     printf("An error has occurred during processing.\n");
     return END;
 }
 
-StateName End(StateMachine *sm) {
+StateName End(StateMachine *sm __attribute__((unused))) {
     printf("Program has successfully completed its execution.\n");
     return END;
 }
 
+// Функция для инициализации состояния
+void InitState(State *state, StateName name, StateName (*action)(StateMachine *)) {
+    state->name = name;
+    state->action = action;
+}
+
 State *MakeStates() {
     State *st = (State *)malloc(sizeof(State) * STATECOUNT);
-    st[START] = (State){START, &Start};
-    st[READ_CHAR] = (State){READ_CHAR, &ReadChar};
-    st[PRINT_BINARY] = (State){PRINT_BINARY, &PrintBinary};
-    st[END] = (State){END, &End};
-    st[ERROR_STATE] = (State){ERROR_STATE, &ErrorState};
+
+    InitState(&st[START], START, &Start);
+    InitState(&st[READ_CHAR], READ_CHAR, &ReadChar);
+    InitState(&st[PRINT_BINARY], PRINT_BINARY, &PrintBinary);
+    InitState(&st[END], END, &End);
+    InitState(&st[ERROR_STATE], ERROR_STATE, &ErrorState);
+
     return st;
 }
 
