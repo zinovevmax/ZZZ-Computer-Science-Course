@@ -14,7 +14,6 @@ int Task() {
     FILE* file = fopen("../tasks/finite_state_machine/tasks/20/input_file.txt", "r");
     StateMachine* sm = MakeStateMachine();
     printf("Finite State Machine has started its execution:\n\n");
-    
     int result = 0;
     while (true) {
         result = Step(sm, (char)fgetc(file));
