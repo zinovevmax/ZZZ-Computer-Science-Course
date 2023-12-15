@@ -49,7 +49,6 @@ StateName ConversionToKilometrs(StateMachine* sm) {
     }
 }
 
-
 State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * STATECOUNT);
     StateName (*actions[STATECOUNT])(StateMachine*) = {&NumSearch, &ValueForming, &ConversionToKilometrs};
