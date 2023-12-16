@@ -47,7 +47,9 @@ double IterationMethod(double initial_guess, double tolerance) {
 }
 
 int Task() {
-    double lower_bound = 0.4, upper_bound = 1.0, tolerance = 1e-6;
+    double lower_bound = 0.4;
+    double upper_bound = 1.0;
+    double tolerance = 1e-6;
     double root1 = DichotomyMethod(lower_bound, upper_bound, tolerance);
     double root2 = IterationMethod((lower_bound + upper_bound) / 2.0, tolerance);
     printf("%f\n", root1);
