@@ -1,10 +1,9 @@
 #pragma once
 
-#include <stdio.h>
-#include <stdbool.h>
-#include <math.h>
 #include <float.h>
+#include <math.h>
 #include <stdint.h>
+#include <stdio.h>
 
 long double CalculateFunction(long double x) {
     return (1 + 2 * pow(x, 2)) * exp(pow(x, 2));
