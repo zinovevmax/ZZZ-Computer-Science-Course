@@ -54,7 +54,7 @@ void PrintTable(long double x, long double taylor_result, long double function_r
 }
 
 int Task() {
-    int precision = 40;
+    int precision = 80;
     int num_teylor_iterations = 0;
     const int n = 10;
     const int iterations_for_taylor = 100;
