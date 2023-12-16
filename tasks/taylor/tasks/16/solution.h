@@ -13,41 +13,33 @@ long double CalculateFunction(long double x) {
 long double CalculateSeriesTerm(int n, long double x) {
     long double numerator = 2 * n + 1;
     long double denominator = 1;
-    
     for (int i = 1; i <= n; i++) {
         denominator *= i;
     }
-    
     long double power = pow(x, 2 * n);
     long double term = numerator / denominator * power;
-    
     return term;
 }
 
 bool ShouldBreakCalculation(long double x, long double taylorResult, int precision) {
     long double epsilon = DBL_EPSILON * precision;
     long double diff = taylorResult - CalculateFunction(x);
-    
     if (diff < 0) {
         diff = -diff;
     }
-    
     return diff < epsilon;
 }
 
 long double CalculateTaylorResult(long double x, int iterations, int precision, int* numTaylorIterations) {
     *numTaylorIterations = 0;
     long double result = 0.0;
-    
     for (int i = 0; i < iterations; ++i) {
         ++(*numTaylorIterations);
         result += CalculateSeriesTerm(i, x);
-        
         if (ShouldBreakCalculation(x, result, precision)) {
             break;
         }
     }
-    
     return result;
 }
 
