@@ -2,8 +2,10 @@
 
 #include <float.h>
 #include <math.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+
 
 long double CalculateFunction(long double x) {
     return (1 + 2 * pow(x, 2)) * exp(pow(x, 2));
@@ -20,20 +22,20 @@ long double CalculateSeriesTerm(int n, long double x) {
     return term;
 }
 
-bool ShouldBreakCalculation(long double x, long double taylorResult, int precision) {
+bool ShouldBreakCalculation(long double x, long double taylor_result, int precision) {
     long double epsilon = DBL_EPSILON * precision;
-    long double diff = taylorResult - CalculateFunction(x);
+    long double diff = taylor_result - CalculateFunction(x);
     if (diff < 0) {
         diff = -diff;
     }
     return diff < epsilon;
 }
 
-long double CalculateTaylorResult(long double x, int iterations, int precision, int* numTaylorIterations) {
-    *numTaylorIterations = 0;
+long double CalculateTaylorResult(long double x, int iterations, int precision, int* num_teylor_iterations) {
+    *num_teylor_iterations = 0;
     long double result = 0.0;
     for (int i = 0; i < iterations; ++i) {
-        ++(*numTaylorIterations);
+        ++(*num_teylor_iterations);
         result += CalculateSeriesTerm(i, x);
         if (ShouldBreakCalculation(x, result, precision)) {
             break;
@@ -48,28 +50,28 @@ void PrintTableHeader() {
     printf("---------+-----------------+-----------------+-------n");
 }
 
-void PrintTable(double x, double taylorResult, double functionResult, int numTaylorIterations) {
-    printf("| %.4lf | %.13lf | %.13lf | %4d n", x, taylorResult, functionResult, numTaylorIterations);
+void PrintTable(double x, double taylor_result, double functionResult, int num_teylor_iterations) {
+    printf("| %.4lf | %.13lf | %.13lf | %4d n", x, taylor_result, functionResult, num_teylor_iterations);
 }
 
 int Task() {
     int precision = 40;
-    int numTaylorIterations = 0;
+    int num_teylor_iterations = 0;
     const int n = 10;
-    const int iterationsForTaylor = 100;
+    const int iterations_for_taylor = 100;
     const long double a = 0.0;
     const long double b = 1.0;
 
     long double step = (b - a) / n;
     long double x = a;
 
-    long double taylorResult = 0.0;
+    long double taylor_result = 0.0;
 
     PrintTableHeader();
 
     for (int i = 0; i <= n; ++i) {
-        taylorResult = CalculateTaylorResult(x, iterationsForTaylor, precision, &numTaylorIterations);
-        PrintTable(x, taylorResult, CalculateFunction(x), numTaylorIterations);
+        taylor_result = CalculateTaylorResult(x, iterations_for_taylor, precision, &num_teylor_iterations);
+        PrintTable(x, taylor_result, CalculateFunction(x), num_teylor_iterations);
         x += step;
     }
 
