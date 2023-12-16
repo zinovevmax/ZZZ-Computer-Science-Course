@@ -6,11 +6,11 @@
 #include <float.h>
 #include <stdint.h>
 
-long double calculateFunction(long double x) {
+long double CalculateFunction(long double x) {
     return (1 + 2 * pow(x, 2)) * exp(pow(x, 2));
 }
 
-long double calculateSeriesTerm(int n, long double x) {
+long double CalculateSeriesTerm(int n, long double x) {
     long double numerator = 2 * n + 1;
     long double denominator = 1;
     
@@ -24,9 +24,9 @@ long double calculateSeriesTerm(int n, long double x) {
     return term;
 }
 
-bool shouldBreakCalculation(long double x, long double taylorResult, int precision) {
+bool ShouldBreakCalculation(long double x, long double taylorResult, int precision) {
     long double epsilon = DBL_EPSILON * precision;
-    long double diff = taylorResult - calculateFunction(x);
+    long double diff = taylorResult - CalculateFunction(x);
     
     if (diff < 0) {
         diff = -diff;
@@ -35,15 +35,15 @@ bool shouldBreakCalculation(long double x, long double taylorResult, int precisi
     return diff < epsilon;
 }
 
-long double calculateTaylorResult(long double x, int iterations, int precision, int* numTaylorIterations) {
+long double CalculateTaylorResult(long double x, int iterations, int precision, int* numTaylorIterations) {
     *numTaylorIterations = 0;
     long double result = 0.0;
     
     for (int i = 0; i < iterations; ++i) {
         ++(*numTaylorIterations);
-        result += calculateSeriesTerm(i, x);
+        result += CalculateSeriesTerm(i, x);
         
-        if (shouldBreakCalculation(x, result, precision)) {
+        if (ShouldBreakCalculation(x, result, precision)) {
             break;
         }
     }
@@ -51,13 +51,13 @@ long double calculateTaylorResult(long double x, int iterations, int precision, 
     return result;
 }
 
-void printTableHeader() {
+void PrintTableHeader() {
     printf(" ----------------------------------------------------\n");
     printf("|    x   |   Taylor Series |     Function    | Iters \n");
     printf("---------+-----------------+-----------------+-------\n");
 }
 
-void printTable(double x, double taylorResult, double functionResult, int numTaylorIterations) {
+void PrintTable(double x, double taylorResult, double functionResult, int numTaylorIterations) {
     printf("| %.4lf | %.13lf | %.13lf | %4d \n", x, taylorResult, functionResult, numTaylorIterations);
 }
 
@@ -74,11 +74,11 @@ int Task() {
     
     long double taylorResult = 0.0;
 
-    printTableHeader();
+    PrintTableHeader();
 
     for (int i = 0; i <= n; ++i) {
-        taylorResult = calculateTaylorResult(x, iterationsForTaylor, precision, &numTaylorIterations);
-        printTable(x, taylorResult, calculateFunction(x), numTaylorIterations);
+        taylorResult = CalculateTaylorResult(x, iterationsForTaylor, precision, &numTaylorIterations);
+        PrintTable(x, taylorResult, CalculateFunction(x), numTaylorIterations);
         x += step;
     }
     
