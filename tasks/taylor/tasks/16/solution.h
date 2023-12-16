@@ -50,7 +50,7 @@ void PrintTableHeader() {
 }
 
 void PrintTable(long double x, long double taylor_result, long double function_result, int num_teylor_iterations) {
-    printf("| %.4lf | %.13lf | %.13lf | %4d \n", x, taylor_result, function_result, num_teylor_iterations);
+    printf("| %.6Lf | %.20Lf | %.20Lf | %4d \n", x, taylor_result, function_result, num_teylor_iterations);
 }
 
 int Task() {
