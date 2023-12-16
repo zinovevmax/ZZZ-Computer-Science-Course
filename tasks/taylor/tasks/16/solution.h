@@ -44,13 +44,13 @@ long double CalculateTaylorResult(long double x, int iterations, int precision, 
 }
 
 void PrintTableHeader() {
-    printf(" ----------------------------------------------------\n");
-    printf("|    x   |   Taylor Series |     Function    | Iters \n");
-    printf("---------+-----------------+-----------------+-------\n");
+    printf(" ----------------------------------------------------n");
+    printf("|    x   |   Taylor Series |     Function    | Iters n");
+    printf("---------+-----------------+-----------------+-------n");
 }
 
 void PrintTable(double x, double taylorResult, double functionResult, int numTaylorIterations) {
-    printf("| %.4lf | %.13lf | %.13lf | %4d \n", x, taylorResult, functionResult, numTaylorIterations);
+    printf("| %.4lf | %.13lf | %.13lf | %4d n", x, taylorResult, functionResult, numTaylorIterations);
 }
 
 int Task() {
@@ -60,10 +60,10 @@ int Task() {
     const int iterationsForTaylor = 100;
     const long double a = 0.0;
     const long double b = 1.0;
-    
+
     long double step = (b - a) / n;
     long double x = a;
-    
+
     long double taylorResult = 0.0;
 
     PrintTableHeader();
@@ -73,6 +73,6 @@ int Task() {
         PrintTable(x, taylorResult, CalculateFunction(x), numTaylorIterations);
         x += step;
     }
-    
+
     return 0;
 }
