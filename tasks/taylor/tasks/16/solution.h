@@ -44,13 +44,13 @@ long double CalculateTaylorResult(long double x, int iterations, int precision, 
 }
 
 void PrintTableHeader() {
-    printf(" ----------------------------------------------------n");
-    printf("|    x   |   Taylor Series |     Function    | Iters n");
-    printf("---------+-----------------+-----------------+-------n");
+    printf(" ----------------------------------------------------\n");
+    printf("|    x   |   Taylor Series |     Function    | Iters \n");
+    printf("---------+-----------------+-----------------+-------\n");
 }
 
-void PrintTable(double x, double taylor_result, double functionResult, int num_teylor_iterations) {
-    printf("| %.4lf | %.13lf | %.13lf | %4d n", x, taylor_result, functionResult, num_teylor_iterations);
+void PrintTable(long double x, long double taylor_result, long double function_result, int num_teylor_iterations) {
+    printf("| %.4lf | %.13lf | %.13lf | %4d \n", x, taylor_result, function_result, num_teylor_iterations);
 }
 
 int Task() {
