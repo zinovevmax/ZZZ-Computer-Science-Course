@@ -1,8 +1,8 @@
 #pragma once
 
+#include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <ctype.h>
 
 unsigned int char_to_set(char c) {
     c = tolower(c);
