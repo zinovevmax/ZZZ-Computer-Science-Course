@@ -57,7 +57,8 @@ bool CanMoveTop(int32_t i) {
 int32_t *LinearizeMatrix(int32_t **matrix, int rows, int cols) {
     int32_t *linear_array = (int32_t *)malloc(rows * cols * sizeof(int32_t));
     int linear_index = 0;
-    int i = cols - 1, j = rows - 1;
+    int i = cols - 1;
+    int j = rows - 1;
     linear_array[linear_index] = matrix[i][j];
     while (linear_index <= (rows * cols)) {
         if (CanMoveTop(i)) {
