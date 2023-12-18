@@ -14,7 +14,7 @@ unsigned int CharToSet(int c) {
 }
 
 int Task() {
-    int c;
+    int c = 0;
     unsigned int letters_set_1 = 0;
     unsigned int letters_set_2 = 0;
     bool answer = false;
