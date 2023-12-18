@@ -1,17 +1,17 @@
 #pragma once
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 typedef int32_t **Matrix;
 
 // Функция для создания матрицы
 Matrix CreateMatrix(int rows, int cols) {
-    Matrix matrix = (Matrix) malloc(rows * sizeof(int32_t *));
+    Matrix matrix = (Matrix)malloc(rows * sizeof(int32_t *));
     for (int i = 0; i < rows; ++i) {
-        matrix[i] = (int32_t *) malloc(cols * sizeof(int32_t));
+        matrix[i] = (int32_t *)malloc(cols * sizeof(int32_t));
     }
 
     return matrix;
@@ -46,7 +46,7 @@ bool CanMoveTopRight(int32_t i, int32_t j, int32_t rows) {
 }
 
 bool CanMoveLeft(int32_t i) {
-    return (i - 1) > -1 ;
+    return (i - 1) > -1;
 }
 
 bool CanMoveTop(int32_t i) {
@@ -55,7 +55,7 @@ bool CanMoveTop(int32_t i) {
 
 // Функция для линеаризации матрицы
 int32_t *LinearizeMatrix(int32_t **matrix, int rows, int cols) {
-    int32_t *linear_array = (int32_t *) malloc(rows * cols * sizeof(int32_t));
+    int32_t *linear_array = (int32_t *)malloc(rows * cols * sizeof(int32_t));
     int linear_index = 0;
     int i = cols - 1, j = rows - 1;
     linear_array[linear_index] = matrix[i][j];
@@ -98,7 +98,6 @@ int32_t *LinearizeMatrix(int32_t **matrix, int rows, int cols) {
     return linear_array;
 }
 
-
 // Функция для освобождения памяти, выделенной для матрицы
 void FreeMatrix(Matrix matrix, int rows) {
     for (int i = 0; i < rows; ++i) {
@@ -107,7 +106,7 @@ void FreeMatrix(Matrix matrix, int rows) {
     free(matrix);
 }
 
-int Task() {
+int main() {
     int rows = 4;
     int cols = 4;
     Matrix matrix = CreateMatrix(rows, cols);
