@@ -107,7 +107,7 @@ void FreeMatrix(Matrix matrix, int rows) {
     free(matrix);
 }
 
-int main() {
+int Task() {
     int rows = 4;
     int cols = 4;
     Matrix matrix = CreateMatrix(rows, cols);
