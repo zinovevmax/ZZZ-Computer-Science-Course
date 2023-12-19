@@ -80,7 +80,6 @@ uint32_t Solution(Matrix matrix_old, uint32_t size) {
     uint32_t min_cols = FindMinCols(matrix_old, size);
     for (uint32_t i = 0; i < size; i++) {
         matrix_new += matrix_old[i][max_rows] * matrix_old[min_cols][i];
-        printf("%d\n", matrix_old[i][max_rows] * matrix_old[min_cols][i]);
     }
     return matrix_new;
 }
