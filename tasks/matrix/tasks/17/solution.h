@@ -7,9 +7,9 @@
 typedef int32_t **Matrix;
 
 Matrix CreateMatrix(uint32_t size) {
-    Matrix matrix = (int32_t **) malloc(sizeof(int32_t *) * size);
+    Matrix matrix = (int32_t **)malloc(sizeof(int32_t *) * size);
     for (uint32_t i = 0; i < size; ++i) {
-        matrix[i] = (int32_t *) malloc(sizeof(int32_t) * size);
+        matrix[i] = (int32_t *)malloc(sizeof(int32_t) * size);
     }
     return matrix;
 }
@@ -72,15 +72,14 @@ uint32_t FindMaxRows(Matrix matrix, uint32_t size) {
     }
 }
 
-
 uint32_t Solution(Matrix matrix_old, uint32_t size) {
     uint32_t matrix_new = 0;
     uint32_t MaxRows = FindMaxRows(matrix_old, size);
     uint32_t MinCols = FindMinCols(matrix_old, size);
     for (int i = 0; i < size; i++) {
-                matrix_new += matrix_old[i][MaxRows] * matrix_old[MinCols][i];
-                printf("%d\n", matrix_old[i][MaxRows] * matrix_old[MinCols][i]);
-            }
+        matrix_new += matrix_old[i][MaxRows] * matrix_old[MinCols][i];
+        printf("%d\n", matrix_old[i][MaxRows] * matrix_old[MinCols][i]);
+    }
     return matrix_new;
 }
 
