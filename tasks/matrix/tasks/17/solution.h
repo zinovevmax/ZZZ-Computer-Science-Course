@@ -4,18 +4,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int32_t** Matrix;
+typedef int32_t **Matrix;
 
 Matrix CreateMatrix(uint32_t size) {
-    Matrix matrix = (int32_t **)malloc(sizeof(int32_t *) * size);
+    Matrix matrix = (int32_t**)malloc(sizeof(int32_t*) * size);
     for (uint32_t i = 0; i < size; ++i) {
-        matrix[i] = (int32_t *)malloc(sizeof(int32_t) * size);
+        matrix[i] = (int32_t*)malloc(sizeof(int32_t) * size);
     }
     return matrix;
 }
 
-Matrix ReadMatrixFromFile(const char *file_name, uint32_t size) {
-    FILE *file = fopen(file_name, "r");
+Matrix ReadMatrixFromFile(const char* file_name, uint32_t size) {
+    FILE* file = fopen(file_name, "r");
     Matrix matrix = CreateMatrix(size);
     if (file != NULL) {
         for (uint32_t i = 0; i < size; ++i) {
@@ -104,7 +104,7 @@ void ClearMemory(Matrix matrix, uint32_t size) {
 int Task() {
     // write your solution here
     uint32_t size = 3;  // for example
-    const char *file_name = "..//test.txt";
+    const char* file_name = "..//test.txt";
     Matrix matrix_from_file = ReadMatrixFromFile(file_name, size);
     uint32_t matrix_new = Solution(matrix_from_file, size);
     printf("Matrix from file :\n");
