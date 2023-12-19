@@ -1,7 +1,8 @@
 #pragma once
+#include <stdint.h>
 #include <stdio.h>
 
-int Sign(int x) {
+int64_t Sign(uint64_t x) {
     if (x > 0) {
         return 1;
     } else if (x < 0) {
@@ -11,7 +12,7 @@ int Sign(int x) {
     }
 }
 
-int Mod(int x, int y) {
+int64_t Mod(uint64_t x, uint64_t y) {
     if (y != 0) {
         return x % y;
     } else {
@@ -19,7 +20,7 @@ int Mod(int x, int y) {
     }
 }
 
-int Max(int x, int y) {
+int64_t Max(uint64_t x, uint64_t y) {
     if (x > y) {
         return x;
     } else {
@@ -27,7 +28,7 @@ int Max(int x, int y) {
     }
 }
 
-int Min(int x, int y) {
+int64_t Min(uint64_t x, uint64_t y) {
     if (x < y) {
         return x;
     } else {
@@ -35,7 +36,7 @@ int Min(int x, int y) {
     }
 }
 
-int Abs(int x) {
+int64_t Abs(uint64_t x) {
     if (x < 0) {
         return (-1) * x;
     } else {
@@ -43,7 +44,7 @@ int Abs(int x) {
     }
 }
 
-int SquareDegree(int a) {
+int64_t SquareDegree(uint64_t a) {
     return a * a;
 }
 
@@ -62,8 +63,8 @@ const int SEMI_MAJOR_AXIS = 10;
 const int SEMI_MINOR_AXIS = 5;
 
 typedef struct {
-    int x;
-    int y;
+    uint64_t x;
+    uint64_t y;
 } Point;
 
 int CheckZone(Point p) {
@@ -71,9 +72,9 @@ int CheckZone(Point p) {
 }
 
 int Task() {
-    int i = I_0;
-    int j = J_0;
-    int l = L_0;
+    uint64_t i = I_0;
+    uint64_t j = J_0;
+    uint64_t l = L_0;
     Point p;
     p.x = i;
     p.y = j;
@@ -84,7 +85,7 @@ int Task() {
         l = Mod(((p.x + k) * (p.y - k) * (l + k)), TWENTYFIVE);
         p.x = i;
         p.y = j;
-        printf("k = %d, x = %d, y = %d, l = %d belong %d \n", k, p.x, p.y, l, CheckZone(p));
+        printf("k = %d, x = %lu, y = %lu, l = %lu belong %d \n", k, p.x, p.y, l, CheckZone(p));
         if (CheckZone(p)) {
             owned_point_counter++;
         }
