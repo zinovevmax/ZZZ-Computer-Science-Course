@@ -60,6 +60,7 @@ uint32_t FindMinCols(Matrix matrix, uint32_t size) {
             }
         }
     }
+    return 0;
 }
 
 uint32_t FindMaxRows(Matrix matrix, uint32_t size) {
@@ -70,6 +71,7 @@ uint32_t FindMaxRows(Matrix matrix, uint32_t size) {
             }
         }
     }
+    return 0;
 }
 
 uint32_t Solution(Matrix matrix_old, uint32_t size) {
