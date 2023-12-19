@@ -1,5 +1,4 @@
 #pragma once
-
 #include <stdio.h>
 
 int Sign(int x) {
@@ -64,7 +63,7 @@ const int SEMI_MINOR_AXIS = 5;
 
 typedef struct {
     int x;
-    unsigned long int y;
+    int y;
 } Point;
 
 int CheckZone(Point p) {
