@@ -74,11 +74,11 @@ uint32_t FindMaxRows(Matrix matrix, uint32_t size) {
 
 uint32_t Solution(Matrix matrix_old, uint32_t size) {
     uint32_t matrix_new = 0;
-    uint32_t MaxRows = FindMaxRows(matrix_old, size);
-    uint32_t MinCols = FindMinCols(matrix_old, size);
-    for (int i = 0; i < size; i++) {
-        matrix_new += matrix_old[i][MaxRows] * matrix_old[MinCols][i];
-        printf("%d\n", matrix_old[i][MaxRows] * matrix_old[MinCols][i]);
+    uint32_t max_rows = FindMaxRows(matrix_old, size);
+    uint32_t min_cols = FindMinCols(matrix_old, size);
+    for (uint32_t i = 0; i < size; i++) {
+        matrix_new += matrix_old[i][max_rows] * matrix_old[min_cols][i];
+        printf("%d\n", matrix_old[i][max_rows] * matrix_old[min_cols][i]);
     }
     return matrix_new;
 }
