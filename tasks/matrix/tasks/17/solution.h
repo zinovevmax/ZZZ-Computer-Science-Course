@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int32_t **Matrix;
+typedef int32_t** Matrix;
 
 Matrix CreateMatrix(uint32_t size) {
     Matrix matrix = (int32_t**)malloc(sizeof(int32_t*) * size);
