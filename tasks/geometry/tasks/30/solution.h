@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-uint64_t Sign(uint64_t x) {
+int64_t Sign(int64_t x) {
     if (x > 0) {
         return 1;
     } else if (x < 0) {
@@ -12,7 +12,7 @@ uint64_t Sign(uint64_t x) {
     }
 }
 
-uint64_t Mod(uint64_t x, uint64_t y) {
+int64_t Mod(int64_t x, int64_t y) {
     if (y != 0) {
         return x % y;
     } else {
@@ -20,7 +20,7 @@ uint64_t Mod(uint64_t x, uint64_t y) {
     }
 }
 
-uint64_t Max(uint64_t x, uint64_t y) {
+int64_t Max(int64_t x, int64_t y) {
     if (x > y) {
         return x;
     } else {
@@ -28,7 +28,7 @@ uint64_t Max(uint64_t x, uint64_t y) {
     }
 }
 
-uint64_t Min(uint64_t x, uint64_t y) {
+int64_t Min(int64_t x, int64_t y) {
     if (x < y) {
         return x;
     } else {
@@ -36,7 +36,7 @@ uint64_t Min(uint64_t x, uint64_t y) {
     }
 }
 
-uint64_t Abs(uint64_t x) {
+int64_t Abs(int64_t x) {
     if (x < 0) {
         return (-1) * x;
     } else {
@@ -44,7 +44,7 @@ uint64_t Abs(uint64_t x) {
     }
 }
 
-uint64_t SquareDegree(uint64_t a) {
+int64_t SquareDegree(int64_t a) {
     return a * a;
 }
 
@@ -63,8 +63,8 @@ const int SEMI_MAJOR_AXIS = 10;
 const int SEMI_MINOR_AXIS = 5;
 
 typedef struct {
-    uint64_t x;
-    uint64_t y;
+    int64_t x;
+    int64_t y;
 } Point;
 
 int CheckZone(Point p) {
@@ -72,9 +72,9 @@ int CheckZone(Point p) {
 }
 
 int Task() {
-    uint64_t i = I_0;
-    uint64_t j = J_0;
-    uint64_t l = L_0;
+    int64_t i = I_0;
+    int64_t j = J_0;
+    int64_t l = L_0;
     Point p;
     p.x = i;
     p.y = j;
