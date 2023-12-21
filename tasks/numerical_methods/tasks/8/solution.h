@@ -18,6 +18,10 @@ long double Func2(long double x) {
     return (pow(x, 2) - logl(1 + x) - 3);
 }
 
+long double EquivalentFunc2(long double x) {
+    return (sqrt(log(1 + x) + 3));
+}
+
 long double DychotomyMethod(long double x_0, long double x_1, long double (*function)(long double)) {
     long double middle_of_interval = 0.0;
     while (fabsl(x_1 - x_0) > DBL_EPSILON) {
@@ -32,14 +36,13 @@ long double DychotomyMethod(long double x_0, long double x_1, long double (*func
 }
 
 long double IterativeMethod(long double x_0, long double x_1, long double (*function)(long double)) {
-    long double previous_x = x_0;
-    long double current_x = (x_0 + x_1) / 2.0;
-    while (fabsl((function(current_x) - current_x) /
-                 (1 - ((function(current_x) - current_x) / (current_x - previous_x)))) >= DBL_EPSILON) {
+    long double previous_x = (x_0 + x_1) / 2.0;
+    long double current_x = function(previous_x);
+    while (fabsl(previous_x - current_x) >= DBL_EPSILON) {
         previous_x = current_x;
-        current_x = function(current_x) + current_x;
+        current_x = function(previous_x);
     }
-    return function(current_x) + current_x;
+    return current_x;
 }
 
 int Task() {
@@ -48,8 +51,8 @@ int Task() {
     printf("Dychotomy Method:\nProgram: %Lf\nSolution: %Lf\n", DychotomyMethod(LOWER_LIMIT, UPPER_LIMIT, Func1),
            SOLUTION_1);
     printf("-----------------------------\n");
-    printf("Iterative Method:\nProgram: %Lf\nSolution: %Lf\n", DychotomyMethod(LOWER_LIMIT, UPPER_LIMIT, Func2),
-           SOLUTION_2);
+    printf("Iterative Method:\nProgram: %Lf\nSolution: %Lf\n",
+           IterativeMethod(LOWER_LIMIT, UPPER_LIMIT, EquivalentFunc2), SOLUTION_2);
     printf("-----------------------------\n");
     return 0;
 }
