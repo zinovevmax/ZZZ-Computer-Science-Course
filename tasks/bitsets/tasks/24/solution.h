@@ -8,7 +8,7 @@ typedef uint32_t Bitset;
 const Bitset VOICED_CONSONANTS = 48446026;
 const Bitset WITHOUT_LETTERS = 0;
 
-bool areAllConsonantsUnvoiced(const Bitset text) {
+bool AreAllConsonantsUnvoiced(const Bitset text) {
     return (text & VOICED_CONSONANTS) == WITHOUT_LETTERS;
 }
 
