@@ -15,12 +15,12 @@ bool AreAllConsonantsUnvoiced(const Bitset text) {
 int Task() {
     Bitset word = 0;
     char c = 0;
-    bool theRightWordExist = false;
+    bool the_right_word_exist = false;
 
     while ((c = (char)getchar()) != EOF) {
         if (c == ' ' || c == '\n') {
             if (AreAllConsonantsUnvoiced(word)) {
-                theRightWordExist = true;
+                the_right_word_exist = true;
             }
             word = 0;
             continue;
@@ -28,7 +28,7 @@ int Task() {
         word = word | 1u << (c - 'a');
     }
 
-    if (theRightWordExist) {
+    if (the_right_word_exist) {
         printf("yes");
     } else {
         printf("no");
