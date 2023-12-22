@@ -19,7 +19,7 @@ int Task() {
 
     while ((c = (char)getchar()) != EOF) {
         if (c == ' ' || c == '\n') {
-            if (areAllConsonantsUnvoiced(word)) {
+            if (AreAllConsonantsUnvoiced(word)) {
                 theRightWordExist = true;
             }
             word = 0;
