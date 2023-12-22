@@ -26,7 +26,6 @@ int Task() {
         if (c == ' ' || c == '\n') {
             if (AreAllConsonantsUnvoiced(word)) {
                 the_right_word_exist = true;
-
             }
             word = 0;
             continue;
