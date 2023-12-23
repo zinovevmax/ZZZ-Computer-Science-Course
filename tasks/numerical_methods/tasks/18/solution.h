@@ -1,5 +1,7 @@
 #pragma once
 
+#define Ans_1 0.7376
+#define Ans_2 0.2624
 #include <float.h>
 #include <math.h>
 #include <stdint.h>
@@ -39,7 +41,7 @@ double IterationMethod(double initial_guess, double lower_bound, double upper_bo
     return root;
 }
 
-int Task() {
+int main() {
     double lower_bound_dichotomy = 0.4;
     double upper_bound_dichotomy = 1.0;
     double lower_bound_iteration = 0.0;
@@ -47,7 +49,7 @@ int Task() {
     double tolerance = DBL_EPSILON;
     double root1 = DichotomyMethod(lower_bound_dichotomy, upper_bound_dichotomy, tolerance);
     double root2 = IterationMethod((lower_bound_iteration + upper_bound_iteration) / 2.0, lower_bound_iteration, upper_bound_iteration, tolerance);
-    printf("%f %f\n", root1, 0.7376);
-    printf("%f %f\n", root2, 0.2624);
+    printf("%f, %f\n", root1, Ans_1);
+    printf("%f, %f\n", root2, Ans_2);
     return 0;
 }
