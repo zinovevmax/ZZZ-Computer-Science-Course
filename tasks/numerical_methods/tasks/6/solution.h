@@ -82,10 +82,14 @@ double DerivativeFunction(double x) {
     return 6.0 * (log(x) + 1) / x;
 }
 
+const double ANSWER_ITERATION_METHOD = 0.9892;
+const double ANSWER_NEWTON_METHOD = 1.8832;
+
 int Task() {
-    printf("Equation:  x + cos(x ^ 0.52 + 2) = 0,   solved by iteration method: %0.15lf\n",
-           IterationMethod(0.5, 1.0, Phi));
-    printf("Equation:  3 * ln^2(x) + 6 * ln(x) - 5, solved by Newton method:    %0.15lf\n",
-           NewtonMethod(1.0, 3.0, Function, DerivativeFunction));
+    printf("Equation:  x + cos(x ^ 0.52 + 2) = 0: \n(iteration method) %.10lf, answer: %.4lf\n",
+           IterationMethod(0.5, 1.0, Phi), ANSWER_ITERATION_METHOD);
+    printf("\n");
+    printf("Equation:  3 * ln^2(x) + 6 * ln(x) - 5: \n(Newton method) %.10lf, answer: %.4lf\n",
+           NewtonMethod(1.0, 3.0, Function, DerivativeFunction), ANSWER_NEWTON_METHOD);
     return 0;
 }
