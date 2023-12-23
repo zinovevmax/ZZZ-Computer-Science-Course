@@ -14,45 +14,40 @@ double Func2(double x) {
 }
 
 double DichotomyMethod(double lower_bound, double upper_bound, double tolerance) {
-    double root = 0.5 * (lower_bound + upper_bound);
-    int max_iterations = 100000;
-    for (int i = 0; i < max_iterations; i++) {
-        if (Func1(root) == 0.0 || (upper_bound - lower_bound) <= tolerance) {
-            break;
-        }
+    double root = (lower_bound + upper_bound) / 2.0;
+    while (fabs(Func1(root)) > tolerance && fabs(upper_bound - lower_bound) > tolerance) {
         if (Func1(lower_bound) * Func1(root) <= 0) {
             upper_bound = root;
         } else {
             lower_bound = root;
         }
-        root = 0.5 * (lower_bound + upper_bound);
+        root = (lower_bound + upper_bound) / 2.0;
     }
     return root;
 }
 
-double IterationMethod(double initial_guess, double tolerance) {
+double IterationMethod(double initial_guess, double lower_bound, double upper_bound, double tolerance) {
     double root = initial_guess;
-    int max_iterations = 100000;
-    for (int i = 0; i < max_iterations; i++) {
-        double delta = Func2(root) / (1.0 - 1.0 / (3.0 + sin(3.6 * root)));
-        root = root - delta;
-        if (delta < 0) {
-            delta = -delta;
-        }
-        if (delta <= tolerance) {
-            break;
+    while (fabs(Func2(root)) > tolerance) {
+        root = root - Func2(root) / (1.0 - 1.0 / (3.0 + sin(3.6 * root)));
+        if (root < lower_bound) {
+            root = lower_bound;
+        } else if (root > upper_bound) {
+            root = upper_bound;
         }
     }
     return root;
 }
 
 int Task() {
-    double lower_bound = 0.4;
-    double upper_bound = 1.0;
-    double tolerance = 1e-6;
-    double root1 = DichotomyMethod(lower_bound, upper_bound, tolerance);
-    double root2 = IterationMethod((lower_bound + upper_bound) / 2.0, tolerance);
-    printf("%f\n", root1);
-    printf("%f\n", root2);
+    double lower_bound_dichotomy = 0.4;
+    double upper_bound_dichotomy = 1.0;
+    double lower_bound_iteration = 0.0;
+    double upper_bound_iteration = 0.85;
+    double tolerance = DBL_EPSILON;
+    double root1 = DichotomyMethod(lower_bound_dichotomy, upper_bound_dichotomy, tolerance);
+    double root2 = IterationMethod((lower_bound_iteration + upper_bound_iteration) / 2.0, lower_bound_iteration, upper_bound_iteration, tolerance);
+    printf("%f %f\n", root1,  0.7376);
+    printf("%f %f\n", root2, 0.2624);
     return 0;
 }
