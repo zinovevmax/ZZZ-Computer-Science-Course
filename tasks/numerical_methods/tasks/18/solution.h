@@ -4,6 +4,7 @@
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
+
 #define Ans_1 0.7376
 #define Ans_2 0.2624
 
@@ -49,7 +50,7 @@ int Task() {
     double tolerance = DBL_EPSILON;
     double root1 = DichotomyMethod(lower_bound_dich, upper_bound_dich, tolerance);
     double root2 = IterationMethod((lower_bound_iter + upper_bound_iter) / 2.0, lower_bound_iter, upper_bound_iter, tolerance);
-    printf("%f, %f\n", root1, Ans_1);
-    printf("%f, %f\n", root2, Ans_2);
+    printf("%f, %fn", root1, Ans_1);
+    printf("%f, %fn", root2, Ans_2);
     return 0;
 }
