@@ -1,11 +1,11 @@
 #pragma once
 
-#define Ans_1 0.7376
-#define Ans_2 0.2624
 #include <float.h>
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
+#define Ans_1 0.7376
+#define Ans_2 0.2624
 
 double Func1(double x) {
     return x + sqrt(x) + pow(x, 1.0 / 3.0) - 2.5;
