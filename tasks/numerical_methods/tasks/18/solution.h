@@ -47,7 +47,7 @@ int Task() {
     double tolerance = DBL_EPSILON;
     double root1 = DichotomyMethod(lower_bound_dichotomy, upper_bound_dichotomy, tolerance);
     double root2 = IterationMethod((lower_bound_iteration + upper_bound_iteration) / 2.0, lower_bound_iteration, upper_bound_iteration, tolerance);
-    printf("%f %f\n", root1,  0.7376);
+    printf("%f %f\n", root1, 0.7376);
     printf("%f %f\n", root2, 0.2624);
     return 0;
 }
