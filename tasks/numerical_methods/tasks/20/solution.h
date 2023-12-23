@@ -47,7 +47,9 @@ double DichotomyMethod(double (*func)(double)) {
 int Task() {
     double newton_result = NewtonsMethod(*FuncNewton, *DerivativeFuncNewton);
     double dichotomy_result = DichotomyMethod(*FuncDichotomy);
-    printf("Newton's Method:      %lf\n", newton_result);
-    printf("Method of Dichotomy:  %lf\n", dichotomy_result);
+    printf("| Method              | Result   | table  |\n");
+    printf("===========================================\n");
+    printf("| Newton's Method     | %lf | 1.1183 |\n", newton_result);
+    printf("| Method of Dichotomy | %lf | 0.3333 |\n", dichotomy_result);
     return 0;
 }
