@@ -41,14 +41,14 @@ double IterationMethod(double initial_guess, double lower_bound, double upper_bo
     return root;
 }
 
-int main() {
-    double lower_bound_dichotomy = 0.4;
-    double upper_bound_dichotomy = 1.0;
-    double lower_bound_iteration = 0.0;
-    double upper_bound_iteration = 0.85;
+int Task() {
+    double lower_bound_dich = 0.4;
+    double upper_bound_dich = 1.0;
+    double lower_bound_iter = 0.0;
+    double upper_bound_iter = 0.85;
     double tolerance = DBL_EPSILON;
-    double root1 = DichotomyMethod(lower_bound_dichotomy, upper_bound_dichotomy, tolerance);
-    double root2 = IterationMethod((lower_bound_iteration + upper_bound_iteration) / 2.0, lower_bound_iteration, upper_bound_iteration, tolerance);
+    double root1 = DichotomyMethod(lower_bound_dich, upper_bound_dich, tolerance);
+    double root2 = IterationMethod((lower_bound_iter + upper_bound_iter) / 2.0, lower_bound_iter, upper_bound_iter, tolerance);
     printf("%f, %f\n", root1, Ans_1);
     printf("%f, %f\n", root2, Ans_2);
     return 0;
