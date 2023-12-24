@@ -57,7 +57,7 @@ void PrintTable(long double x, long double taylor_result, long double function_r
     printf("| %.6Lf | %.20Lf | %.20Lf | %4d  |n", x, taylor_result, function_result, num_teylor_iterations);
 }
 
-int main() {
+int Task() {
     const int precision = 80;
     int num_teylor_iterations = 0;
     const int n = 10;
