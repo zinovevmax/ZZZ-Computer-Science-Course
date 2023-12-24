@@ -36,7 +36,7 @@ Matrix IteratingOverMatrix(int32_t lines, int32_t collumns, int32_t input_matrix
             --steps;
 
         } else if (steps % 4 == 1) {  //движение вверх
-            for (int32_t line = (lines - 1); line >= 0; --line) {
+            for (int32_t line = (lines - 1); line >= (N - lines - 1); --line) {
                 *(result + index) = input_matrix[line][(N - 1) - collumns];
                 ++index;
             }
@@ -66,6 +66,7 @@ void PrintResult(int32_t size, Matrix result) {
     for (int32_t i = 0; i < size; ++i) {
         printf("%d ", result[i]);
     }
+    printf("\n");
 }
 
 int Task() {
