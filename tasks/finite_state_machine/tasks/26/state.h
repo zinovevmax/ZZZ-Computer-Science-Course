@@ -13,7 +13,7 @@ StateName MemorizeNumber(StateMachine* sm) {
     if (sm->cur_char == '$') {
         return RESULT;
     }
-    if(IsDigit(sm->cur_char)) {
+    if (IsDigit(sm->cur_char)) {
         sm->cur_number *= 10;
         sm->cur_number += (int32_t)(sm->cur_char - '0');
         return MEMORIZENUMBER;
@@ -25,7 +25,7 @@ StateName Skip(StateMachine* sm) {
     if (sm->cur_char == '$') {
         return RESULT;
     }
-    if(IsDigit(sm->cur_char)) {
+    if (IsDigit(sm->cur_char)) {
         sm->prev_number = sm->cur_number;
         sm->cur_number = 0;
         return MemorizeNumber(sm);
