@@ -15,7 +15,6 @@ StateMachine* MakeStateMachine() {
 }
 
 int Step(StateMachine* sm, char c) {
-    printf("step: %c StateName: %d\n", c, sm->cur_state);
     sm->cur_char = c;
     StateName next = sm->pipeline[(int)sm->cur_state].action(sm);
     if (next == END) {

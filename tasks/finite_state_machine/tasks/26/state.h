@@ -40,7 +40,7 @@ StateName Result(StateMachine* sm) {
         sum += number % 10;
         number /= 10;
     }
-    printf("Previous number: %i\nSum            : %i\n", sm->prev_number, sum);
+    printf("Previous number: %i\nSum of digits  : %i\n", sm->prev_number, sum);
     return END;
 }
 
