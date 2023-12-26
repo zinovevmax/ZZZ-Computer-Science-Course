@@ -14,7 +14,6 @@ StateName MemorizeNumber(StateMachine* sm) {
         return RESULT;
     }
     if(IsDigit(sm->cur_char)) {
-        printf("\nПеред *10: символ: %c\n", sm->cur_char);
         sm->cur_number *= 10;
         sm->cur_number += (int32_t)(sm->cur_char - '0');
         return MEMORIZENUMBER;
@@ -23,7 +22,6 @@ StateName MemorizeNumber(StateMachine* sm) {
 }
 
 StateName Skip(StateMachine* sm) {
-    printf("skip %c; ", sm->cur_char);
     if (sm->cur_char == '$') {
         return RESULT;
     }
@@ -42,7 +40,7 @@ StateName Result(StateMachine* sm) {
         sum += number % 10;
         number /= 10;
     }
-    printf("Number: %i\nSum: %i\n", sm->prev_number, sum);
+    printf("Previous number: %i\nSum            : %i\n", sm->prev_number, sum);
     return END;
 }
 
