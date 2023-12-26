@@ -4,15 +4,6 @@
 
 #include "shared_header.h"
 
-// Функция, которую выполнит состояние START
-StateName Start(StateMachine* sm, char ch) {
-    ++sm->step;
-    if (ch == '1') {
-    }
-    printf("Starting...\n");
-    return CHECK_SYMBOL_FIRST;
-}
-
 StateName CheckSymbolFirst(StateMachine* sm, char ch) {
     ++sm->step;
     if (ch == '{') {
@@ -23,12 +14,20 @@ StateName CheckSymbolFirst(StateMachine* sm, char ch) {
 
 StateName WordsInComment(StateMachine* sm, char ch) {
     ++sm->step;
-    if (ch == ' ') {
-        return INCREMENT;
+    if (('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z')) {
+        return CHECK_WORD;
     } else if (ch == '}') {
         return END;
     }
     return WORDS_IN_COMMENT;
+}
+
+StateName CheckWord(StateMachine* sm, char ch) {
+    ++sm->step;
+    if (ch != ' ') {
+        return CHECK_WORD;
+    }
+    return INCREMENT;
 }
 
 StateName Increment(StateMachine* sm, char ch) {
@@ -42,10 +41,9 @@ StateName Increment(StateMachine* sm, char ch) {
 State* MakeStates() {
     State* st = (State*)malloc(sizeof(State) * (int)STATECOUNT);
     int i = -1;
-    // Read: https://en.cppreference.com/w/c/language/struct_initialization
-    st[i] = State{(StateName)i++, &Start};  // Списки инициализации для структур.
     st[i] = State{(StateName)i++, &CheckSymbolFirst};
     st[i] = State{(StateName)i++, &WordsInComment};
+    st[i] = State{(StateName)i++, &CheckWord};
     st[i] = State{(StateName)i++, &Increment};
     return st;
 }

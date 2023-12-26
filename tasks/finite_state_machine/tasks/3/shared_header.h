@@ -3,15 +3,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-typedef enum {
-    START = 0,
-    // READ,
-    CHECK_SYMBOL_FIRST,
-    WORDS_IN_COMMENT,
-    INCREMENT,
-    STATECOUNT,
-    END
-} StateName;
+typedef enum { CHECK_SYMBOL_FIRST, WORDS_IN_COMMENT, CHECK_WORD, INCREMENT, STATECOUNT, END } StateName;
 
 typedef struct State State;
 

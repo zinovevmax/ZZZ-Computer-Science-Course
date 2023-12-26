@@ -6,7 +6,7 @@
 StateMachine* MakeStateMachine() {
     StateMachine* sm = (StateMachine*)malloc(sizeof(StateMachine));
     sm->pipeline = MakeStates();
-    sm->cur_state = START;
+    sm->cur_state = CHECK_SYMBOL_FIRST;
     sm->current_symbol = ' ';
     sm->count_words = 0;
     sm->step = 0;
