@@ -10,12 +10,9 @@ int Task() {
     FILE* file = fopen("../tasks/finite_state_machine/tasks/26/input.txt", "r");
     StateMachine* sm = MakeStateMachine();
 
-    int res = 0;
-    while (true) {
-        res = Step(sm, (char)fgetc(file));
-        if (res) {
-            break;
-        }
+    bool is_result = true;
+    while (is_result) {
+        is_result = Step(sm, (char)fgetc(file));
     }
     DeleteStateMachine(sm);
     fclose(file);

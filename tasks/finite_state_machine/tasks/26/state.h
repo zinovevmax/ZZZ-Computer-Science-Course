@@ -10,7 +10,7 @@ bool IsDigit(char c) {
 }
 
 StateName MemorizeNumber(StateMachine* sm) {
-    if (sm->cur_char == '$') {
+    if (sm->cur_char == EOF) {
         return RESULT;
     }
     if (IsDigit(sm->cur_char)) {

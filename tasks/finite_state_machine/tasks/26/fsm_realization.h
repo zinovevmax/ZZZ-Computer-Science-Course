@@ -18,10 +18,10 @@ int Step(StateMachine* sm, char c) {
     sm->cur_char = c;
     StateName next = sm->pipeline[(int)sm->cur_state].action(sm);
     if (next == END) {
-        return 1;
+        return false;
     }
     sm->cur_state = next;
-    return 0;
+    return true;
 }
 
 void DeleteStateMachine(StateMachine* sm) {
