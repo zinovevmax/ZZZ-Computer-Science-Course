@@ -9,7 +9,6 @@ StateMachine* MakeStateMachine() {
     sm->cur_state = CHECK_SYMBOL_FIRST;
     sm->current_symbol = ' ';
     sm->count_words = 0;
-    sm->step = 0;
     return sm;
 }
 

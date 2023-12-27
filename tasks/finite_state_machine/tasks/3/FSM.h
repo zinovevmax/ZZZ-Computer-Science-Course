@@ -21,7 +21,7 @@ int Task() {
             break;
         }
     }
-    printf("The number of the words in the commets equals %d\n", sm->count_words);
+    printf("The number of the words in the comments equals %d\n", sm->count_words);
     DeleteStateMachine(sm);
     return 0;
 }
