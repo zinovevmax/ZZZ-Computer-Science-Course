@@ -27,14 +27,7 @@ StateName CheckWord(StateMachine* sm, char ch) {
     if (ch != ' ') {
         return CHECK_WORD;
     }
-    return INCREMENT;
-}
-
-StateName Increment(StateMachine* sm, char ch) {
-    ++sm->step;
     ++sm->count_words;
-    if (ch == '1') {
-    }
     return WORDS_IN_COMMENT;
 }
 
@@ -44,7 +37,6 @@ State* MakeStates() {
     st[i] = State{(StateName)i++, &CheckSymbolFirst};
     st[i] = State{(StateName)i++, &WordsInComment};
     st[i] = State{(StateName)i++, &CheckWord};
-    st[i] = State{(StateName)i++, &Increment};
     return st;
 }
 
