@@ -9,7 +9,7 @@ StateMachine* MakeStateMachine() {
     StateMachine* sm = (StateMachine*)malloc(sizeof(StateMachine));
     sm->pipeline = MakeStates();
     sm->cur_state = START;
-    sm->file_out = fopen("../tasks/finite_state_machine/tasks/10/file_out.txt", "r");
+    sm->file_out = fopen("../tasks/finite_state_machine/tasks/10/file_out.txt", "w");
     return sm;
 }
 

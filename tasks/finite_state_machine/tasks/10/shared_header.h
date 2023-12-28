@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdio.h>
+
 typedef enum {
     START = 0,
     SYMBOLCHECK,
