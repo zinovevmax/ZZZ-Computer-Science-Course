@@ -2,14 +2,12 @@
 
 #include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "fsm_realization.h"
 
 int Task() {
     FILE* file = fopen("../tasks/finite_state_machine/tasks/10/text.txt", "r");
     StateMachine* sm = MakeStateMachine();
-
     int res = 0;
     while (true) {
         res = Step(sm, (char)fgetc(file));
@@ -18,7 +16,7 @@ int Task() {
             break;
         }
     }
-    DeleteStateMachine(sm);
     fclose(file);
+    DeleteStateMachine(sm);
     return 0;
 }

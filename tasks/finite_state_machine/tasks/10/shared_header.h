@@ -14,6 +14,7 @@ typedef struct {
     State* pipeline;
     StateName cur_state;
     char last_symbol;
+    FILE* file_out;
 } StateMachine;
 
 typedef struct State {
