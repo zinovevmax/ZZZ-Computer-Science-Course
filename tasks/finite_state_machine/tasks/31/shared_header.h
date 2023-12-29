@@ -16,13 +16,15 @@ typedef enum {
 
 typedef struct State State;
 
+const int64_t BITS_COUNT = 32;
+
 typedef struct {
     State *pipeline;
     StateName cur_state;
-    char current_binary_state[33];  // Для хранения двоичного числа как строки
-    int binary_counter;             // Счетчик двоичных чисел
-    int current_length;             // Текущая длина двоичного числа
-    char current_char;              // Текущий считываемый символ
+    char current_binary_state[BITS_COUNT + 1];  // Для хранения двоичного числа как строки
+    int binary_counter;                         // Счетчик двоичных чисел
+    int current_length;                         // Текущая длина двоичного числа
+    char current_char;                          // Текущий считываемый символ
 } StateMachine;
 
 typedef struct State {

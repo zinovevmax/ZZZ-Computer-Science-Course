@@ -17,8 +17,7 @@ StateMachine *CreateStateMachine() {
 void Step(StateMachine *sm, char c) {
     if (sm->cur_state != END) {
         sm->current_char = c;
-        StateName next = sm->pipeline[sm->cur_state].action(sm);
-        sm->cur_state = next;
+        sm->cur_state = sm->pipeline[sm->cur_state].action(sm);
     }
 }
 
