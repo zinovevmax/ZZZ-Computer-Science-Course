@@ -13,10 +13,11 @@ StateMachine* MakeStateMachine() {
 }
 
 int Step(StateMachine* sm, char ch) {
-    StateName next = sm->pipeline[(int)sm->cur_state].action(sm, ch);
+    StateName next = sm->pipeline[(int)sm->cur_state].action(sm);
     if (next == END) {
         return 1;
     }
+    sm->current_symbol = ch;
     sm->cur_state = next;
     return 0;
 }

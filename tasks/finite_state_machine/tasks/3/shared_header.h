@@ -12,10 +12,9 @@ typedef struct {
     StateName cur_state;
     char current_symbol;
     int count_words;
-    int step;
 } StateMachine;
 
 typedef struct State {
     StateName name;
-    StateName (*action)(StateMachine*, char ch);
+    StateName (*action)(StateMachine*);
 } State;

@@ -4,27 +4,25 @@
 
 #include "shared_header.h"
 
-StateName CheckSymbolFirst(StateMachine* sm, char ch) {
-    ++sm->step;
-    if (ch == '{') {
+StateName CheckSymbolFirst(StateMachine* sm) {
+    if (sm->current_symbol == '{') {
         return WORDS_IN_COMMENT;
     }
     return CHECK_SYMBOL_FIRST;
 }
 
-StateName WordsInComment(StateMachine* sm, char ch) {
-    ++sm->step;
-    if (('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z')) {
+StateName WordsInComment(StateMachine* sm) {
+    if (('a' <= sm->current_symbol && sm->current_symbol <= 'z') ||
+        ('A' <= sm->current_symbol && sm->current_symbol <= 'Z')) {
         return CHECK_WORD;
-    } else if (ch == '}') {
+    } else if (sm->current_symbol == '}') {
         return END;
     }
     return WORDS_IN_COMMENT;
 }
 
-StateName CheckWord(StateMachine* sm, char ch) {
-    ++sm->step;
-    if (ch != ' ') {
+StateName CheckWord(StateMachine* sm) {
+    if (sm->current_symbol != ' ') {
         return CHECK_WORD;
     }
     ++sm->count_words;
