@@ -1,6 +1,6 @@
 #pragma once
 
-#include "header.h"
+#include "constants.h"
 
 double_t NyutonFunc(double_t x) {
     return exp(x) - exp(-x) - 2;

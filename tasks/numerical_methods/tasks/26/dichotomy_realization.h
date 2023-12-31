@@ -1,6 +1,6 @@
 #pragma once
 
-#include "header.h"
+#include "constants.h"
 
 double_t DychotomyFunc(double_t x) {
     return (sin(log(x)) - cos(log(x)) + 2 * log(x));

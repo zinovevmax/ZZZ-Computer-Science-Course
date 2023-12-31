@@ -1,7 +1,7 @@
 #pragma once
 
+#include "constants.h"
 #include "dichotomy_realization.h"
-#include "header.h"
 #include "nyuton_realization.h"
 
 void Output(double_t nyuton_result, double_t dichotomy_result) {
@@ -19,10 +19,10 @@ void Output(double_t nyuton_result, double_t dichotomy_result) {
 }
 
 int Task() {
-    double_t first_num = (A_NYUTON + B_NYUTON) / 2;
+    double_t first_num = (A_N + B_N) / 2;
     double_t nyuton_second_num = first_num - (NyutonFunc(first_num) / NyutonDerivative(first_num, 1));
     double_t nyuton_result = Nyuton(nyuton_second_num, first_num, NyutonDerivative, NyutonFunc);
-    double_t dichotomy_result = Dychotomy(A_DICHOTOMY, B_DICHOTOMY, DychotomyFunc);
+    double_t dichotomy_result = Dychotomy(A_D, B_D, DychotomyFunc);
     Output(nyuton_result, dichotomy_result);
     return 0;
 }
