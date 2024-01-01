@@ -18,11 +18,11 @@ int64_t Abs(int64_t number) {
     return number > 0 ? number : -number;
 }
 
-int64_t Sigh(int64_t number) {
-    return number > 0 ? 1 : -1;
+int64_t Sign(int64_t number) {
+    return number > 0 ? 1 : number < 0 ? -1 : 0;;
 }
 
-int64_t Exponentiation(int64_t number, int64_t degree) {
+int64_t Pow(int64_t number, int64_t degree) {
     int64_t multiplied_number = number;
     while (degree > 1) {
         degree--;
@@ -43,7 +43,7 @@ int64_t CountLen(int64_t number) {
 int64_t ChangeNumber(int64_t number, int64_t len_of_number) {
     int64_t changed_number = 0;
     while (len_of_number > 1) {
-        int64_t degree_of_base = Exponentiation(BASE, len_of_number - 1);
+        int64_t degree_of_base = Pow(BASE, len_of_number - 1);
         int64_t first_number = (number / degree_of_base);
         number %= degree_of_base;
         degree_of_base /= 10;
@@ -64,7 +64,7 @@ int Task() {
     int64_t number = EXAMPLE;
     scanf("%ld", &number);
     int64_t len_of_number = CountLen(number);
-    int64_t new_number = Sigh(number) * ChangeNumber(Abs(number), len_of_number);
+    int64_t new_number = Sign(number) * ChangeNumber(Abs(number), len_of_number);
     printf("%ld", new_number);
     return 0;
 }
