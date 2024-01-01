@@ -1,10 +1,8 @@
 #pragma once
 
 #include <float.h>
-#include <math.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 const int32_t MAX_ITERATIONS = 100;
 const int64_t K = 277;
