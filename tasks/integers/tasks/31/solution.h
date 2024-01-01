@@ -19,7 +19,7 @@ int64_t Abs(int64_t number) {
 }
 
 int64_t Sign(int64_t number) {
-    return number > 0 ? 1 : number < 0 ? -1 : 0;;
+    return number > 0 ? 1 : number < 0 ? -1 : 0;
 }
 
 int64_t Pow(int64_t number, int64_t degree) {
