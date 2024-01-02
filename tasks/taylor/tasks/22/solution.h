@@ -25,17 +25,15 @@ long double Taylor(long double x, int32_t* counter) {
     long double taylor_result = 1.0;
     long double temp_value = 0.0;
     int32_t i = 0;
-    
     while (i < MAX_ITERATIONS && fabsl(Func(x) - taylor_result) >= PRECISION * K) {
         temp_value = ((i + 1) * pow(x, i + 2)) / Factorial(i + 2);
-        if (i % 2 == 0){
+        if (i % 2 == 0) {
             taylor_result -= temp_value;
         } else {
             taylor_result += temp_value;
         }
         ++i;
     }
-
     *counter = i;
     return taylor_result;
 }
@@ -44,7 +42,7 @@ void Print_Start_Row() {
     printf("------------------------------------------------------------------\n");
     printf("|   X   |    Taylor Series    |      Function       | Iterations |\n");
     printf("------------------------------------------------------------------\n");
-} 
+}
 
 void Print_Table_Row(long double x, long double taylor, long double func, int iter) {
     printf("| %5.2Lf | %19.15Lf | %19.15Lf | %10d |\n", x, taylor, func, iter);
@@ -60,8 +58,7 @@ int Task() {
     long double taylor_result = 0;
     long double func_result = 0;
 
-
-    for(long double x = A; x <= B + PRECISION; x += step) {
+    for (long double x = A; x <= B + PRECISION; x += step) {
         iterations = 0;
         taylor_result = Taylor(x, &iterations);
         func_result = Func(x);
