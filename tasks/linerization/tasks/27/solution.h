@@ -105,5 +105,9 @@ int Task() {
     printf("The result of running through the matrix\n");
     PrintResult(M * N, result);
     free(result);
+    for (int32_t i = 0; i < N; ++i) {
+        free(input_matrix[i]);
+    }
+    free(input_matrix);
     return 0;
 }
