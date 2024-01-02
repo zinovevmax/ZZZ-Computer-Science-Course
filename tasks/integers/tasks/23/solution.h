@@ -3,7 +3,6 @@
 #include <stdint.h>
 #include <stdio.h>
 
-
 uint8_t CountNumbers(uint64_t number) {
     uint8_t count = 0;
     while (number > 0) {
