@@ -38,32 +38,32 @@ long double Taylor(long double x, int32_t* counter) {
     return taylor_result;
 }
 
-void Print_Start_Row() {
+void PrintStartRow() {
     printf("------------------------------------------------------------------\n");
     printf("|   X   |    Taylor Series    |      Function       | Iterations |\n");
     printf("------------------------------------------------------------------\n");
 }
 
-void Print_Table_Row(long double x, long double taylor, long double func, int iter) {
+void PrintTableRow(long double x, long double taylor, long double func, int iter) {
     printf("| %5.2Lf | %19.15Lf | %19.15Lf | %10d |\n", x, taylor, func, iter);
 }
 
 int Task() {
-    const long double A = 0.0;
-    const long double B = 1.0;
-    const long double step = (B - A) / N;
-    Print_Start_Row();
+    const long double a = 0.0;
+    const long double b = 1.0;
+    const long double step = (b - a) / N;
+    PrintStartRow();
 
     int32_t iterations = 0;
     long double taylor_result = 0;
     long double func_result = 0;
 
-    for (long double x = A; x <= B + PRECISION; x += step) {
+    for (long double x = a; x <= b + PRECISION; x += step) {
         iterations = 0;
         taylor_result = Taylor(x, &iterations);
         func_result = Func(x);
 
-        Print_Table_Row(x, taylor_result, func_result, iterations);
+        PrintTableRow(x, taylor_result, func_result, iterations);
     }
     printf("------------------------------------------------------------------");
     return 0;
