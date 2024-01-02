@@ -103,7 +103,7 @@ void ClearMemory(Matrix matrix, uint32_t size) {
 int Task() {
     // write your solution here
     uint32_t size = 3;  // for example
-    const char* file_name = "../tasks/matrix/tasks/20/test.txt";
+    const char* file_name = "../tasks/matrix/tasks/17/test.txt";
     Matrix matrix_from_file = ReadMatrixFromFile(file_name, size);
     uint32_t matrix_new = Solution(matrix_from_file, size);
     printf("Matrix from file :\n");
