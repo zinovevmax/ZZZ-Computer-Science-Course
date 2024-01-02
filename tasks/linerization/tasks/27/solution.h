@@ -7,8 +7,8 @@
 typedef int32_t** Matrix;
 typedef int32_t* Array;
 
-const int32_t M = 1;
-const int32_t N = 1;
+const int32_t M = 4;
+const int32_t N = 4;
 
 Matrix InputMatrix(int32_t m, int32_t n) {
     int32_t** input_matrix = (int32_t**)malloc(sizeof(int32_t*) * m);
