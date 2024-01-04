@@ -77,7 +77,7 @@ Matrix InitializeMatrixAndShift(const char* filename, int32_t* n) {
                 matrix[i][j] = start_elements[new_elements_count];
                 ++new_elements_count;
             }
-            --readElementsMatrixCounter;
+            --read_elements_matrix_counter;
         }
     }
     fclose(file);
