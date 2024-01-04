@@ -21,7 +21,7 @@ void FreeMatrix(int32_t** matrix) {
     free(matrix);
 }
 
-void InitializeMatrix(int32_t** matrix, int32_t rows, int32_t cols) {
+void InitializeMatrix(int32_t** matrix) {
     matrix[0][0] = 10;
     matrix[0][1] = 4;
     matrix[0][2] = 3;
@@ -75,7 +75,7 @@ void Lineralize(int32_t** matrix) {
 int Task() {
     int32_t** matrix = nullptr;
     AllocateMatrix(&matrix);
-    InitializeMatrix(matrix, ROWS, COLS);
+    InitializeMatrix(matrix);
     Lineralize(matrix);
     FreeMatrix(matrix);
     return 0;
