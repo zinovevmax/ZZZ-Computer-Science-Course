@@ -42,7 +42,8 @@ void InitializeMatrix(int_32t** matrix, int_32t rows, int_32t cols) {
 
 void Lineralize(int_32t** matrix) {
     for (int_32t i = 0; i < ROWS + COLS - 1; i++) {
-        int_32t row, col;
+        int_32t row;
+        int_32t col;
         if (i < COLS) {
             row = 0;
             col = COLS - 1 - i;
