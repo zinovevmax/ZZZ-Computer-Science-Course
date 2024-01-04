@@ -7,7 +7,7 @@
 const int32_t ROWS = 4;
 const int32_t COLS = 4;
 
-void AllocateMarix(int32_t*** matrix) {
+void AllocateMatrix(int32_t*** matrix) {
     *matrix = (int32_t**)malloc(ROWS * sizeof(int32_t*));
     for (int32_t i = 0; i < ROWS; i++) {
         (*matrix)[i] = (int32_t*)malloc(COLS * sizeof(int32_t));
@@ -42,8 +42,8 @@ void InitializeMatrix(int32_t** matrix, int32_t rows, int32_t cols) {
 
 void Lineralize(int32_t** matrix) {
     for (int32_t i = 0; i < ROWS + COLS - 1; i++) {
-        int32_t row;
-        int32_t col;
+        int32_t row = 0;
+        int32_t col = 0;
         if (i < COLS) {
             row = 0;
             col = COLS - 1 - i;
@@ -73,7 +73,7 @@ void Lineralize(int32_t** matrix) {
 }
 
 int Task() {
-    int32_t** matrix;
+    int32_t** matrix = nullptr;
     AllocateMatrix(&matrix);
     InitializeMatrix(matrix, ROWS, COLS);
     Lineralize(matrix);
