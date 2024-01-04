@@ -50,7 +50,7 @@ int Task() {
         p.y = j;
 
         if (CheckZone(p)) {
-                        in_zone += 1;
+            in_zone += 1;
         }
     }
     if (in_zone == 0) {
