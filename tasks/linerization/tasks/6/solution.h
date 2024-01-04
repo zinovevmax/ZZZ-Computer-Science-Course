@@ -4,24 +4,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const int_32t ROWS = 4;
-const int_32t COLS = 4;
+const int32_t ROWS = 4;
+const int32_t COLS = 4;
 
-void AllocateMarix(int_32t*** matrix) {
-    *matrix = (int_32t**)malloc(ROWS * sizeof(int_32t*));
-    for (int_32t i = 0; i < ROWS; i++) {
-        (*matrix)[i] = (int_32t*)malloc(COLS * sizeof(int_32t));
+void AllocateMarix(int32_t*** matrix) {
+    *matrix = (int32_t**)malloc(ROWS * sizeof(int32_t*));
+    for (int32_t i = 0; i < ROWS; i++) {
+        (*matrix)[i] = (int32_t*)malloc(COLS * sizeof(int32_t));
     }
 }
 
-void FreeMatrix(int_32t** matrix) {
-    for (int_32t i = 0; i < ROWS; i++) {
+void FreeMatrix(int32_t** matrix) {
+    for (int32_t i = 0; i < ROWS; i++) {
         free(matrix[i]);
     }
     free(matrix);
 }
 
-void InitializeMatrix(int_32t** matrix, int_32t rows, int_32t cols) {
+void InitializeMatrix(int32_t** matrix, int32_t rows, int32_t cols) {
     matrix[0][0] = 10;
     matrix[0][1] = 4;
     matrix[0][2] = 3;
@@ -40,10 +40,10 @@ void InitializeMatrix(int_32t** matrix, int_32t rows, int_32t cols) {
     matrix[3][3] = 7;
 }
 
-void Lineralize(int_32t** matrix) {
-    for (int_32t i = 0; i < ROWS + COLS - 1; i++) {
-        int_32t row;
-        int_32t col;
+void Lineralize(int32_t** matrix) {
+    for (int32_t i = 0; i < ROWS + COLS - 1; i++) {
+        int32_t row;
+        int32_t col;
         if (i < COLS) {
             row = 0;
             col = COLS - 1 - i;
@@ -52,8 +52,8 @@ void Lineralize(int_32t** matrix) {
             col = 0;
         }
 
-        int_32t diagonal[ROWS < COLS ? ROWS : COLS];
-        int_32t diagonal_length = 0;
+        int32_t diagonal[ROWS < COLS ? ROWS : COLS];
+        int32_t diagonal_length = 0;
         while (row < ROWS && col < COLS) {
             diagonal[diagonal_length++] = matrix[row][col];
             row++;
@@ -61,11 +61,11 @@ void Lineralize(int_32t** matrix) {
         }
 
         if (i % 2 != 0) {
-            for (int_32t j = diagonal_length - 1; j >= 0; j--) {
+            for (int32_t j = diagonal_length - 1; j >= 0; j--) {
                 printf("%d ", diagonal[j]);
             }
         } else {
-            for (int_32t j = 0; j < diagonal_length; j++) {
+            for (int32_t j = 0; j < diagonal_length; j++) {
                 printf("%d ", diagonal[j]);
             }
         }
@@ -73,7 +73,7 @@ void Lineralize(int_32t** matrix) {
 }
 
 int Task() {
-    int_32t** matrix;
+    int32_t** matrix;
     AllocateMatrix(&matrix);
     InitializeMatrix(matrix, ROWS, COLS);
     Lineralize(matrix);
