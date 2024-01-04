@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 
+const int ZERO = 0;
 const int MAX_ITERATIONS = 50;
 const int THIRTY = 30;
 const int ONE = 1;
@@ -84,11 +85,11 @@ int CheckZone(Point p) {
     // Write a code here that checks whether a point belongs to a given area
     if (Square(p.x) / Square(SEMIAXIS_X) + Square(p.y) / Square(SEMIAXIS_Y) <= ONE) {
         printf("Точка с координатами %d %d попадает в область\n", p.x, p.y);
+        return 1;
     } else {
         printf("Точка с координатами %d %d не попадает в область\n", p.x, p.y);
+        return 0;
     }
-
-    return 0;
 }
 
 int Task() {
@@ -100,8 +101,11 @@ int Task() {
     int ik = 0;
     int jk = 0;
     int lk = 0;
-    for (int cnt = 0; cnt < MAX_ITERATIONS; ++cnt) {
-        CheckZone(p);
+    int hit = ZERO;
+    for (int cnt = ONE; cnt <= MAX_ITERATIONS; ++cnt) {
+        if (CheckZone(p)) {
+            hit = hit + 1;
+        }
         ik = p.x;
         jk = p.y;
         lk = l;
@@ -109,6 +113,8 @@ int Task() {
         p.y = Abs(jk - lk) * Sign(ik) - Abs(ik - lk) * Sign(jk);
         l = Min(jk, Max2(jk, Min(lk, Max2(ik - lk, jk - lk))));
     }
+
+    printf("Точка попала в область %d раз\n", hit);
 
     return 0;
 }
