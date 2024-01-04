@@ -47,8 +47,7 @@ void Lineralize(int_32t** matrix) {
         if (i < COLS) {
             row = 0;
             col = COLS - 1 - i;
-        }
-        else {
+        } else {
             row = i - COLS + 1;
             col = 0;
         }
@@ -65,8 +64,7 @@ void Lineralize(int_32t** matrix) {
             for (int_32t j = diagonal_length - 1; j >= 0; j--) {
                 printf("%d ", diagonal[j]);
             }
-        }
-        else {
+        } else {
             for (int_32t j = 0; j < diagonal_length; j++) {
                 printf("%d ", diagonal[j]);
             }
