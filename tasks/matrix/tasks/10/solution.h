@@ -87,7 +87,7 @@ Matrix InitializeMatrixAndShift(const char* filename, int32_t* n) {
 
 int Task() {
     int32_t n = 0;
-    const char* filename = "matrix.txt";
+    const char* filename = "../tasks/matrix/tasks/10/matrix.txt";
     Matrix matrix = InitializeMatrixAndShift(filename, &n);
     int32_t groupSize = 1; // можно поменять на подходящее значение
     int32_t shift = 3; // можно поменять на подходящее значение
