@@ -4,6 +4,15 @@
 
 const int64_t NUMBER = 111;  // write the number here
 
+int Figures(int y) {
+    int z = 0;
+    while (y > 0) {
+        z += 1;
+        y = y / 10;
+    }
+    return z;
+}
+
 int FindLeft(int x) {
     if ((x - 1) == 0) {
         return 1;
@@ -31,15 +40,12 @@ int Degree(int a, int b) {
 }
 
 int Task() {
-    int64_t number = NUMBER;
+    int32_t number = NUMBER;
     int32_t figures = 0;
     int32_t step = 1;
     int64_t left = 0;
     int64_t right = 0;
-    while (number > 0) {
-        figures += 1;
-        number = number / 10;
-    }
+    figures = Figures(number);
     number = NUMBER;
     while (step != ((figures / 2) + 1)) {
         left = (number / Degree(10, (figures - step))) % 10;
