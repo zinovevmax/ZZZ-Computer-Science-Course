@@ -4,7 +4,7 @@
 
 const int64_t NUMBER = 111;  // write the number here
 
-int find_left(int x) {
+int FindLeft(int x) {
     if ((x - 1) == 0) {
         return 1;
     } else {
@@ -30,12 +30,12 @@ int Degree(int a, int b) {
     return a;
 }
 
-int main() {
+int Task() {
     int64_t number = NUMBER;
     int32_t figures = 0;
     int32_t step = 1;
-    int16_t left = 0;
-    int16_t right = 0;
+    int64_t left = 0;
+    int64_t right = 0;
     while (number > 0) {
         figures += 1;
         number = number / 10;
@@ -43,7 +43,7 @@ int main() {
     number = NUMBER;
     while (step != ((figures / 2) + 1)) {
         left = (number / Degree(10, (figures - step))) % 10;
-        right = ((number % Degree(10, step)) / find_left(step));
+        right = ((number % Degree(10, step)) / FindLeft(step));
         if (left == right) {
             step += 1;
         } else {
