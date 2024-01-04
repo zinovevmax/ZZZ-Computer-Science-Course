@@ -5,7 +5,7 @@
 
 int Task() {
     uint32_t number = 0;
-    scanf("%d", &number);
+    scanf("%u", &number);
     uint32_t first_digit = 10;
     uint32_t length_counter = 10;
     while (first_digit > 9) {
@@ -18,6 +18,6 @@ int Task() {
     if (length_counter == 1) {
         new_number = new_number / 2;
     }
-    printf("%d", new_number);
+    printf("%u", new_number);
     return 0;
 }
