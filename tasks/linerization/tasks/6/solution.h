@@ -6,21 +6,21 @@
 #define ROWS 4
 #define COLS 4
 
-void allocate_matrix(int*** matrix) {
+void AllocateMarix(int*** matrix) {
     *matrix = (int**)malloc(ROWS * sizeof(int*));
     for (int i = 0; i < ROWS; i++) {
         (*matrix)[i] = (int*)malloc(COLS * sizeof(int));
     }
 }
 
-void free_matrix(int** matrix) {
+void FreeMatrix(int** matrix) {
     for (int i = 0; i < ROWS; i++) {
         free(matrix[i]);
     }
     free(matrix);
 }
 
-void initialize_matrix(int** matrix, int rows, int cols) {
+void InitializeMatrix(int** matrix, int rows, int cols) {
     matrix[0][0] = 10;
     matrix[0][1] = 4;
     matrix[0][2] = 3;
@@ -43,7 +43,7 @@ void initialize_matrix(int** matrix, int rows, int cols) {
 }
 
 
-void print_matrix_diagonals(int** matrix) {
+void Lineralize(int** matrix) {
     for (int i = 0; i < ROWS + COLS - 1; i++) {
         int row, col;
         if (i < COLS) {
