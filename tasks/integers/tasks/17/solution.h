@@ -4,8 +4,8 @@
 #include <stdio.h>
 
 int Task() {
-    uint32_t number = 0;
-    scanf("%u", &number);
+    uint32_t number = 6545;
+    // scanf("%u", &number);
     uint32_t first_digit = 10;
     uint32_t length_counter = 10;
     while (first_digit > 9) {
