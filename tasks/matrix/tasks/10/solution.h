@@ -64,7 +64,7 @@ Matrix InitializeMatrixAndShift(const char* filename, int32_t* n) {
     }
     Matrix matrix = CreateMatrix(*n);
     int32_t* start_elements = (int32_t*)malloc((matrix_size - matrix_shift) * sizeof(int32_t));
-    int32_t read_elements_matrix_counter= matrix_size;
+    int32_t read_elements_matrix_counter = matrix_size;
     int32_t new_elements_count = 0;
     for (int i = 0; i < matrix_size - matrix_shift; ++i) {
         fscanf(file, "%d", &start_elements[i]);
@@ -90,7 +90,7 @@ int Task() {
     const char* filename = "../tasks/matrix/tasks/10/matrix.txt";
     Matrix matrix = InitializeMatrixAndShift(filename, &n);
     int32_t group_size = 1;  // можно поменять на подходящее значение
-    int32_t shift = 3;      // можно поменять на подходящее значение
+    int32_t shift = 3;       // можно поменять на подходящее значение
     ShiftAllColumnsGroups(matrix, n, group_size, shift);
     PrintMatrix(matrix, n);
     MatrixFree(matrix, n);
