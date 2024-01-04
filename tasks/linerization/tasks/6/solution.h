@@ -4,24 +4,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef int32_t** Matrix;
+
 const int32_t ROWS = 4;
 const int32_t COLS = 4;
 
-void AllocateMatrix(int32_t*** matrix) {
-    *matrix = (int32_t**)malloc(ROWS * sizeof(int32_t*));
+void AllocateMatrix(Matrix* matrix) {
+    *matrix = (Matrix)malloc(ROWS * sizeof(int32_t*));
     for (int32_t i = 0; i < ROWS; i++) {
         (*matrix)[i] = (int32_t*)malloc(COLS * sizeof(int32_t));
     }
 }
 
-void FreeMatrix(int32_t** matrix) {
+void FreeMatrix(Matrix matrix) {
     for (int32_t i = 0; i < ROWS; i++) {
         free(matrix[i]);
     }
     free(matrix);
 }
 
-void InitializeMatrix(int32_t** matrix) {
+void InitializeMatrix(Matrix matrix) {
     matrix[0][0] = 10;
     matrix[0][1] = 4;
     matrix[0][2] = 3;
@@ -40,7 +42,7 @@ void InitializeMatrix(int32_t** matrix) {
     matrix[3][3] = 7;
 }
 
-void Lineralize(int32_t** matrix) {
+void Lineralize(Matrix matrix) {
     for (int32_t i = 0; i < ROWS + COLS - 1; i++) {
         int32_t row = 0;
         int32_t col = 0;
@@ -73,7 +75,7 @@ void Lineralize(int32_t** matrix) {
 }
 
 int Task() {
-    int32_t** matrix = nullptr;
+    Matrix matrix = nullptr;
     AllocateMatrix(&matrix);
     InitializeMatrix(matrix);
     Lineralize(matrix);
