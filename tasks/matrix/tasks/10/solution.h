@@ -34,10 +34,10 @@ void CyclicShift(Matrix matrix, int32_t rows, int32_t cols, int32_t n) {
 }
 
 int Task() {
-    FILE *file = fopen("../tasks/matrix/tasks/10/matrix.txt", "r"); 
-    int32_t rows;
-    int32_t cols;
-    int32_t n;
+    FILE *file = fopen("../tasks/matrix/tasks/10/matrix.txt", "r");
+    int32_t rows = 0;
+    int32_t cols = 0;
+    int32_t n = 0;
     fscanf(file, "%d%d%d", &rows, &cols, &n);
     Matrix matrix = AllocateMatrix(rows, cols);
     for (int32_t i = 0; i < rows; i++) {
