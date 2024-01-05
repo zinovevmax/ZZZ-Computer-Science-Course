@@ -45,7 +45,7 @@ int Task() {
             fscanf(file, "%d", &matrix[i][j]);
         }
     }
-    cyclicShift(matrix, rows, cols, n);
+    CyclicShift(matrix, rows, cols, n);
     printf("Updated Matrix:\n");
     for (int32_t i = 0; i < rows; i++) {
         for (int32_t j = 0; j < cols; j++) {
