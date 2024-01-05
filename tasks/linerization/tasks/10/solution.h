@@ -78,7 +78,6 @@ void Linerization(Matrix matrix, Row lin_matrix, size_t n, size_t m) {
         }
         --quantity_elements_on_diagonal;
     }
-
 }
 
 void PrintMatrix(Matrix matrix, size_t n, size_t m) {
