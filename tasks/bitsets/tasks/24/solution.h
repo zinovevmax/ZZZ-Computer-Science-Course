@@ -1,9 +1,9 @@
 #pragma once
 
+#include <ctype.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <ctype.h>
 
 typedef uint32_t Bitset;
 const Bitset VOICED_CONSONANTS = 48446026;
