@@ -54,6 +54,6 @@ int Task() {
         printf("\n");
     }
     fclose(file);
-    freeMatrix(matrix, rows);
+    FreeMatrix(matrix, rows);
     return 0;
 }
