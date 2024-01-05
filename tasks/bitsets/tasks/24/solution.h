@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <ctype.h>
 
 typedef uint32_t Bitset;
 const Bitset VOICED_CONSONANTS = 48446026;
@@ -30,7 +31,7 @@ int Task() {
             word = 0;
             continue;
         }
-        word = word | 1u << (c - 'a');
+        word = word | 1u << (tolower(c) - 'a');
     }
 
     if (the_right_word_exist) {
