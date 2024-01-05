@@ -6,93 +6,54 @@
 
 typedef int32_t** Matrix;
 
-Matrix CreateMatrix(int32_t n) {
-    Matrix matrix = (Matrix)malloc(n * sizeof(int32_t*));
-    for (int i = 0; i < n; i++) {
-        matrix[i] = (int32_t*)malloc(n * sizeof(int32_t));
+Matrix AllocateMatrix(int32_t rows, int32_t cols) {
+    Matrix matrix = (Matrix)malloc(rows * sizeof(int32_t *));
+    for (int32_t i = 0; i < rows; i++) {
+        matrix[i] = (int32_t *)malloc(cols * sizeof(int32_t));
     }
     return matrix;
 }
 
-void MatrixFree(Matrix matrix, int32_t n) {
-    for (int i = 0; i < n; i++) {
+void FreeMatrix(Matrix matrix, int32_t rows) {
+    for (int32_t i = 0; i < rows; i++) {
         free(matrix[i]);
     }
     free(matrix);
 }
 
-void ShiftColumnsGroup(Matrix matrix, int32_t n, int32_t group, int32_t shift) {
-    shift %= n;
-
-    for (int i = 0; i < n; i++) {
-        int32_t temp = matrix[i][group];
-        for (int j = group; j < group + shift; j++) {
-            if (j + shift < n) {
-                matrix[i][j] = matrix[i][j + shift];
+void CyclicShift(Matrix matrix, int32_t rows, int32_t cols, int32_t n) {
+    for (int32_t group = 0; group < cols; group += n) {
+        for (int32_t i = 0; i < rows; i++) {
+            int32_t temp = matrix[i][group];
+            for (int32_t j = group; j < group + n - 1; j++) {
+                matrix[i][j] = matrix[i][j + 1];
             }
-        }
-        matrix[i][(group + shift) % n] = temp;
-    }
-}
-
-void ShiftAllColumnsGroups(Matrix matrix, int32_t n, int32_t group_size, int32_t shift) {
-    for (int32_t group = 0; group < n; group += group_size) {
-        ShiftColumnsGroup(matrix, n, group, shift);
-    }
-}
-
-void PrintMatrix(Matrix matrix, int32_t n) {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            printf("%d ", matrix[j][i]);
-        }
-        printf("\n");
-    }
-}
-
-Matrix InitializeMatrixAndShift(const char* filename, int32_t* n) {
-    int32_t matrix_shift = 3;  // можно поменять на подходящее значение
-    if (matrix_shift < 0) {
-        printf("Invalid input\n");
-        abort();
-    }
-    FILE* file = fopen(filename, "r");
-    fscanf(file, "%d", n);
-    int32_t matrix_size = (*n) * (*n);
-    if (matrix_shift > matrix_size) {
-        matrix_shift = matrix_shift % matrix_size;
-    }
-    Matrix matrix = CreateMatrix(*n);
-    int32_t* start_elements = (int32_t*)malloc((matrix_size - matrix_shift) * sizeof(int32_t));
-    int32_t read_elements_matrix_counter = matrix_size;
-    int32_t new_elements_count = 0;
-    for (int i = 0; i < matrix_size - matrix_shift; ++i) {
-        fscanf(file, "%d", &start_elements[i]);
-    }
-    for (int i = 0; i < *n; ++i) {
-        for (int j = 0; j < *n; ++j) {
-            if (read_elements_matrix_counter > matrix_size - matrix_shift) {
-                fscanf(file, "%d", &matrix[i][j]);
-            } else if (read_elements_matrix_counter <= matrix_size - matrix_shift) {
-                matrix[i][j] = start_elements[new_elements_count];
-                ++new_elements_count;
-            }
-            --read_elements_matrix_counter;
+            matrix[i][group + n - 1] = temp;
         }
     }
-    fclose(file);
-    free(start_elements);
-    return matrix;
 }
 
 int Task() {
-    int32_t n = 0;
-    const char* filename = "../tasks/matrix/tasks/10/matrix.txt";
-    Matrix matrix = InitializeMatrixAndShift(filename, &n);
-    int32_t group_size = 1;  // можно поменять на подходящее значение
-    int32_t shift = 3;       // можно поменять на подходящее значение
-    ShiftAllColumnsGroups(matrix, n, group_size, shift);
-    PrintMatrix(matrix, n);
-    MatrixFree(matrix, n);
+    FILE *file = fopen("../tasks/matrix/tasks/10/matrix.txt", "r"); 
+    int32_t rows;
+    int32_t cols;
+    int32_t n;
+    fscanf(file, "%d%d%d", &rows, &cols, &n);
+    Matrix matrix = AllocateMatrix(rows, cols);
+    for (int32_t i = 0; i < rows; i++) {
+        for (int32_t j = 0; j < cols; j++) {
+            fscanf(file, "%d", &matrix[i][j]);
+        }
+    }
+    cyclicShift(matrix, rows, cols, n);
+    printf("Updated Matrix:\n");
+    for (int32_t i = 0; i < rows; i++) {
+        for (int32_t j = 0; j < cols; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    fclose(file);
+    freeMatrix(matrix, rows);
     return 0;
 }
