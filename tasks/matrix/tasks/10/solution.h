@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int32_t** Matrix;
+typedef int32_t **Matrix;
 
 Matrix AllocateMatrix(int32_t rows, int32_t cols) {
     Matrix matrix = (Matrix)malloc(rows * sizeof(int32_t *));
