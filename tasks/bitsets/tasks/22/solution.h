@@ -6,11 +6,11 @@
 
 typedef uint32_t Bitset;
 const Bitset CONSONANTS = 49266414;
-const int WORDS_IN_ALFABET = 26;
+const int LETTERS_IN_ALFABET = 26;
 
 uint32_t CountConsonants(Bitset bitset) {
     uint32_t counter = 0;
-    for (int i = 0; i <= WORDS_IN_ALFABET; ++i) {
+    for (int i = 0; i <= LETTERS_IN_ALFABET; ++i) {
         if (bitset & (1u << i)) {
             ++counter;
         }
@@ -27,7 +27,7 @@ int Task() {
     Bitset word = 0;
     char text[] = "qwerty asdfg zxcvb q";  // scanf при необходимости
     for (size_t i = 0; i <= strlen(text); ++i) {
-        if (text[i] >= 'a' && text[i] <= 'z') {
+        if ((text[i] >= 'a' && text[i] <= 'z') | (text[i] >= 'A' && text[i] <= 'Z')) {
             word |= (1u << (text[i] - 'a'));
         } else {
             if (CheckOnlyConsonant(word)) {
