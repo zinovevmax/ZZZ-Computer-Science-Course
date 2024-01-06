@@ -10,18 +10,8 @@ uint32_t CheckOnlyVovel(Bitset word) {
     return (word & CONSONANTS);
 }
 
-int Answer(int a) {
-    if (a > 0) {
-        printf("there are vowels included in all words\n");
-    } else {
-        printf("there are no vowels included in all words\n");
-    }
-    return 0;
-}
-
 int Task() {
     Bitset word = 0;
-    Bitset vowel_in_word = 0;
     Bitset count = 17842449;
     char words[] = "wrte gtfe nhte vcxe";  // write words
     for (size_t i = 0; i <= strlen(words); ++i) {
@@ -32,6 +22,10 @@ int Task() {
             word = 0;
         }
     }
-    Answer(count);
+    if (count > 0) {
+        printf("there are vowels included in all words\n");
+    } else {
+        printf("there are no vowels included in all words\n");
+    }
     return 0;
 }
