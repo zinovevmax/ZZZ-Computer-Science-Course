@@ -52,8 +52,8 @@ int Mod(int a, int b) {
 }
 
 int CheckZone(Point p) {
-    return (bool)((p.x >= (SQUARE_CENTER_X - SQUARE_EDGE / 2)) && (p.x <= (SQUARE_CENTER_X + SQUARE_EDGE / 2)) &&
-                  (p.y >= (SQUARE_CENTER_Y - SQUARE_EDGE / 2)) && (p.y <= (SQUARE_CENTER_Y + SQUARE_EDGE / 2)));
+    return ((p.x >= (SQUARE_CENTER_X - SQUARE_EDGE / 2)) && (p.x <= (SQUARE_CENTER_X + SQUARE_EDGE / 2)) &&
+            (p.y >= (SQUARE_CENTER_Y - SQUARE_EDGE / 2)) && (p.y <= (SQUARE_CENTER_Y + SQUARE_EDGE / 2)));
 }
 
 int Task() {
@@ -77,7 +77,7 @@ int Task() {
     }
     if (hit_counter == 0) {
         printf("No points hit square for 50 iterations\n");
-    } else if (hit_counter > 0) {
+    } else {
         printf("Points hit counter:%d\n", hit_counter);
     }
     return 0;
